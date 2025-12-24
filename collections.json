@@ -2098,5 +2098,155 @@
     "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_dd5d6a7d-6a98-4a44-981c-bebd419d96db",
     "timestamp": "2025-12-24 20:21:27.430137",
     "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute() - ExecuteMsg::CheckAccount] [Missing authorization] Does ExecuteMsg::CheckAccount lack authorization checks allowing anyone to trigger account validation, and can this be exploited to DoS the protocol by repeatedly checking accounts and causing expensive oracle queries?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_623cc0a6-324b-462b-a639-2edcd7f93823",
+    "timestamp": "2025-12-24 20:23:01.590113",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute() - ExecuteMsg::CheckAccount] [Stale account load] Can the CreditAccount::load() call at line 166-167 return stale data if the account state was just modified by ExecuteMsg::Account, causing check_safe() to validate against outdated LTV values?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_23488857-cf49-4e9e-a719-4a82230c22f9",
+    "timestamp": "2025-12-24 20:23:14.351228",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute() - ExecuteMsg::CheckAccount] [Threshold confusion] Does check_safe(&config.adjustment_threshold) at line 168 use the correct threshold, or should it use liquidation_threshold, and can this mismatch allow accounts to bypass proper safety validation?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_d645507c-4735-4f1f-a5b3-1f833396adc2",
+    "timestamp": "2025-12-24 20:23:27.742363",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_account() - AccountMsg::Borrow] [Vault authorization bypass] Can the BORROW.load() call at line 185 fail for unwhitelisted denoms, or can an attacker manipulate the BORROW map to borrow from unauthorized vaults by exploiting sudo message ordering?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_09ea9b81-c2fa-4a73-878c-71dce414ffe3",
+    "timestamp": "2025-12-24 20:23:41.493833",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_account() - AccountMsg::Borrow] [Delegate impersonation] Can an attacker exploit the delegate = account.id().to_string() at line 181 combined with the market_msg_borrow(Some(delegate.clone()), None, &coin) call at line 187 to borrow as a different account by manipulating the account ID?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_148e2d17-b574-4b3f-a928-694949973497",
+    "timestamp": "2025-12-24 20:23:56.180440",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_account() - AccountMsg::Borrow] [Borrow-send atomicity] Can the BankMsg::Send at lines 188-192 fail while market_msg_borrow succeeds, causing the vault to register a borrow but the account to not receive funds, permanently increasing the account's debt without corresponding assets?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_147533f8-8099-48ae-af1b-4916d7418440",
+    "timestamp": "2025-12-24 20:24:12.227910",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_account() - AccountMsg::Borrow] [Zero amount borrow] Does AccountMsg::Borrow validate that coin.amount > 0, or can an attacker borrow zero-amount coins to manipulate account state or create accounting anomalies in the vault?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_a9b0550f-2ac5-4cc6-9dda-98ae3de0527f",
+    "timestamp": "2025-12-24 20:24:29.106044",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_account() - AccountMsg::Borrow] [Multiple denom borrow] Can an attacker call AccountMsg::Borrow multiple times for different denoms in a single ExecuteMsg::Account to bypass per-denom borrow limits or total debt limits tracked by the vault?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_2767196b-1de0-4fd8-bc6b-41be9efa8aa8",
+    "timestamp": "2025-12-24 20:24:47.696577",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_account() - AccountMsg::Repay] [Repay-send ordering] Can the account.account.send() call at line 200-201 preceding the market_msg_repay at line 202 create a state where funds are sent to the registry but repayment fails, causing the account to lose funds without reducing debt?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_d9b6d9c8-5f1d-4acf-87ae-66653c7fcc16",
+    "timestamp": "2025-12-24 20:25:07.331601",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_account() - AccountMsg::Repay] [Over-repayment vulnerability] Does market_msg_repay prevent repaying more than the borrowed amount, or can an attacker over-repay to manipulate share accounting in the vault or extract value through rounding errors?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e8aebdcc-b613-436f-af93-ee72cbb0eefd",
+    "timestamp": "2025-12-24 20:25:28.249552",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_account() - AccountMsg::Repay] [Zero amount repay] Can an attacker call AccountMsg::Repay with zero amount coins to trigger vault operations without actually repaying debt, potentially manipulating interest accrual or share prices?",
+    "url": "https://deepwiki.com/search/not-found",
+    "timestamp": "2025-12-24 20:25:49.930174",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_account() - AccountMsg::Repay] [Insufficient account balance] Does the send call validate that the rujira-account has sufficient balance of the repay denom, or can it fail and leave the account in an inconsistent state where the repay message was attempted but not completed?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_97e2e444-7927-402f-88ac-76d7d7449e83",
+    "timestamp": "2025-12-24 20:26:11.989756",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_account() - AccountMsg::Execute] [Arbitrary contract call] Can an attacker use AccountMsg::Execute to call malicious contracts that perform reentrancy attacks back into the registry or vault contracts, bypassing access controls or manipulating state during execution?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_38a304fe-f1ad-4cda-96bf-e3710d221026",
+    "timestamp": "2025-12-24 20:26:35.444455",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_account() - AccountMsg::Execute] [Collateral extraction] Can an attacker use AccountMsg::Execute to call a swap contract that converts their collateral to different assets not tracked by the protocol, effectively extracting collateral value while maintaining the appearance of solvency?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_18176caa-06fe-44a6-8587-78744600ce4e",
+    "timestamp": "2025-12-24 20:26:59.439598",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_account() - AccountMsg::Execute] [Funds manipulation] Can an attacker specify arbitrary funds in AccountMsg::Execute to send collateral to external contracts without those operations being reflected in the account's collateral tracking, allowing them to under-collateralize their position?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_1fea76d0-a7bd-4bb9-8524-d3e83a33a72d",
+    "timestamp": "2025-12-24 20:27:24.616707",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_account() - AccountMsg::Execute] [Contract address validation] Does AccountMsg::Execute validate that contract_addr is not the registry, vault, or other protocol contracts that could be exploited through self-calls to bypass access controls?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_998e88dc-53c8-489c-8f81-68186493f040",
+    "timestamp": "2025-12-24 20:27:51.027704",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_account() - AccountMsg::Execute] [Cross-contract exploitation] Can an attacker use AccountMsg::Execute to interact with other rujira-accounts they don't own, potentially stealing collateral or manipulating their state through delegate permissions?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_ee0a3fed-6dec-455e-9ae6-c41b1af87b6f",
+    "timestamp": "2025-12-24 20:28:17.248066",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_account() - AccountMsg::Send] [Collateral withdrawal bypass] Can an attacker use AccountMsg::Send to withdraw collateral from their account before the CheckAccount LTV validation occurs, creating a window where they have removed collateral but the LTV check hasn't failed yet?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_4c9dc50b-e375-42db-a148-68e5e7f86e4a",
+    "timestamp": "2025-12-24 20:28:43.064195",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_account() - AccountMsg::Send] [Recipient validation] Does AccountMsg::Send validate the to_address parameter, or can an attacker send funds to an invalid address causing permanent loss of collateral while the account still shows it as borrowed against?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_d1983993-6463-4079-a8f5-41511edf26f5",
+    "timestamp": "2025-12-24 20:29:09.245588",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_account() - AccountMsg::Send] [Self-send exploitation] Can an attacker send collateral to their own external address and then immediately re-deposit it to manipulate oracle price queries or account state between blocks?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_dc298244-7cab-4a94-9181-0bc3422241cb",
+    "timestamp": "2025-12-24 20:29:33.528395",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_account() - AccountMsg::Send] [Batch send atomicity] Can an attacker combine multiple AccountMsg::Send entries in a single ExecuteMsg::Account to extract all collateral at once, ensuring that if CheckAccount fails, the entire transaction reverts and they can try again?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_0224bb30-b4c6-4e54-aee4-4a09fd1508a4",
+    "timestamp": "2025-12-24 20:29:57.955215",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_account() - AccountMsg::Transfer] [Ownership transfer atomicity] Can an attacker transfer account ownership to a controlled address and then immediately liquidate the account as the new owner before the CheckAccount validation occurs, extracting liquidation fees from their own account?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_c157576f-2ae1-464e-b910-17620c7dc914",
+    "timestamp": "2025-12-24 20:30:23.596845",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_account() - AccountMsg::Transfer] [Recipient validation bypass] Does AccountMsg::Transfer validate that the recipient address is valid and not a contract that could reject ownership, causing the account to become ownerless and unliquidatable?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_0012a88c-dea5-4659-b51d-b475c78f8858",
+    "timestamp": "2025-12-24 20:30:47.998654",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_account() - AccountMsg::Transfer] [Transfer mid-liquidation] Can an account owner transfer ownership to another address during an active liquidation queue processing to confuse liquidation logic or prevent liquidation completion?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_a468d98c-5e0b-4f74-a9c6-6d0d728d0b0a",
+    "timestamp": "2025-12-24 20:31:12.645080",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_account() - AccountMsg::Transfer] [Self-transfer bypass] Can an attacker transfer ownership to themselves repeatedly to trigger state updates or event emissions that could be exploited for off-chain manipulation or DoS?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_1d4cc4a6-6f6e-4b4e-a8d8-0395e56f2f3b",
+    "timestamp": "2025-12-24 20:31:38.058865",
+    "report_generated": false
   }
 ]
