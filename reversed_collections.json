@@ -2248,5 +2248,155 @@
     "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_78de932a-d5d6-48c8-aea5-cefb14cee24a",
     "timestamp": "2025-12-24 20:51:29.319142",
     "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: query() - QueryMsg::Accounts] [Tag filtering bypass] Does the optional tag parameter properly filter accounts, or can passing None return accounts with any tag value including empty strings?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_0eaf8f4d-7a63-4dd9-bff4-3ed16e4ddbe2",
+    "timestamp": "2025-12-24 20:52:41.567705",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: query() - QueryMsg::Accounts] [Account enumeration DoS] Can the CreditAccount::by_owner() query be exploited to cause DoS if an owner has created many accounts, causing expensive iteration over account indexes?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_2a6ea26f-e794-4906-84a9-81d9d0a2785e",
+    "timestamp": "2025-12-24 20:52:54.307033",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: query() - QueryMsg::Account] [Oracle query timing] Does loading the account trigger expensive oracle queries for all collateral and debt denoms, and can this be exploited to DoS the query interface with repeated requests?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_23a93c5c-aa33-40ba-b476-fa7624081b87",
+    "timestamp": "2025-12-24 20:53:07.282656",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: query() - QueryMsg::Account] [Account query accuracy] Can the CreditAccount::load() at lines 407-412 return stale account data if the account was recently modified but not yet committed, misleading liquidators or users about account safety?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_8bb54f4a-8a74-4ac0-98b7-49031f6e5d28",
+    "timestamp": "2025-12-24 20:53:20.810634",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: query() - QueryMsg::Borrows] [Borrower information exposure] Does the borrower query at line 402 expose sensitive information about the registry's borrowing limits in vaults that could be used to manipulate the protocol?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_4154b69f-d5c1-474f-a9af-c40a66693e57",
+    "timestamp": "2025-12-24 20:53:35.566826",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: query() - QueryMsg::Borrows] [Missing vault handling] If a collateral ratio exists but no vault has been set via SudoMsg::SetVault, does BORROW.load() fail gracefully, or can it cause the query to panic and DoS the query interface?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_3970b5f2-9b5d-467d-a61f-c06ed6f56c81",
+    "timestamp": "2025-12-24 20:53:51.315836",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: query() - QueryMsg::Borrows] [Borrow query DoS] Can the Borrows query at lines 395-405 be exploited to cause DoS by querying when there are many collateral_ratios entries, causing expensive iterative BORROW.load() calls?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_590be5aa-14ae-4f98-b1b4-18d867618a92",
+    "timestamp": "2025-12-24 20:54:09.481074",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: query() - QueryMsg::Config] [Config information leakage] Does exposing full config including collateral_ratios and fee parameters allow attackers to calculate optimal times to exploit the protocol based on configuration changes?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_ad25d77c-c943-47ff-9d6a-8716c2ba7eb2",
+    "timestamp": "2025-12-24 20:54:27.202993",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: sudo() - SudoMsg::UpdateConfig] [Liquidation max slip manipulation] Can reducing liquidation_max_slip via UpdateConfig cause existing liquidation queues in progress to fail validation, blocking legitimate liquidations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_a773ca23-8693-4b0a-836e-541107e7a6bb",
+    "timestamp": "2025-12-24 20:54:46.176006",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: sudo() - SudoMsg::UpdateConfig] [Fee address change] Can changing fee_address via UpdateConfig redirect liquidation fees to a malicious address mid-liquidation, stealing protocol revenue?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_862d21ed-b6cd-4522-8625-8f3abacbb09d",
+    "timestamp": "2025-12-24 20:55:05.655880",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: sudo() - SudoMsg::UpdateConfig] [Code ID update vulnerability] Can updating code_id via UpdateConfig cause new accounts to be instantiated with a different contract version, creating inconsistencies between old and new rujira-account instances?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e9bd8702-965e-4655-81eb-4f2aa706c6f2",
+    "timestamp": "2025-12-24 20:55:26.354776",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: sudo() - SudoMsg::UpdateConfig] [Config validation timing] Does config.validate() at line 382 properly validate the updated config before saving, or can invalid config states be temporarily committed?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_5afc4e6d-34a6-4dba-85e4-e02c37e64fd8",
+    "timestamp": "2025-12-24 20:55:47.561168",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: sudo() - SudoMsg::UpdateConfig] [Fee increase exploitation] Can an admin increase fee_liquidation or fee_liquidator to values approaching 5% during active liquidations to extract excessive fees from ongoing liquidation processes?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_8e00f6a3-d50f-4fce-9b5b-f264d7b9576c",
+    "timestamp": "2025-12-24 20:56:09.627594",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: sudo() - SudoMsg::UpdateConfig] [Threshold manipulation] Can updating adjustment_threshold or liquidation_threshold via UpdateConfig cause immediate liquidation or un-liquidation of existing accounts, creating arbitrage opportunities for malicious actors?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_968c0156-af1f-4597-bb86-ecd008895392",
+    "timestamp": "2025-12-24 20:56:32.306626",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: sudo() - SudoMsg::SetCollateral] [Collateral removal] Can setting collateralization_ratio to Decimal::zero() or removing a denom from collateral_ratios cause accounts holding that collateral to become unliquidatable or unable to withdraw?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_650bfc20-5cfd-454f-8cd2-592426c8140e",
+    "timestamp": "2025-12-24 20:56:55.717961",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: sudo() - SudoMsg::SetCollateral] [Denom overwrite] Can an admin overwrite existing collateral ratios by calling SetCollateral with the same denom, and does this properly update all existing accounts that use that collateral?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_eb4e9505-52cc-41ff-967d-2d813996338f",
+    "timestamp": "2025-12-24 20:57:20.277074",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: sudo() - SudoMsg::SetCollateral] [Ratio validation bypass] Does config.validate() at line 376 properly validate that collateralization_ratio is reasonable (e.g., not zero or negative), or can invalid ratios be set?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_ae3603cc-fe7d-48b1-b4c5-cadea75273bf",
+    "timestamp": "2025-12-24 20:57:45.401795",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: sudo() - SudoMsg::SetCollateral] [Collateral ratio update impact] Can changing collateral_ratios via SetCollateral cause existing accounts with that collateral type to suddenly become undercollateralized, triggering mass liquidations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_9c30296f-9cfc-48f1-bb69-e9edbf61d71d",
+    "timestamp": "2025-12-24 20:58:10.349134",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: sudo() - SudoMsg::SetVault] [BORROW.save race condition] Does the BORROW.save() call at line 366 properly handle concurrent vault updates, or can race conditions cause vault addresses to be overwritten unexpectedly?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_fabced85-6a48-49ae-bf70-a3a5c3212f4a",
+    "timestamp": "2025-12-24 20:58:35.130323",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: sudo() - SudoMsg::SetVault] [Vault replacement attack] Can an admin repeatedly call SudoMsg::SetVault to replace existing vaults with new ones, orphaning borrowers from the old vault and causing accounting inconsistencies?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_a96e7b08-a884-48c7-baab-ad1d874f572b",
+    "timestamp": "2025-12-24 20:59:01.039699",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: sudo() - SudoMsg::SetVault] [Collateral ratio check timing] Does the collateral_ratios.contains_key(&denom) check at line 363 prevent setting vaults for denoms that don't have collateral ratios, or can vaults be set for unsupported denoms?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_12c91ac1-2e07-48da-9615-aa443435487c",
+    "timestamp": "2025-12-24 20:59:26.950479",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: sudo() - SudoMsg::SetVault] [Denom extraction vulnerability] Can the vault.config(deps.querier)?.denom call at line 361 fail or return an unexpected denom, causing the vault to be registered under the wrong key in BORROW storage?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_a14847e1-2e4c-453e-9943-75a4cb449ba5",
+    "timestamp": "2025-12-24 20:59:50.985943",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: sudo() - SudoMsg::SetVault] [Vault address validation] Does the deps.api.addr_validate(&address) at line 360 properly validate that the vault address is a deployed contract with the expected interface, or can invalid addresses be set?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_0d11e852-8839-4125-9831-7bca39503013",
+    "timestamp": "2025-12-24 21:00:13.467466",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: reply()] [Reply message spoofing] Can an attacker craft a submessage that generates a reply with an unexpected ID to trigger the Unauthorized error and halt liquidation processing?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_a4beee27-ecd4-4005-acd9-7a7decba4047",
+    "timestamp": "2025-12-24 21:00:36.614388",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: reply()] [Unauthorized reply ID] Can the catch-all case at line 350 that returns ContractError::Unauthorized be exploited by triggering unexpected reply IDs that bypass liquidation validation?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_71af9f41-3e7b-46e7-9417-651151cdc8d4",
+    "timestamp": "2025-12-24 21:01:03.331539",
+    "report_generated": false
   }
 ]
