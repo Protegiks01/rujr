@@ -1348,5 +1348,155 @@
     "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_7302576c-ab23-463f-9a7b-c6a4cac12e4f",
     "timestamp": "2025-12-24 19:31:21.207287",
     "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rijira-ghost-credit/src/account.rs] [Function: validate_liquidation()] [Oracle timing attack] The spent_usd and repaid_usd calculations at lines 263 and 265 query oracles via value_usd() - if oracle prices change between these two queries, can attackers exploit the price difference to make slippage appear smaller/larger than reality, bypassing validation?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_3fcafc64-85f5-4d1f-86f4-bea9d4568835",
+    "timestamp": "2025-12-24 19:32:46.529892",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: validate_liquidation()] [checked_sub underflow] At line 267, spent_usd.checked_sub(repaid_usd) returns unwrap_or_default() on underflow - if repaid_usd > spent_usd (possible with price manipulation), does unwrap_or_default() make slippage appear as zero, bypassing slippage limits and allowing over-repayment?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_4fe93757-bf29-41a4-83a6-c898069afa11",
+    "timestamp": "2025-12-24 19:32:59.414686",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: validate_liquidation()] [checked_div by zero] At line 269, the slippage division uses checked_div() which returns unwrap_or_default() if spent_usd is zero - can liquidators liquidate accounts with zero-valued collateral (due to oracle failures) and bypass all slippage checks since slippage becomes zero?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_8b2ad2bf-98cd-4c9b-aac3-60bd85a625c5",
+    "timestamp": "2025-12-24 19:33:12.416494",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: validate_liquidation()] [Multiple coin handling] At line 257, validate_liquidation() iterates over spent coins from old.balance().sent(&balance) - if a liquidation involves multiple collateral types, does each coin's slippage get checked individually, or is there aggregate slippage that could exceed limits when summed?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_5366d0b0-9c19-477e-87cc-011a59043715",
+    "timestamp": "2025-12-24 19:33:26.073278",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: validate_liquidation()] [Old account state trust] The validate_liquidation() function accepts an 'old' CreditAccount parameter at line 252 - if this old state is manipulated or stale (e.g., from contract.rs DoLiquidate payload at line 94), can attackers make spent/repaid calculations incorrect, allowing them to extract more collateral than deserved?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_5946d969-1381-44e8-992f-5fd438ce8c7b",
+    "timestamp": "2025-12-24 19:33:40.576092",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: validate_liquidation()] [Zero slippage bypass] At line 273, if slippage.is_zero(), the check against liquidation_max_slip is skipped - can liquidators craft liquidations where spent_usd exactly equals repaid_usd due to rounding, bypassing slippage limits while still extracting liquidation bonuses through other mechanisms?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_ee158ae9-98a1-496a-982b-ad0a118aa5e0",
+    "timestamp": "2025-12-24 19:33:56.591596",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: validate_liquidation()] [Config parameter manipulation] The validate_liquidation() function uses config.liquidation_max_slip at line 275 - if config is passed from a cached or stale source rather than fresh storage load, can liquidators exploit outdated slippage limits to extract excess value?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_d74a3910-cb9c-451c-b8c4-b1ff1e6eedd9",
+    "timestamp": "2025-12-24 19:34:13.664527",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: validate_liquidation()] [Preference validation order] The preference order validation at lines 257-260 happens before slippage validation at lines 263-276 - if preference validation passes but slippage fails, has collateral already been transferred, causing state inconsistency?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_6b6b0603-a138-4fec-8a8d-26598f99c26f",
+    "timestamp": "2025-12-24 19:34:32.095702",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: validate_liquidation()] [sent() calculation] At line 255, old.balance().sent(&balance) calculates spent collateral - if the sent() method in NativeBalance has bugs (e.g., incorrect subtraction, negative amounts), can this cause validate_liquidation to incorrectly calculate spent_usd and allow over-liquidation?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_903d6bdf-4489-40cb-8f06-49fd2db864f0",
+    "timestamp": "2025-12-24 19:34:51.872168",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: validate_liquidation()] [Multiple liquidation rounds] In contract.rs DoLiquidate (lines 100-148), liquidation happens in rounds with queue processing - does validate_liquidation() get called after each round, and can slippage accumulate across rounds to exceed limits even if each individual round is within limits?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_21b27dd1-23a6-4817-b641-e13a2feb7c6a",
+    "timestamp": "2025-12-24 19:35:13.442984",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: validate_liquidation()] [Decimal precision] The slippage calculation at lines 266-270 involves multiple Decimal operations (subtraction, division) - can accumulated rounding errors cause the calculated slippage to differ from true economic slippage by enough to allow extraction of excess value?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_8a18c4e8-1604-4256-bd2f-167a07381395",
+    "timestamp": "2025-12-24 19:35:34.390241",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: to_credit_account()] [Collateral iteration DoS] At lines 300-309, to_credit_account() iterates over all keys in config.collateral_ratios and queries balance for each - if config.collateral_ratios has thousands of entries, can this cause excessive storage reads and gas consumption, making all account loading operations prohibitively expensive?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_089d026a-0b09-4c15-9ac0-1769b230fbe3",
+    "timestamp": "2025-12-24 19:35:57.523341",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: to_credit_account()] [Zero balance filtering] At lines 302-304, collaterals with value_usd of zero are skipped via continue - can an attacker exploit this by maintaining dust collateral amounts that round to zero USD value, causing their collateral to not count toward LTV calculations while still preventing liquidation?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_7ca3eb73-a914-4732-a58f-2aca8c7d32f7",
+    "timestamp": "2025-12-24 19:36:20.715150",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: to_credit_account()] [Oracle query failures] Each collateral's value_usd is queried at line 302 and 306 - if any oracle query fails (e.g., unsupported denom, oracle downtime), does the entire to_credit_account() call fail, preventing the account from being loaded or liquidated?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_feb4cdb3-af95-4ef4-97e1-719cfc050be6",
+    "timestamp": "2025-12-24 19:36:45.693975",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: to_credit_account()] [Collateral ratio missing] At line 307, value_adjusted() gets collateral_ratios from config - if a denom is present in the account but missing from collateral_ratios, the collateral.rs implementation at line 26 returns unwrap_or_default(), making value_adjusted zero - can users deposit unwhitelisted collateral to artificially lower their LTV?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_666ae94d-65f3-4881-b7e7-308213ab0503",
+    "timestamp": "2025-12-24 19:37:11.600279",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: to_credit_account()] [Debt iteration] At lines 312-323, to_credit_account() iterates over BORROW storage to find all vaults and query their delegate() for each account's debt - if BORROW storage is corrupted or contains unexpected entries, can this cause to_credit_account() to panic or return incorrect debt amounts?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_3ed74e2f-2307-43a5-a96f-8e2d417ec2c0",
+    "timestamp": "2025-12-24 19:37:37.805123",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: to_credit_account()] [Delegate query manipulation] At line 313, debt is calculated via vault.delegate(deps.querier, contract, &self.account) - if the contract parameter points to a different address than the actual registry, can this query return incorrect debt values that don't match what the account actually owes?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_f00788d1-7d7c-44f6-bcca-b89ebc4c0c0c",
+    "timestamp": "2025-12-24 19:38:05.565030",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: to_credit_account()] [Zero debt filtering] Similar to collateral, debts with value.is_zero() are skipped at lines 315-317 - can accounts with rounded-to-zero debt amounts avoid liquidation checks while still technically owing debt, causing protocol insolvency over time?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_99cc2b72-ebf5-440e-bef4-53e35f51b01f",
+    "timestamp": "2025-12-24 19:38:32.979774",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: to_credit_account()] [Value calculation timing] The value_usd queries at lines 302, 306, and 314 all happen sequentially - if there's a significant time gap between these queries (e.g., due to slow oracle responses), can price movements between queries cause calculated LTV to be incorrect?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_65a1bcd6-fe3a-44ab-af9c-2478f186adb8",
+    "timestamp": "2025-12-24 19:38:59.833020",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: to_credit_account()] [Collateral ordering non-determinism] The collaterals vector is populated by iterating config.collateral_ratios.keys() at line 300 - since this is a BTreeMap, ordering is deterministic, but if config changes between calls, can collateral ordering change, breaking code that assumes consistent ordering?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_28d17e3c-1f6b-49e4-856f-e551caeb4620",
+    "timestamp": "2025-12-24 19:39:27.304392",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: to_credit_account()] [Balance query inconsistency] At line 301, query_balance() returns the account contract's balance\n\n### Citations\n\n**File:** contracts/rujira-ghost-credit/src/account.rs (L1-375)\n```rust\nuse crate::{config::Config, state::BORROW, ContractError};\nuse cosmwasm_schema::cw_serde;\nuse cosmwasm_std::{ensure, Addr, Binary, Decimal, Deps, DepsMut, Order, StdResult, WasmMsg};\nuse cw_storage_plus::{Bound, Index, IndexList, IndexedMap, MultiIndex};\nuse cw_utils::NativeBalance;\nuse rujira_rs::{\n    account::Account,\n    ghost::credit::{\n        AccountResponse, Collateral, CollateralResponse, Debt, DebtResponse, LiquidateMsg,\n        LiquidationPreferences,\n    },\n    NativeBalancePlus, OracleValue,\n};\nuse sha2::{Digest, Sha256};\nuse std::ops::{Add, Div};\npub static ACCOUNTS_KEY: &str =",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_cb3c7288-4467-4dab-a5af-e4bbee1f7f3f",
+    "timestamp": "2025-12-24 19:39:54.821727",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: update()] [Missing validation] Can an admin call update() to set invalid configuration parameters (e.g., adjustment_threshold > liquidation_threshold) without triggering validate(), allowing the protocol to operate with broken threshold logic that could prevent all liquidations and lead to systemic insolvency as undercollateralized positions cannot be liquidated?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_a844f8cb-ef5e-442f-9cf3-07181d4373ee",
+    "timestamp": "2025-12-24 19:40:23.293921",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: update()] [State inconsistency] If update() is called to change fee_liquidation or fee_liquidator to values >= 5% without immediate validation, can subsequent liquidations extract excessive fees that violate the intended 5% cap, potentially draining protocol reserves and causing direct loss of funds?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_0a99c943-4ae2-4728-a068-b1a2b4a82a3a",
+    "timestamp": "2025-12-24 19:40:52.707363",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: update()] [Atomicity violation] Does update() allow partial updates where some fields are modified but validation only occurs later, creating a window where the protocol operates with inconsistent parameters (e.g., liquidation_max_slip >= 1.0) that could be exploited to perform invalid liquidations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_b1290ecc-1d22-438d-b77f-5e5c6c762726",
+    "timestamp": "2025-12-24 19:41:21.404576",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: update()] [Threshold manipulation] Can an admin use update() to set liquidation_threshold and adjustment_threshold to identical values, bypassing the validation check at line 85 temporarily, allowing accounts to be in a state where they are simultaneously liquidatable and adjustment-restricted, causing permanent fund freezing?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e903b9ee-279a-486c-8945-40d7df830aac",
+    "timestamp": "2025-12-24 19:41:50.956022",
+    "report_generated": false
   }
 ]
