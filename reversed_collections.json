@@ -598,5 +598,155 @@
     "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_ab1ff53f-c9ca-40c8-905f-4f2bec05e1a6",
     "timestamp": "2025-12-24 18:39:34.326622",
     "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: query() - Status] [Interest Rate Calculation] debt_rate and lend_rate at lines 235-236 call state.debt_rate(&config.interest) - if interest rates were just updated via sudo, can this cause calculation errors due to stale utilization?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e3383d03-fbf1-4176-88b1-41b1292757fd",
+    "timestamp": "2025-12-24 18:40:45.235828",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: query() - Status] [Utilization Ratio Manipulation] At line 237, utilization_ratio is calculated from current state - can an attacker sandwich queries with deposits/withdrawals to manipulate the returned ratio and deceive off-chain systems?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_c8872923-1dd4-4af8-92a8-0f3776797751",
+    "timestamp": "2025-12-24 18:40:57.855251",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: query() - Status] [State Mutation in Query] The distribute_interest() call at line 226 mutates state.last_updated, pending_interest, pending_fees, and pool sizes - but these changes are never persisted with state.save() - does this cause queries to show stale data?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_605bc2a9-75af-46b6-a33c-ec9b24f0273d",
+    "timestamp": "2025-12-24 18:41:11.641937",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: query() - Status] [Interest Distribution Side Effect] At line 226, query calls state.distribute_interest() which modifies state but query() is supposed to be read-only - can repeated queries cause state modifications without proper access control?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e86bb864-dac0-4c9a-ba91-814c680e085e",
+    "timestamp": "2025-12-24 18:41:25.307723",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: sudo()] [Config Mutation Race] Between loading config at line 206 and potentially saving at line 216, if another sudo() call modifies config, can race conditions cause partial updates where only interest is modified but other config fields are reverted?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_f6f12e37-804e-4529-8704-b56d6144b1ff",
+    "timestamp": "2025-12-24 18:41:39.769770",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: sudo() - SetBorrower] [Address Validation Exploit] At line 210, deps.api.addr_validate(&contract) validates the borrower address format but doesn't check if it's a contract vs EOA - can setting EOAs as borrowers enable unauthorized individuals to borrow?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_45b78d45-220e-46b5-8679-0e341bf6499f",
+    "timestamp": "2025-12-24 18:41:55.787227",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: sudo() - SetInterest] [State Inconsistency] Interest rates are updated immediately at line 215 and saved at line 216, but distribute_interest() is never called in sudo() - can this create a state where new rates apply but last_updated timestamp doesn't reflect the change?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_d9a1a451-b9ae-41f3-8dfc-0442e3a61bb8",
+    "timestamp": "2025-12-24 18:42:12.539266",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: sudo() - SetInterest] [Interest Validation Bypass] The interest.validate() at line 214 only checks step2 > step1, target_utilization bounds - but doesn't limit maximum values - can absurdly high rates cause overflow in interest calculations at state.rs:103-110?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_8a47a58c-c93b-4a11-8699-2c76907fb43a",
+    "timestamp": "2025-12-24 18:42:30.476899",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: sudo() - SetInterest] [Interest Rate Shock] At lines 213-218, SetInterest updates interest rates and validates with interest.validate() - but can governance set extreme rates (e.g., 1000% APY on step2) that cause immediate insolvency on next distribute_interest() call?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_2845ad57-bd44-4172-86c1-ea8f88f8f1a9",
+    "timestamp": "2025-12-24 18:42:49.890589",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: sudo() - SetBorrower] [Borrower Removal Attack] If Borrower::set() at line 210 sets limit to zero for an active borrower with outstanding shares, can this trap their debt permanently since they can't repay without being whitelisted?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_236d616f-c1c2-4379-99b5-ab565ca15e01",
+    "timestamp": "2025-12-24 18:43:10.973067",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: sudo() - SetBorrower] [Borrower Limit Manipulation] At line 210, SetBorrower can update a borrower's limit while they have active borrows - can governance maliciously set limit below current borrowings to brick the borrower's ability to repay or borrow more?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_5e57ba25-1adf-4bda-91fb-95d361065915",
+    "timestamp": "2025-12-24 18:43:33.621979",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: sudo()] [Privilege Escalation] The sudo() function at lines 204-220 has no caller validation - in CosmWasm, is sudo restricted to governance, or can any contract call sudo on this vault to set arbitrary borrowers and interest rates?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_1a689310-dacd-44ac-83d9-afec48078624",
+    "timestamp": "2025-12-24 18:43:56.637208",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute_market() - Repay] [Payment Validation Race] The must_pay call at line 163 ensures correct denom, but between validation and state.repay() at line 176, can the contract receive additional payments from other sources that corrupt the repay calculation?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e4b20fe1-0ad5-4ae0-82ee-7c2d48c7fde2",
+    "timestamp": "2025-12-24 18:44:20.246934",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute_market() - Repay] [Partial Repay State] At borrowers.rs:76-79, repay() calculates repaid = min(shares, self.shares) and returns shares.sub(repaid) - if this remainder is non-zero, what happens to those shares that couldn't be repaid?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_0edc4bb3-0f04-486f-92e6-28f61cea79a8",
+    "timestamp": "2025-12-24 18:44:44.779585",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute_market() - Repay] [Interest-Inflated Debt] Comments at borrowers.rs:260 note 'Current borrows can exceed limit due to interest' - when repaying such over-limit debt, can calculation errors allow borrower to repay less than the over-limit amount but still borrow again?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_17d159de-e95f-4d0d-b79a-faba5811e817",
+    "timestamp": "2025-12-24 18:45:10.217214",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute_market() - Repay] [Delegate State Consistency] When delegate is Some() at line 178, delegate_repay() at borrowers.rs:82-94 loads delegate shares, calculates repaid = min(shares, delegate), then updates DELEGATE_SHARES and calls self.repay() - can reentrancy between these steps corrupt delegate accounting?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_4c0618e1-90a5-418a-ad97-c5387fa2ba8a",
+    "timestamp": "2025-12-24 18:45:34.221947",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute_market() - Repay] [Refund DOS Attack] At lines 191-196, if refund is non-zero, BankMsg::Send is added - can an attacker send amount slightly exceeding borrower_debt repeatedly to grief the system with unnecessary refund operations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_53f2d262-cae3-4a08-a4f9-b99dcc0e34ff",
+    "timestamp": "2025-12-24 18:45:57.829968",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute_market() - Repay] [Share Burning Rounding] At state.rs:70, shares calculation uses multiply_ratio(amount, shares(), size()) - can an attacker repay amounts that cause favorable rounding to burn fewer shares than debt reduced?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_f34bb998-9727-4c4d-bf38-b778c10ed663",
+    "timestamp": "2025-12-24 18:46:20.907625",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute_market() - Repay] [Refund Calculation Underflow] At line 190, checked_sub calculates refund = amount - repay_amount - can this underflow if repay_amount calculation at line 174 has precision errors that cause repay_amount > amount?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_3aa2c85a-eef1-4d55-b5c6-0e30c97c4ff4",
+    "timestamp": "2025-12-24 18:46:44.962371",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute_market() - Repay] [Zero Debt Bypass] At state.rs:66-68, repaying when debt_pool.size().is_zero() returns ZeroDebt error - but can an attacker exploit the timing between checking borrower_debt at line 173 and calling state.repay() if another repayment zeroes the pool?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_8d6274b0-ee92-4bc4-a8c6-acb98a8bd2e3",
+    "timestamp": "2025-12-24 18:47:09.769025",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute_market() - Repay] [Delegate Repay Ordering] At lines 169-172, delegate shares are loaded but delegate_repay is called at line 179 after state.repay() at line 176 - if state modification succeeds but delegate update fails, is state corrupted with mismatched debt tracking?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_7a848d9e-e6f8-4a7c-9dfc-ba78b7ea57cb",
+    "timestamp": "2025-12-24 18:47:34.033760",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute_market() - Repay] [Overpayment Exploitation] At lines 174-175, repay_amount is min(amount, borrower_debt) to prevent overpayment, but can an attacker repeatedly repay minimum amounts to cause rounding errors that favor them in share burning calculations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_c8b927bb-d664-4f67-99a8-e1e1998b574f",
+    "timestamp": "2025-12-24 18:47:59.083345",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute_market() - Borrow] [Limit Enforcement Precision] At borrowers.rs:64, the limit check uses pool.ownership(self.shares.add(shares)).gt(&self.limit) - can rounding in ownership() calculation allow borrowing slightly above limit?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_cdb8e882-10e9-42da-8665-610cfd33a1fd",
+    "timestamp": "2025-12-24 18:48:24.528668",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute_market() - Borrow] [Interest Accrual Timing] Since distribute_interest() is called at line 51 before borrow at line 121, can an attacker borrow just after interest accrual to maximize borrowed amount before the next interest charge?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_d1f0ccef-c289-4071-bd5c-6ee89fb4258a",
+    "timestamp": "2025-12-24 18:48:49.031410",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute_market() - Borrow] [Available Liquidity Check Missing] The borrow flow doesn't explicitly check if (deposit_pool.size - debt_pool.size) >= amount before transferring assets at line 140 - can this cause BankMsg::Send to fail if vault is under-collateralized?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_4aca89fe-ef9e-4923-98a7-0c9b9a1768e1",
+    "timestamp": "2025-12-24 18:49:13.259060",
+    "report_generated": false
   }
 ]
