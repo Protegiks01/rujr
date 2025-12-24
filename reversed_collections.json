@@ -1498,5 +1498,155 @@
     "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_6c7ff107-6386-430d-8c46-55b5d83bb600",
     "timestamp": "2025-12-24 20:02:03.404585",
     "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Multi-denom liquidation] When iterating BORROW map during liquidation to repay multiple denoms, can failure in one vault repayment cause the entire liquidation to revert, leaving accounts unliquidatable?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_9ac795e1-169d-484e-ac9e-2f58adc9aa5d",
+    "timestamp": "2025-12-24 20:03:11.698282",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Fee extraction before vault check] When liquidating and loading vault from BORROW to repay debt, are protocol and liquidator fees extracted before confirming the vault address is valid, potentially burning fees if the vault is invalid?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_363a457e-7d62-4b77-8d69-71ab528d3e33",
+    "timestamp": "2025-12-24 20:03:24.437677",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Liquidation vault mismatch] During liquidation when BORROW.load() retrieves a vault for repaying debt, can timing issues cause the repayment to go to a different vault than where the debt actually exists, making liquidations fail?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_97badd3a-6af3-4ff2-ad89-a5c37b69421e",
+    "timestamp": "2025-12-24 20:03:37.632885",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Repay without debt] Can an attacker force repayments to a vault loaded from BORROW even when they have no debt, potentially manipulating vault share prices or stealing funds from other borrowers?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_639cdae8-e9af-444a-9dc1-894b641ffddc",
+    "timestamp": "2025-12-24 20:03:52.539026",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Stale vault reference] If a vault address in BORROW becomes stale (pointing to old contract version), can repay operations fail while borrow operations succeed in a new vault, creating irrecoverable debt situations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_36605e64-8193-456f-a1a5-cbbdef357d05",
+    "timestamp": "2025-12-24 20:04:07.740757",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Partial repay tracking] When loading from BORROW for a repay operation, can race conditions between the vault lookup and actual repay message execution cause repayments to be lost or double-counted?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_80c7f71c-75dc-47c8-a4a7-91baa69e3e97",
+    "timestamp": "2025-12-24 20:04:23.951261",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Repay to wrong vault] When BORROW.load() returns a vault address for repayment, is there validation that the debt actually exists in that specific vault, or can users repay to the wrong vault if the vault address was recently changed?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_f4360e3f-b883-48c3-87b3-05d277d4770d",
+    "timestamp": "2025-12-24 20:04:42.071102",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Multiple vault attack] If governance accidentally sets two different vault addresses for the same denom in BORROW (through a race condition or bug), which vault receives the borrows and can this split debt tracking cause accounting errors?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_7e37d2f0-472e-4a3f-9d2c-24d024478ed6",
+    "timestamp": "2025-12-24 20:05:00.622707",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Delegate confusion] When the BORROW map is used to get a vault for borrowing with a delegate parameter, can confusion between the account address and delegate address lead to debt being assigned to the wrong entity?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_8d3996c4-d3bb-4afe-a6ba-f9b69c7adb64",
+    "timestamp": "2025-12-24 20:05:19.506482",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Vault query griefing] When loading from BORROW and calling vault.market_msg_borrow(), can a malicious vault implementation consume excessive gas or revert unexpectedly to DOS specific accounts or denoms?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e5da4c58-7ed2-4c8d-b7e8-9f11e669abd4",
+    "timestamp": "2025-12-24 20:05:40.534681",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Denom mismatch] Can an attacker craft a borrow request where the coin.denom doesn't match any entry in BORROW but the error handling allows the transaction to proceed, creating unbacked debt?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e67c8790-be1e-4186-8687-627840c268a8",
+    "timestamp": "2025-12-24 20:06:01.987567",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Load failure impact] When BORROW.load() fails for a denom during a borrow operation, does this cause the entire transaction to revert cleanly, or can it leave the account in a partially-executed state with funds moved but debt not recorded?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_8c3cd455-9657-4f32-8e70-39a617fdc426",
+    "timestamp": "2025-12-24 20:06:23.876031",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Missing rollback] If setting a vault in BORROW succeeds but the vault's config query fails, does the protocol properly handle this error state or leave a broken vault address that will cause all future borrow/repay attempts to fail?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_8d8aa648-4780-4f8d-b2fa-6cc6e456aa9e",
+    "timestamp": "2025-12-24 20:06:47.661129",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Migration vulnerability] During contract migration, is there risk that the BORROW map's storage layout changes in incompatible ways, causing vault addresses to be misread and directing funds to wrong addresses?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_5fcd3727-fea2-48f1-abbd-57c74cf9de51",
+    "timestamp": "2025-12-24 20:07:11.660132",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Atomicity violation] If BORROW.save() succeeds but subsequent validation in SetVault fails, can this leave the map in an inconsistent state with a vault registered but not properly whitelisted in collateral_ratios?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_bd1a8750-50c6-4e93-a1d9-fdb83893ff94",
+    "timestamp": "2025-12-24 20:07:36.695315",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Unauthorized modification] When sudo::SetVault saves to the BORROW map, are there sufficient checks to ensure the vault contract is properly initialized and compatible with the protocol's accounting model before allowing borrow operations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_c03d4d13-1c54-4222-a29f-92a777a654a8",
+    "timestamp": "2025-12-24 20:08:03.248517",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Cross-vault attack] Can an attacker exploit the iteration over BORROW.range() to cause vault query failures that skip certain debts in LTV calculations, allowing them to appear healthier than they actually are?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e22d3f11-3b65-420c-8375-3fde937feb86",
+    "timestamp": "2025-12-24 20:08:29.848403",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Interest accrual bypass] Does loading a Vault from BORROW without first ensuring the vault has called distribute_interest() allow users to borrow at outdated interest rates, causing protocol losses?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_5490f7bc-c0c8-4e61-bfd6-4d25f94fa8cd",
+    "timestamp": "2025-12-24 20:08:57.526517",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Oracle manipulation] When the BORROW map is used to query vault delegate balances for LTV calculations, can an attacker manipulate oracle prices between the time debt is queried and when collateral is valued, creating undercollateralized positions?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e92c6d52-3729-4877-a80f-c0e8f3fb5d04",
+    "timestamp": "2025-12-24 20:09:26.190976",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Invalid vault reference] If a vault address stored in BORROW becomes invalid (contract migrated, self-destructed, or paused), can this cause all accounts with debt in that vault to become unliquidatable, leading to protocol insolvency?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_efaa759b-08ed-4caa-8e86-229353a87b20",
+    "timestamp": "2025-12-24 20:09:55.695494",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Reentrancy] When loading a Vault from the BORROW map and calling its market_msg_borrow function, can a malicious vault contract reenter the credit registry to manipulate the BORROW map state before the original transaction completes?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_eee06134-02ef-4733-a00a-cfe63762561f",
+    "timestamp": "2025-12-24 20:10:23.509429",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Inconsistent state] When iterating over the BORROW map to calculate total protocol debt across all vaults, can inconsistencies arise if new vaults are added or removed mid-iteration, leading to incorrect LTV calculations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_26f13f98-d6db-4452-b71c-fe49d92a769d",
+    "timestamp": "2025-12-24 20:10:49.812100",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [DOS attack] If a malicious actor convinces governance to set an invalid or malicious vault address in the BORROW map, can this permanently brick all borrow/repay operations for that denom, causing widespread denial of service and fund freezing?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_409aa68f-fa2e-4eea-ae45-a279a4ac4e4f",
+    "timestamp": "2025-12-24 20:11:15.686031",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Access control] Can an attacker exploit the fact that BORROW is a public static Map to directly manipulate vault addresses through storage key collisions or by predicting storage layouts in CosmWasm?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_ecdc5228-661e-4df4-ac52-1f354208b5cb",
+    "timestamp": "2025-12-24 20:11:40.555166",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Missing validation] Does the BORROW map allow overwriting an existing vault address for a denom without any checks on outstanding debt, potentially causing accounting mismatches where debts are tracked in one vault but new borrows go to a different vault?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_12956ccc-1ba1-4b33-a91f-e88b6315565e",
+    "timestamp": "2025-12-24 20:12:04.437200",
+    "report_generated": false
   }
 ]
