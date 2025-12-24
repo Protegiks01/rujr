@@ -1948,5 +1948,155 @@
     "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_6dfecb8e-90b4-4371-8f17-77ec24a7ff83",
     "timestamp": "2025-12-24 20:11:25.228160",
     "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: instantiate()] [Configuration validation bypass] Can an attacker deploy the contract with malicious InstantiateMsg parameters that pass Config::validate() but create an exploitable initial state, such as setting liquidation_threshold equal to adjustment_threshold minus an infinitesimal amount to cause liquidation logic failures?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_16d57396-1fae-45c6-b09c-80fec84c2f1f",
+    "timestamp": "2025-12-24 20:12:40.034462",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: instantiate()] [Fee manipulation] Can the deployer set fee_liquidation or fee_liquidator to values approaching the 5% cap that cause rounding errors in execute_liquidate() fee calculations, leading to protocol insolvency through accumulated precision loss?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_1ba173a8-e475-4e62-ae32-170a1b761c2f",
+    "timestamp": "2025-12-24 20:12:52.844956",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: instantiate()] [State initialization] Does the instantiate() function properly initialize all required state including BORROW map entries, or can accounts be created before vaults are set via SudoMsg::SetVault, causing borrowing operations to fail and permanently lock account funds?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_b8d54b1d-23ec-42e4-9a45-5477bdebb33a",
+    "timestamp": "2025-12-24 20:13:05.882469",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute() - ExecuteMsg::Create] [Account creation DoS] Can an attacker front-run legitimate account creation by using the same salt value to create an account first, causing the victim's account creation to fail due to address collision and preventing them from using the protocol?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_af790678-362c-43e4-9aa6-5831c2588e81",
+    "timestamp": "2025-12-24 20:13:20.592042",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute() - ExecuteMsg::Create] [Salt manipulation] Can an attacker predict account addresses by analyzing the salt hashing mechanism in CreditAccount::create() to precompute addresses and front-run deposits, potentially stealing collateral sent to predictable addresses?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_a35dce23-39dc-4f6b-b4de-2842a090d2aa",
+    "timestamp": "2025-12-24 20:13:35.320008",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute() - ExecuteMsg::Create] [Label/tag injection] Can an attacker inject malicious strings in the label or tag parameters that cause storage corruption or index manipulation in ACCOUNTS storage, potentially disrupting account lookups or causing denial of service?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_f0eaf7d1-e8c5-44db-b141-5481594f77fa",
+    "timestamp": "2025-12-24 20:13:51.286617",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute() - ExecuteMsg::Create] [Account instantiation failure] If the WasmMsg returned by CreditAccount::create() fails to instantiate the rujira-account contract, is the Stored account data rolled back properly, or can it leave orphaned account entries in storage that cause state inconsistencies?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_de7f34c5-126a-49dc-ad03-2343e161c8a7",
+    "timestamp": "2025-12-24 20:14:09.072291",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute() - ExecuteMsg::Liquidate] [LTV check timing] Can an attacker exploit the check_unsafe() call at line 76 by manipulating oracle prices between the liquidation initiation and DoLiquidate execution, allowing liquidation of safe accounts or preventing liquidation of unsafe accounts?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_be385477-1229-4729-9eb2-61db16f67edb",
+    "timestamp": "2025-12-24 20:14:27.988063",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute() - ExecuteMsg::Liquidate] [Queue manipulation] Can a liquidator craft msgs that exploit the queue reversal at line 79 and preference appending at lines 80-87 to execute liquidation steps out of the intended order, bypassing liquidation preference validation or extracting excessive fees?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_2939d601-aa9d-4494-999d-0df21ed3b3c9",
+    "timestamp": "2025-12-24 20:14:47.551390",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute() - ExecuteMsg::Liquidate] [Preference poisoning] Can an account owner set malicious liquidation_preferences.messages that cause DoLiquidate to revert or loop indefinitely, preventing liquidation and allowing their undercollateralized position to persist and harm the protocol?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_0277f1ad-16df-47a4-b68e-71013f3cbaba",
+    "timestamp": "2025-12-24 20:15:08.597116",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute() - ExecuteMsg::Liquidate] [Payload serialization] Can the to_json_binary(&account) call at line 94 fail for accounts with extreme state (e.g., thousands of collateral entries), causing liquidation to fail and leaving unsafe accounts unliquidatable, leading to protocol insolvency?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_642e352c-cf41-4ad6-92d1-745350007429",
+    "timestamp": "2025-12-24 20:15:31.145193",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute() - ExecuteMsg::Liquidate] [Self-liquidation] Can an account owner initiate their own liquidation via ExecuteMsg::Liquidate to extract liquidator fees for themselves, gaming the liquidation fee structure and reducing protocol revenue?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_d229f43d-d110-4f7d-be8f-65d3b00b1db4",
+    "timestamp": "2025-12-24 20:15:53.388754",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute() - ExecuteMsg::DoLiquidate] [Reentrancy via recursive DoLiquidate] Can the self-call to ExecuteMsg::DoLiquidate at lines 139-146 be exploited through reentrancy if execute_liquidate() triggers a callback that calls DoLiquidate again, potentially allowing double-spending of collateral or bypassing LTV checks?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_aaef7171-f5be-44ca-b2af-c893ab01d9cf",
+    "timestamp": "2025-12-24 20:16:17.544458",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute() - ExecuteMsg::DoLiquidate] [Authorization bypass] The ensure_eq!(info.sender, ca) check at line 105 restricts DoLiquidate to self-calls, but can an attacker exploit the initial ExecuteMsg::Liquidate call to inject malicious DoLiquidate parameters in the queue that bypass safety checks?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_c1a44518-fef4-4ee6-a3a3-2703797a4b91",
+    "timestamp": "2025-12-24 20:16:42.251850",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute() - ExecuteMsg::DoLiquidate] [State desynchronization] Can the CreditAccount loaded at line 106-107 differ from the original_account deserialized from payload at line 108, allowing liquidations that violate validate_liquidation() slippage checks due to state changes between queue processing steps?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_2e4f829d-9752-44f6-9275-3dc064776b6f",
+    "timestamp": "2025-12-24 20:17:08.426242",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute() - ExecuteMsg::DoLiquidate] [Threshold manipulation] Can an attacker exploit the dual check at lines 112-114 (check_safe against liquidation_threshold AND check_unsafe against adjustment_threshold) by manipulating account state to pass both checks prematurely, terminating liquidation while still unsafe?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_b4613be2-536e-4aaa-90a6-d196d28aaec3",
+    "timestamp": "2025-12-24 20:17:34.522778",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute() - ExecuteMsg::DoLiquidate] [Queue exhaustion without safety] If queue.pop() returns None at line 120 but the account fails safety checks at line 122, does the error propagation work correctly, or can liquidation terminate with the account still in an unsafe state?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_aa16d0da-e075-4d63-a2cb-87ed052f0872",
+    "timestamp": "2025-12-24 20:18:01.492651",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute() - ExecuteMsg::DoLiquidate] [Preference vs liquidator message ordering] Can a liquidator exploit the is_preference boolean flag handling at lines 133-136 to execute their own LiquidateMsg entries with REPLY_ID_PREFERENCE, allowing them to avoid execution failures that would block liquidation?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_b6af417a-39ef-411a-8ec9-76b2ded78646",
+    "timestamp": "2025-12-24 20:18:28.267731",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute() - ExecuteMsg::DoLiquidate] [Over-liquidation via queue manipulation] Can a malicious liquidator craft a queue with excessive Repay messages that liquidate more collateral than necessary to bring the account safe, extracting excessive liquidator fees and violating the validate_liquidation() over-liquidation check?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_bd4fcbc9-78eb-42de-916b-393e070b65fa",
+    "timestamp": "2025-12-24 20:18:53.106191",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute() - ExecuteMsg::DoLiquidate] [Liquidation max slip bypass] Can the validate_liquidation() call at line 116 be bypassed by structuring the liquidation queue to only update debt without changing collateral balances initially, then swapping collateral in later steps after validation passes?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_712c8b83-ea77-4444-b507-2067873f0c92",
+    "timestamp": "2025-12-24 20:19:18.691160",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute() - ExecuteMsg::Account] [Ownership bypass] Can an attacker bypass the ensure_eq!(account.owner, info.sender) check at line 154 by exploiting a race condition where they transfer ownership via AccountMsg::Transfer in the same msgs batch before subsequent operations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_7769f6ed-8604-48d7-8dd7-3a7b36520343",
+    "timestamp": "2025-12-24 20:19:45.081865",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute() - ExecuteMsg::Account] [Batch operation atomicity] Can an attacker craft a msgs sequence in ExecuteMsg::Account where early AccountMsg entries manipulate state (e.g., borrow funds) but later entries fail, causing partial execution that leaves the account in an inconsistent state with modified LTV?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_2a3d0b1e-cb4f-4f4e-a6b4-f28bcaf52fb9",
+    "timestamp": "2025-12-24 20:20:09.878970",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute() - ExecuteMsg::Account] [CheckAccount timing exploitation] Can an attacker exploit the deferred CheckAccount call at line 163 by having their account operations trigger oracle price updates that change the adjusted_ltv between operation execution and the check_safe validation?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_96735094-dfdc-4895-bb0f-498084a4b0ae",
+    "timestamp": "2025-12-24 20:20:35.331023",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute() - ExecuteMsg::Account] [Multiple account manipulation] Can an attacker call ExecuteMsg::Account multiple times in the same block with different addr parameters to manipulate multiple accounts they own, bypassing per-account LTV checks through cross-account collateral transfers?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_b3f2c031-a018-4ae2-b9fe-5a0e7f65ee1a",
+    "timestamp": "2025-12-24 20:21:01.030938",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute() - ExecuteMsg::Account] [Account save timing] The account.save(deps) call at line 161 occurs before CheckAccount validation - can this create a window where an unsafe account state is committed to storage and could be queried, potentially misleading liquidators or off-chain systems?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_dd5d6a7d-6a98-4a44-981c-bebd419d96db",
+    "timestamp": "2025-12-24 20:21:27.430137",
+    "report_generated": false
   }
 ]
