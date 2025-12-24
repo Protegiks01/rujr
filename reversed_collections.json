@@ -448,5 +448,155 @@
     "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_4220ca24-d581-41b6-93a3-51f1e5dbfb31",
     "timestamp": "2025-12-24 18:29:35.370113",
     "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute() - Interest Distribution] [Fee Rate Edge Cases] At state.rs:115-117, fee calculation uses fee_rate_scaled.mul(interest_scaled) - if config.fee is very close to 1.0 (e.g., 0.999999), can this extract almost all interest as fees?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_fcc5205e-0fc6-468b-a011-6ef3c9623ecd",
+    "timestamp": "2025-12-24 18:30:45.700910",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute() - Interest Distribution] [DecimalScaled Precision] DecimalScaled uses higher precision for fractional amounts - but at state.rs:126-127, decompose() splits into integer and fractional parts - can precision loss in decompose() cause value leakage over many operations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_896f4e6e-6a45-49ba-8736-e9be9d09223e",
+    "timestamp": "2025-12-24 18:30:58.362274",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute() - Interest Distribution] [Annual Rate Division] At state.rs:105, interest is divided by 31_536_000 seconds per year - does this assume 365-day years without accounting for leap years, causing slight interest rate drift?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_bc323f98-09e5-4328-b1d5-d0dd55658c48",
+    "timestamp": "2025-12-24 18:31:11.553539",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute() - Interest Distribution] [Time Manipulation] At state.rs:104, seconds = to.seconds() - self.last_updated.seconds() - if block timestamps move backwards or stay constant, can this cause zero or negative interest accrual?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_258c6071-460b-4931-9bbc-e506a0d3d89d",
+    "timestamp": "2025-12-24 18:31:25.299341",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute() - Interest Distribution] [Interest Calculation Overflow] At state.rs:103-109, interest calculation multiplies debt_pool.size * rate * time_ratio - for large debt sizes and high rates, can this overflow Decimal256 causing interest calculation to fail?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_c41737a1-e27d-40ea-a597-96afef01db9a",
+    "timestamp": "2025-12-24 18:31:39.795325",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute() - Interest Distribution] [Debt Pool Inflation] At state.rs:164, debt_pool.deposit(interest.add(fee)) increases debt without issuing shares - can this be exploited to inflate debt faster than borrower share ownership grows?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_1ad0407c-b7ee-4dd0-ba3f-92b837b169cf",
+    "timestamp": "2025-12-24 18:31:55.923082",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute() - Interest Distribution] [Fee Minting Failure] At state.rs:147-158, if deposit_pool.join(fee) fails with SharePoolError::Zero, fees are added to pending_fees and fee is zeroed - can this cause fees to never be minted if pool stays at zero shares?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_94d5a024-aa78-4871-965c-79a567bfbc81",
+    "timestamp": "2025-12-24 18:32:14.492097",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute() - Interest Distribution] [Pending Interest Accumulation] At state.rs:111-131, pending_interest and pending_fees use DecimalScaled for sub-unit precision - can attackers manipulate operations to cause pending amounts to accumulate indefinitely without being distributed?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e43a66c7-8370-408d-a232-aca16ab2d5af",
+    "timestamp": "2025-12-24 18:32:32.911783",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: migrate()] [No Validation] migrate() doesn't validate resulting state after borrowers::migrate() - can migration complete successfully but leave contract in invalid state with mismatched pool sizes?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_2d25c71f-f364-4c84-957e-1432160cb50e",
+    "timestamp": "2025-12-24 18:32:52.621719",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: migrate()] [State Reconstruction] The migration serializes to TempSharePool then deserializes back to SharePool - can this process corrupt share accounting if serialization format changes between versions?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_24a1fafc-1d6b-4a7a-b53b-0d1e105f315f",
+    "timestamp": "2025-12-24 18:33:13.714932",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: migrate()] [Borrower Migration Logic] At borrowers.rs:127-140, migration sums all borrower shares and reconstructs debt_pool with Decimal shares - can precision loss in Decimal::from_ratio() cause total shares to be incorrect after migration?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_7acfb36f-8dd1-4aa5-bec1-8cd74eef6b72",
+    "timestamp": "2025-12-24 18:33:35.931074",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: migrate()] [Version Confusion] set_contract_version at line 322 updates version before migration logic completes - if migration fails, does the contract remain in a state with new version but old data structure?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_4f2e9ca6-e29a-4ab7-870e-10402ba6075d",
+    "timestamp": "2025-12-24 18:33:58.932949",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: migrate()] [Migration Reentrancy] At line 323, migrate() calls borrowers::migrate() which modifies state - can this be exploited if migrate is called multiple times or interleaved with other operations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_212714b8-4b6a-4ff6-971f-1819a4d6ab9f",
+    "timestamp": "2025-12-24 18:34:22.460581",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: query() - Borrowers] [Map Iteration Gas Cost] The range() operation at line 113 in borrowers.rs iterates storage - for large borrower sets, can query gas costs exceed block limits, making the list query unusable?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_fd0405c9-57bb-47ef-9e25-687abf415edb",
+    "timestamp": "2025-12-24 18:34:46.738629",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: query() - Borrowers] [Inconsistent State Views] Each borrower's current debt is calculated at line 298 within the iterator - if interest distributes between loading different borrowers, can returned debt values be inconsistent across the list?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_c66ade82-0c5c-4967-aa01-34ce2b7bff35",
+    "timestamp": "2025-12-24 18:35:10.239197",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: query() - Borrowers] [Pagination DOS] At lines 288-315, Borrower::list() iterates with take(limit.unwrap_or(100)) - can an attacker register 1000s of borrower addresses via sudo to cause query timeouts when listing all borrowers?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_890da6ed-5ef4-42ac-af61-aa0d91aa3e3f",
+    "timestamp": "2025-12-24 18:35:35.069046",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: query() - Delegate] [Delegate Address Validation] At line 268, delegate address is validated but no check ensures it's not the same as borrower address - can self-delegation cause accounting issues where delegate shares and direct shares overlap?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_757a6d33-7489-4d38-a51a-ad8e0bb76097",
+    "timestamp": "2025-12-24 18:36:00.340594",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: query() - Delegate] [Available Calculation Inconsistency] At lines 278-282, available is calculated for the borrower's total limit, not the delegate's specific allocation - can delegates borrow up to full borrower limit even if they should have sub-limits?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_dbad3c05-6d34-4477-90bb-1a4d0dc4a5d7",
+    "timestamp": "2025-12-24 18:36:25.582793",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: query() - Delegate] [Double Counting] The delegate query returns both borrower.current (total debt) and delegate.current (delegate-specific debt) at lines 276 and 284 - can off-chain systems double-count debt by summing these values?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_dca17950-8c56-4130-927d-cd2afea88518",
+    "timestamp": "2025-12-24 18:36:52.194614",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: query() - Delegate] [Delegate Share Tracking] At line 268, delegate_shares() loads from DELEGATE_SHARES storage - can delegate shares become inconsistent with total borrower.shares if delegate_borrow/delegate_repay operations fail mid-execution?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_9b358e9d-8e10-4b43-a789-478209e20e11",
+    "timestamp": "2025-12-24 18:37:20.133626",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: query() - Borrower] [Borrower Load Timing] Borrower::load() at line 251 can fail with UnauthorizedBorrower if borrower was removed - but what if borrower is removed between this query and actual borrow/repay operations, causing inconsistent state views?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_ba558e70-f025-449c-885e-296165309c70",
+    "timestamp": "2025-12-24 18:37:47.488832",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: query() - Borrower] [Share Ownership Precision] At line 252, current = state.debt_pool.ownership(borrower.shares) uses multiply_ratio - can precision loss in this calculation cause displayed debt to drift from actual debt over many operations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_f0e85ded-19c6-4a8e-9e69-ff140b01c5a9",
+    "timestamp": "2025-12-24 18:38:14.591401",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: query() - Borrower] [Interest Inflation Attack] The comment at line 260 states 'Current borrows can exceed limit due to interest' - can this be exploited by borrowing to limit, waiting for interest to accrue beyond limit, then having a permanently over-limit position?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_20396c87-468c-47cd-940a-66e46c243ee7",
+    "timestamp": "2025-12-24 18:38:42.918374",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: query() - Borrower] [Available Calculation Error] At lines 259-263, available is calculated as min(limit - current, deposit_pool.size - debt_pool.size) with unwrap_or_default() for underflow - can this hide situations where borrower is over-limit but query shows non-zero available?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_1a27c27a-97f6-46c0-9796-52793273608e",
+    "timestamp": "2025-12-24 18:39:08.610709",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: query() - Status] [Pool Ratio Precision] At lines 239-248, pool ratios are returned via state.debt_pool.ratio() and state.deposit_pool.ratio() - can rounding in these Decimal calculations hide small discrepancies that accumulate over time?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_ab1ff53f-c9ca-40c8-905f-4f2bec05e1a6",
+    "timestamp": "2025-12-24 18:39:34.326622",
+    "report_generated": false
   }
 ]
