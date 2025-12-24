@@ -748,5 +748,155 @@
     "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_36ae8569-83fa-4a88-9965-24040ce11266",
     "timestamp": "2025-12-24 18:52:00.973569",
     "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing LiquidationAttempt] [Liquidation detection] Does the lack of liquidation-specific errors mean the contract cannot distinguish between normal operations and liquidation attempts, potentially allowing attackers to front-run legitimate liquidations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_aa3283b5-3462-44a1-8eb7-82c66d4a90a9",
+    "timestamp": "2025-12-24 18:53:15.531773",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing SuspiciousActivity] [Anomaly detection] Can the minimal error handling detect and report suspicious activity patterns like rapid deposit-borrow-withdraw cycles that might indicate wash trading or price manipulation?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_2a528c96-04e3-478f-b30e-5e60245251b3",
+    "timestamp": "2025-12-24 18:53:28.155789",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing RateLimitExceeded] [Abuse prevention] Without rate limiting errors, can the contract detect and prevent users from executing excessive operations that might indicate attempted attacks or abuse of the protocol?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_6fd76366-1a06-4cb7-9287-9b41d3bf451d",
+    "timestamp": "2025-12-24 18:53:41.192695",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing CircuitBreaker] [Circuit breaker] Does the absence of circuit breaker errors mean the protocol cannot automatically halt operations during detected anomalies (like sudden price crashes or excessive liquidations)?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_10f3cfd8-bc3c-4a04-b668-124f8cf1b3b2",
+    "timestamp": "2025-12-24 18:53:54.821418",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing FlashLoanDetection] [Flash loan protection] Can the lack of flash loan detection errors allow attackers to use flash loans to manipulate account collateral ratios within a single transaction without detection?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_04597a92-ab82-4f49-9b35-c7262a1b1ec0",
+    "timestamp": "2025-12-24 18:54:09.275612",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing InvalidConfig] [Configuration validation] When the registry forwards configuration changes through sudo messages, does the lack of configuration validation errors allow invalid parameters (negative interest rates, >100% collateral ratios) to be set?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_446a922e-4dc7-4575-85bd-17b966f659fa",
+    "timestamp": "2025-12-24 18:54:25.013956",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing ParameterOutOfRange] [Range validation] Can parameters in forwarded messages exceed safe ranges (like liquidation threshold > 100% or borrow limit = max_uint128) without specific range validation errors detecting and rejecting them?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_03525d2f-99ab-4587-9f0c-c9d4f52707de",
+    "timestamp": "2025-12-24 18:54:42.275033",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing UnsupportedAsset] [Asset validation] Does the absence of unsupported asset errors mean the contract cannot reject operations involving tokens that aren't whitelisted as valid collateral or debt assets?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_4c1ccb24-bd31-4399-9d76-bd6d841ad125",
+    "timestamp": "2025-12-24 18:55:00.750465",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing InvalidVault] [Vault validation] Can the contract properly validate that forwarded messages only interact with approved vault contracts, or could the registry send messages to malicious vault contracts that drain funds?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_ec551a3d-c6d9-4878-a3cb-e68db1d2cc56",
+    "timestamp": "2025-12-24 18:55:20.678898",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing ConfigurationLocked] [Configuration immutability] Without configuration lock errors, can critical parameters like the admin address or vault whitelist be changed after account creation in ways that could compromise security?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_c1f01fa0-7cdd-44d3-a60a-d6d462a84ddf",
+    "timestamp": "2025-12-24 18:55:40.177887",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing ExternalCallFailure] [External call safety] When forwarded messages call external contracts (vaults, oracles, tokens), does wrapping failures in Std error hide the specific failure reasons, preventing proper error recovery or attack detection?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_c43e7806-a885-4094-aef0-6b3022b180ce",
+    "timestamp": "2025-12-24 18:56:02.116282",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing CallbackError] [Callback validation] If the protocol uses callback patterns where vaults or other contracts call back into accounts, does the minimal error handling validate callback authenticity and prevent reentrancy or callback spoofing attacks?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_f165e8c1-0773-4876-8508-f864b09cd457",
+    "timestamp": "2025-12-24 18:56:25.012879",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing ContractNotFound] [Contract existence] Can forwarded messages attempt to interact with non-existent contracts or contracts that have been deleted, with no specific error to detect this before execution?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_6a13c44e-a4ea-44a9-970c-7b5acb6baee6",
+    "timestamp": "2025-12-24 18:56:47.748477",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing InterfaceMismatch] [Interface validation] Does the lack of interface validation errors mean the contract cannot verify that external contracts implement expected interfaces before calling them, potentially causing unexpected behavior?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_3ff3b887-bf5e-43cb-bb25-4c34c311be6b",
+    "timestamp": "2025-12-24 18:57:11.271610",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing ChainMismatch] [Chain validation] In cross-chain operations, can the minimal error handling detect and prevent operations on wrong chains or with invalid IBC channels?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_20e5a7db-c2e3-42f1-ab06-b436ec5430a1",
+    "timestamp": "2025-12-24 18:57:35.319634",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing QueryError] [Query failures] Since the query entrypoint returns Unauthorized, does this prevent any legitimate state queries, forcing the registry to rely on internal state that might become inconsistent with actual account state?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_64217ff9-56a6-4e1e-9dda-f838ddd66a46",
+    "timestamp": "2025-12-24 18:58:00.434040",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing DataNotFound] [Missing data] Can the contract properly report when queried data doesn't exist (like querying a non-existent debt position), or will it return confusing errors that mask the true issue?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_7c9a9222-1336-47e0-ac23-d9c2be4ebc70",
+    "timestamp": "2025-12-24 18:58:26.412627",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing StaleData] [Data freshness] Without stale data errors, can the contract detect and reject operations that rely on outdated state (like using old price data for LTV calculations)?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_63d12205-dc07-4d45-896c-e3e6dc4f23d1",
+    "timestamp": "2025-12-24 18:58:51.094693",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing InconsistentState] [State consistency] Can the minimal error handling detect and report when the account's internal state becomes inconsistent with vault state or registry state, indicating potential accounting bugs?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_1ca838ec-cd3f-4984-90cb-eb8541f2afaa",
+    "timestamp": "2025-12-24 18:59:16.503948",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing ComputationError] [Computation safety] Does wrapping computation errors in Std hide critical issues like division by zero in share price calculations or square root of negative numbers in volatility calculations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_5342bacc-61d5-447d-ad21-c1a52b976b96",
+    "timestamp": "2025-12-24 18:59:43.103732",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing InsufficientLiquidity] [Liquidity validation] Can the contract detect and report when withdrawal or borrowing operations would drain vault liquidity below safe levels, or will it only fail with generic Std errors when vaults reject the operation?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_24f0eae5-ec9a-405a-a744-25cd458e790b",
+    "timestamp": "2025-12-24 19:00:10.160493",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing ExcessiveSlippage] [Slippage attacks] Without slippage detection errors, can MEV bots sandwich account operations (deposits, withdrawals, liquidations) to extract value while the account cannot detect the attack?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_3e25d0cc-335a-408b-aa44-d84d0f43093b",
+    "timestamp": "2025-12-24 19:00:38.358452",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing PriceManipulation] [Oracle manipulation] Can the lack of price manipulation detection errors allow attackers to use forwarded messages during price oracle manipulation without the contract being able to detect abnormal price movements?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_ae694788-2afe-46dc-b3ef-d69ac1561c28",
+    "timestamp": "2025-12-24 19:01:07.931691",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing ExcessiveFee] [Fee validation] Does the absence of fee validation errors mean the contract cannot reject operations with unreasonably high fees that would drain user funds, relying entirely on the registry to validate fee amounts?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_91e384d2-24ab-4702-acbf-bab8b1e9bbe4",
+    "timestamp": "2025-12-24 19:01:35.636225",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing MarketImpact] [Market impact] Can large operations in forwarded messages cause excessive market impact without specific errors to detect and limit single-transaction sizes?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_dffd28d1-efe9-438c-91fc-69e3e0fdb938",
+    "timestamp": "2025-12-24 19:02:03.626286",
+    "report_generated": false
   }
 ]
