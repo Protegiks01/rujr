@@ -2,96 +2,96 @@
   {
     "question": "contracts/rujira-account/src/lib.rs",
     "url": "https://deepwiki.com/search/-generate-150-targeted-securit_bcd260c8-00f8-402f-b3a8-56e2d37ae2ca",
-    "questions_generated": false
+    "questions_generated": true
   },
   {
     "question": "contracts/rujira-account/src/contract.rs",
     "url": "https://deepwiki.com/search/-generate-150-targeted-securit_d2c2630d-4bfc-432e-8489-fcd4e6ecaf1a",
-    "questions_generated": false
+    "questions_generated": true
   },
   {
     "question": "contracts/rujira-account/src/execute.rs",
     "url": "https://deepwiki.com/search/-generate-150-targeted-securit_3cb39595-cea7-4410-bd30-0e294602485c",
-    "questions_generated": false
+    "questions_generated": true
   },
   {
     "question": "contracts/rujira-account/src/error.rs",
     "url": "https://deepwiki.com/search/-generate-150-targeted-securit_09cbb9f6-89d8-4a2e-a80d-5b607f97a0dc",
-    "questions_generated": false
+    "questions_generated": true
   },
   {
     "question": "contracts/rujira-account/src/state.rs",
     "url": "https://deepwiki.com/search/-generate-150-targeted-securit_0ac268c6-39f2-49bb-ad6c-817b2f15005b",
-    "questions_generated": false
+    "questions_generated": true
   },
   {
     "question": "contracts/rujira-ghost-credit/src/lib.rs",
     "url": "https://deepwiki.com/search/-generate-150-targeted-securit_0f735a89-4c3b-435d-8773-58492a0d0ae9",
-    "questions_generated": false
+    "questions_generated": true
   },
   {
     "question": "contracts/rujira-ghost-credit/src/account.rs",
     "url": "https://deepwiki.com/search/-generate-150-targeted-securit_b511f0d0-01c6-4a42-80db-1769aeabf1e0",
-    "questions_generated": false
+    "questions_generated": true
   },
   {
     "question": "contracts/rujira-ghost-credit/src/config.rs",
     "url": "https://deepwiki.com/search/-generate-150-targeted-securit_f619adf6-8fc2-4e17-875d-1416abb5da4f",
-    "questions_generated": false
+    "questions_generated": true
   },
   {
     "question": "contracts/rujira-ghost-credit/src/contract.rs",
     "url": "https://deepwiki.com/search/-generate-150-targeted-securit_80afd56d-a693-4b38-91c0-f2c71c32a84c",
-    "questions_generated": false
+    "questions_generated": true
   },
   {
     "question": "contracts/rujira-ghost-credit/src/error.rs",
     "url": "https://deepwiki.com/search/-generate-150-targeted-securit_f08ac07e-cceb-436d-a83c-987158f2596d",
-    "questions_generated": false
+    "questions_generated": true
   },
   {
     "question": "contracts/rujira-ghost-credit/src/events.rs",
     "url": "https://deepwiki.com/search/-generate-150-targeted-securit_a289f165-e550-400c-b0a1-bdc6cb8dbe78",
-    "questions_generated": false
+    "questions_generated": true
   },
   {
     "question": "contracts/rujira-ghost-credit/src/state.rs",
     "url": "https://deepwiki.com/search/-generate-150-targeted-securit_554a0c40-9088-4ea9-bd65-50e931d4720b",
-    "questions_generated": false
+    "questions_generated": true
   },
   {
     "question": "contracts/rujira-ghost-vault/src/lib.rs",
     "url": "https://deepwiki.com/search/-generate-150-targeted-securit_7aa98b92-b041-4e92-be9a-f64264910596",
-    "questions_generated": false
+    "questions_generated": true
   },
   {
     "question": "contracts/rujira-ghost-vault/src/borrowers.rs",
     "url": "https://deepwiki.com/search/-generate-150-targeted-securit_d72166ff-be84-41a1-9044-0c12d7e05bee",
-    "questions_generated": false
+    "questions_generated": true
   },
   {
     "question": "contracts/rujira-ghost-vault/src/config.rs",
     "url": "https://deepwiki.com/search/-generate-150-targeted-securit_1575479f-69ee-4373-9f8d-726a0169d94e",
-    "questions_generated": false
+    "questions_generated": true
   },
   {
     "question": "contracts/rujira-ghost-vault/src/contract.rs",
     "url": "https://deepwiki.com/search/-generate-150-targeted-securit_1cf1fd48-04ee-4fb3-b21d-f4bbb5c76f85",
-    "questions_generated": false
+    "questions_generated": true
   },
   {
     "question": "contracts/rujira-ghost-vault/src/error.rs",
     "url": "https://deepwiki.com/search/-generate-150-targeted-securit_23d2962d-bda7-4239-b565-cd8b01cf65d6",
-    "questions_generated": false
+    "questions_generated": true
   },
   {
     "question": "contracts/rujira-ghost-vault/src/events.rs",
     "url": "https://deepwiki.com/search/-generate-150-targeted-securit_ce59cd6e-fa83-4829-934f-cba5319140cf",
-    "questions_generated": false
+    "questions_generated": true
   },
   {
     "question": "contracts/rujira-ghost-vault/src/state.rs",
     "url": "https://deepwiki.com/search/-generate-150-targeted-securit_bb06e934-fb33-4afe-8af1-0631da0728e3",
-    "questions_generated": false
+    "questions_generated": true
   }
 ]
