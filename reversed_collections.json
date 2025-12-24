@@ -1798,5 +1798,305 @@
     "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_9417adee-d679-4074-8e2e-6355980dfb12",
     "timestamp": "2025-12-24 20:22:06.990012",
     "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_account_execute()] [Call Stack Depth] No indication of call depth or reentrancy level - could nested calls emit identical events that can't be distinguished, hiding reentrancy attacks?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_08c9d026-6cde-4098-be8f-24f4770900c6",
+    "timestamp": "2025-12-24 20:23:09.721812",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [All Functions] [No Parent References] Events don't reference parent transactions or messages - could this prevent tracing event causality chains to identify root cause of protocol failures?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_83a222d1-3fb3-4ae2-b264-d589f5f86e18",
+    "timestamp": "2025-12-24 20:23:22.477821",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [All Functions] [No Event IDs] Events lack unique identifiers for correlation - could this prevent linking related events like borrow->liquidate->repay sequences, hiding coordinated attacks?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_927d2073-99cb-41a9-b264-8a10bd3d7b9d",
+    "timestamp": "2025-12-24 20:23:35.597279",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Missing Event] [Sudo Operations] No events for sudo message handling that changes critical protocol parameters - could admin operations manipulate protocol without audit trail?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_3a7bc9a9-ae42-4565-9cc8-5fa900ae29cb",
+    "timestamp": "2025-12-24 20:23:49.155837",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_liquidate()] [Threshold Verification] No confirmation that adjusted_ltv >= liquidation_threshold at execution time - could price fluctuations between validation and execution allow safe accounts to be liquidated?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_7ec075e6-fbed-43b8-9b20-e3a8c382f246",
+    "timestamp": "2025-12-24 20:24:03.501553",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_account()] [Owner Verification] The event assumes owner was verified but doesn't confirm it - could race conditions allow ownership changes between verification and execution, with events showing wrong owner?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_8a669ed0-826c-4777-80d2-39c39ad1daa8",
+    "timestamp": "2025-12-24 20:24:19.006489",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_liquidate()] [Preference vs Liquidator Messages] The event doesn't distinguish between preference and liquidator-provided messages - could liquidators claim their messages were preferences to avoid blame for failed liquidations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_50a0675f-6166-40c4-b8e1-073144b33a4c",
+    "timestamp": "2025-12-24 20:24:35.936448",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_account()] [Multi-Step Operations] The single event doesn't break down which specific AccountMsgs were in the batch - could attackers hide malicious operations within legitimate batches that appear safe in aggregate?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e2791a03-05eb-4e6a-a49f-a8f789731169",
+    "timestamp": "2025-12-24 20:24:54.278769",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [All Functions] [Incomplete State Emission] Events don't emit enough information to fully reconstruct contract state - could state divergence between on-chain storage and event-based reconstruction hide accounting errors or theft?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_dd811630-d3e9-407b-a0d5-2a8a350d8495",
+    "timestamp": "2025-12-24 20:25:13.769886",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_liquidate_preference_error()] [Error Message Length] The error string is unbounded - could malicious contracts return massive error messages that bloat event logs and cause storage issues?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_aafe050e-cee5-427c-a1d0-3a05975c1482",
+    "timestamp": "2025-12-24 20:25:35.381289",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_account_execute()] [Binary Size] The Binary msg is emitted without size validation - could attackers submit huge messages that make events too large to process, causing indexer failures?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_c98fd505-f993-4013-8e18-4757fc298515",
+    "timestamp": "2025-12-24 20:25:57.356706",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [All Functions] [Unbounded String Lengths] Events use to_string() on potentially large data structures without length limits - could attackers create accounts with extremely long tags or preferences that make event emission gas-prohibitive?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e15d4cf2-59d5-4d92-9daa-03edbb47ebf8",
+    "timestamp": "2025-12-24 20:26:19.320055",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_liquidate()] [Queue Race Conditions] No indication of queue position or total queue size - could multiple liquidators race to liquidate the same account, with only the event log showing which succeeded?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_735ed395-5431-4260-a23f-7b6992a3f561",
+    "timestamp": "2025-12-24 20:26:42.444257",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_account()] [Operation Sequence] The event doesn't include a nonce or sequence number - could this allow attackers to execute operations out of intended order by exploiting event emission timing?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_a04652d5-bc37-4c9f-b680-4e5abd8275e5",
+    "timestamp": "2025-12-24 20:27:06.274846",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [All Functions] [No Timestamps] Events don't include block timestamps or heights - could this prevent analysis of time-based attacks like oracle manipulation windows or liquidation racing?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_378f32b4-a2ca-4ab0-9627-c8b6ef28bda2",
+    "timestamp": "2025-12-24 20:27:29.971784",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_liquidate()] [Expected vs Actual] No comparison between expected liquidation outcomes and actual results - could liquidations significantly deviate from protocol assumptions without triggering alerts, indicating oracle manipulation?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_bac41b29-b1a0-4620-addf-10d355591e23",
+    "timestamp": "2025-12-24 20:27:53.670450",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_liquidate_repay()] [Slippage Not Recorded] The event doesn't calculate or emit slippage between collateral spent and debt repaid - could liquidations exceed config.liquidation_max_slip without detection if events don't record actual slippage values?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_c37ba5ff-8bd3-47e5-a01a-dfefbd3ecb59",
+    "timestamp": "2025-12-24 20:28:17.214420",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_account_borrow()] [Price Oracle Missing] The event doesn't capture the asset price at borrow time - could borrowers exploit stale price oracles to borrow more than collateral value, creating undercollateralized positions?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e6109d39-517c-4827-abd9-c0bdb3f239e0",
+    "timestamp": "2025-12-24 20:28:41.494921",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_liquidate_repay()] [Fee Validation] The event doesn't indicate if fees were validated against config.fee_liquidation and config.fee_liquidator limits - could miscalculated fees drain liquidated accounts beyond intended amounts?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_cf1723ab-1206-426b-9f8e-ba0fbaa6522a",
+    "timestamp": "2025-12-24 20:29:06.739496",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_liquidate_preference_error()] [Insufficient Error Context] The error event only has a string message without error codes, stack traces, or state snapshots - could this prevent debugging of liquidation failures and hide protocol vulnerabilities?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_05f07cae-28d1-41b5-a019-746fc5d52e85",
+    "timestamp": "2025-12-24 20:29:33.085929",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_account_set_preference_order()] [Validation Status Missing] The event doesn't indicate whether the preference order passed validation checks - could invalid preferences be set and appear successful in events, causing liquidation failures?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_bd737aee-0938-41f4-919e-c74dbd6670b2",
+    "timestamp": "2025-12-24 20:29:59.310315",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_account_transfer()] [Missing Previous Owner] The transfer event only emits the new recipient, not the previous owner - could this enable ownership transfer attacks where the original owner is untraceable, complicating dispute resolution?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_9f4e52b9-4094-42f3-9528-872b74cb334f",
+    "timestamp": "2025-12-24 20:30:25.271208",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_account_send()] [Missing Collateral Impact] The send event doesn't indicate if sent funds were collateral or borrowed funds - could this hide collateral withdrawals that violate LTV requirements but appear as normal send operations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_4c30bfeb-be79-4d43-bbb2-4adccee0787f",
+    "timestamp": "2025-12-24 20:30:52.575070",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_account_repay()] [Missing Interest Split] The event doesn't distinguish between principal and interest portions of the repayment - could this hide incorrect interest distribution that benefits some lenders over others in the vault?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_f16b7c6f-4ba9-4ad4-98e5-ddf8bebab5e0",
+    "timestamp": "2025-12-24 20:31:20.744045",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_account_borrow()] [Missing Delegate Info] The event doesn't emit which delegate (rujira-account address) was used for the vault borrow operation - could this cause accounting mismatches if multiple accounts borrow from the same vault in one block?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_ad230581-6e38-4869-bb73-699c2f889e89",
+    "timestamp": "2025-12-24 20:31:49.093307",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Missing Event] [DoLiquidate Progress] No events track progress through the liquidation queue - could long-running liquidations fail midway without indication, leaving accounts in inconsistent partially-liquidated states?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_40e0e967-e376-4682-a549-defddb5598ef",
+    "timestamp": "2025-12-24 20:32:57.666473",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Missing Event] [CheckAccount Results] There's no event when ExecuteMsg::CheckAccount validates an account's safety - could this hide accounts that barely pass safety checks and are vulnerable to price movements?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e7545ba4-3c28-4350-8f28-9d06eecf6d9c",
+    "timestamp": "2025-12-24 20:33:10.262179",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Missing Event] [Config Changes] The file has no events for sudo operations that change collateral_ratios or add vaults - could admins manipulate protocol parameters without audit trail, enabling insider attacks?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_6f8fd999-9d82-4377-a13f-7c3c0370fe0b",
+    "timestamp": "2025-12-24 20:33:23.172121",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Missing Event] [LTV Threshold Crossings] No events are emitted when accounts cross adjustment_threshold or liquidation_threshold - could this prevent timely liquidations as monitors don't receive alerts when accounts become unsafe?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_f019485f-badb-4b26-bd5e-5811e62cf013",
+    "timestamp": "2025-12-24 20:33:38.771409",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Missing Event] [Account State Changes] There are no events for account balance changes, collateral additions, or debt increases outside of explicit borrow/repay - could this hide oracle price changes that push accounts into unsafe states without any recorded operations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_8477865d-032c-4f7d-baf4-df6be62aa68b",
+    "timestamp": "2025-12-24 20:33:53.225497",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_liquidate()] [Liquidator Identity] The event reveals the caller address of liquidators - could this enable targeted DoS attacks or front-running against known liquidator addresses, reducing liquidation effectiveness and increasing protocol risk?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_25bf0233-18a3-4d4b-9cbd-63b995310e18",
+    "timestamp": "2025-12-24 20:34:09.201425",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_account_execute()] [Message Content Exposure] The Binary msg is emitted in plaintext in events - could this leak sensitive trading strategies, liquidation tactics, or collateral management approaches that competitors can front-run or copy?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_02590aba-9c4a-4f4d-98c7-d7359b0274a1",
+    "timestamp": "2025-12-24 20:34:27.128263",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_create_account()] [Privacy Leakage] The event reveals the deterministic relationship between owner address and account address - could this allow adversaries to enumerate all accounts for a given owner and track their full borrowing activity across the protocol?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_52b8efa1-68df-421c-8723-ae22cbe50dda",
+    "timestamp": "2025-12-24 20:34:45.735433",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [All Functions] [Attribute Type Safety] All attributes are added as strings using to_string() - could type mismatches between expected and actual attribute types cause parsing errors that hide critical events from monitoring systems?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_4363eb56-30da-4197-a331-1c85554b6371",
+    "timestamp": "2025-12-24 20:35:05.470224",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [All Functions] [Event Type Parsing] The hierarchical naming scheme (e.g., 'rujira-ghost-credit/account.msg/borrow') - could malicious contracts emit events with similar names but different attribute structures to poison event indexers or create fake audit trails?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_1a85bbff-af5a-4764-87d9-557274c22f5e",
+    "timestamp": "2025-12-24 20:35:26.076097",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [All Functions] [Package Name Dependency] All events use env!('CARGO_PKG_NAME') for the event type prefix - could a malicious fork or recompilation with different package metadata create event type collisions that overwrite or corrupt legitimate event logs?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_a11f3151-9cfb-4b50-871b-ba297701402e",
+    "timestamp": "2025-12-24 20:35:46.860901",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [All Functions] [State Consistency] None of the events emit checksums or state hashes - could this allow state divergence between contract storage and event-reconstructed state, hiding accounting errors or manipulation where emitted events don't match actual state changes?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_ef013f3c-38a2-4ba1-b1da-fd0f6576b5da",
+    "timestamp": "2025-12-24 20:36:10.020192",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [All Functions] [Atomic Operation Grouping] The events lack transaction hash or batch identifiers - could this allow attackers to split multi-step operations across blocks, evading detection systems that rely on atomic operation analysis to identify manipulation attempts?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_bf0b3b81-f5f9-43e4-91e4-ab688c7d5d14",
+    "timestamp": "2025-12-24 20:36:34.120080",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [All Functions] [Cross-Contract Correlation] Events do not include the registry contract address or cross-references to rujira-account or rujira-ghost-vault events - could this prevent detection of cross-contract attacks where operations on accounts don't match corresponding vault state changes?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e626c25f-0f8b-487b-8691-acdfbf8cb4ef",
+    "timestamp": "2025-12-24 20:36:58.431114",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [All Functions] [Event Ordering] None of the event functions emit block height, timestamp, or transaction indices - could this allow event replay attacks where attackers reconstruct and resubmit historical event sequences to confuse off-chain indexers and monitoring systems?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_d900cea8-94b6-4d82-9abd-4632da11b5fb",
+    "timestamp": "2025-12-24 20:37:22.807052",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_liquidate_execute()] [Payload Security] Does the event emit the full msg Binary that could contain sensitive data or allow reconstruction of liquidation strategies, potentially enabling front-running or copy-cat liquidation attacks?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_61b0b5d9-8e86-47fd-b60d-5c481502f700",
+    "timestamp": "2025-12-24 20:37:48.744119",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_liquidate_execute()] [Execute Result Missing] The event is emitted before the execute submessage completes - could this show successful execution in events when the actual operation failed, hiding liquidation failures that leave collateral locked in unsafe accounts?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_637d87ce-6320-40cf-8337-2db1738dde30",
+    "timestamp": "2025-12-24 20:38:13.767087",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_liquidate_repay()] [Missing Vault Context] Does the lack of vault address in the repay event allow liquidations to repay to wrong vaults or non-existent debt positions, causing accounting mismatches between rujira-account balances and vault delegate records?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_6b2c8d5b-9ec8-47a5-a76e-f85dd499be38",
+    "timestamp": "2025-12-24 20:38:37.781900",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_liquidate_repay()] [Zero Amount Check] The event could emit zero repay_amount if fees exceed the balance amount - could this allow liquidations that collect fees but don't actually reduce debt, leaving accounts in perpetually unsafe states while appearing to be properly liquidated?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e8fd32c7-cca0-480f-a461-81ee36b59716",
+    "timestamp": "2025-12-24 20:39:01.369713",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_liquidate_repay()] [Rounding Exploitation] Does the event fail to indicate how rounding was performed when calculating fees from the balance amount, potentially allowing liquidators to exploit rounding errors across multiple small liquidations to accumulate extra fees?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_ee9fb4dc-2035-4818-87f2-010d50c2f794",
+    "timestamp": "2025-12-24 20:39:24.802130",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_liquidate_repay()] [Fee Calculation Verification] The event emits fee_liquidation and fee_liquidator amounts separately from repay_amount - could discrepancies between these values and the input amount hide fee calculation errors that allow liquidators to extract excessive fees beyond configured percentages?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_5fbda5df-b02f-4cd8-a6d7-a66133829f2a",
+    "timestamp": "2025-12-24 20:39:48.798382",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_liquidate_preference_error()] [Silent Failures] Does the event being emitted in a reply_always handler with REPLY_ID_PREFERENCE allow attackers to set malicious preference messages that intentionally fail but don't block liquidation, extracting fees while appearing to attempt proper collateral management?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_ae485f4c-2fd3-4198-b50a-2a2e55d0b147",
+    "timestamp": "2025-12-24 20:40:12.263516",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_liquidate_preference_error()] [Error Handling] The event only emits a string error message without structured error codes - could this allow preference message failures to hide critical protocol errors that should halt liquidation, instead continuing with potentially unsafe partial liquidations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_74384605-0767-4161-9366-fc36e727b59c",
+    "timestamp": "2025-12-24 20:40:36.864898",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_liquidate()] [Caller Incentive] Does the event fail to emit expected liquidator fees or bonuses, potentially allowing liquidators to extract more value than intended through manipulated liquidation message sequences while appearing as standard liquidations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_c80856f2-eec6-455f-9b1e-13dfdb41a3ec",
+    "timestamp": "2025-12-24 20:41:00.836102",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_liquidate()] [Queue Visibility] The event does not indicate how many liquidation messages are queued or whether preference messages will be executed - could this allow attackers to set up accounts with expensive preference messages that make liquidation unprofitable, creating zombie accounts?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_4cd1e90a-d6ca-4132-a7be-0211564df869",
+    "timestamp": "2025-12-24 20:41:25.902751",
+    "report_generated": false
   }
 ]
