@@ -1348,5 +1348,155 @@
     "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_5f29a4cf-7a5d-4b2b-a281-185d5dead0d2",
     "timestamp": "2025-12-24 19:52:07.824654",
     "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config::validate()] [Missing denom validation] Config::validate() never validates the `denom` field - it could be empty string, contain special characters, or be excessively long. Can an attacker exploit an empty or malformed denom during instantiation to brick the vault by causing must_pay() failures in deposit/withdraw operations, permanently freezing all deposited funds?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_1759f7fa-c4c6-42f9-a0de-70100ad0185b",
+    "timestamp": "2025-12-24 19:53:17.637097",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config::validate()] [Validation order vulnerability] Config::validate() calls interest.validate() after checking the fee, but if interest.validate() fails, the fee validation has already passed. Could this validation ordering be exploited during a sudo update where a valid fee is paired with an invalid interest configuration, causing partial state corruption if error handling is improper?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_eb034a3e-4a3a-43c3-ae72-0db2a9ed1dc9",
+    "timestamp": "2025-12-24 19:53:30.251228",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config::validate()] [Fee validation bypass] In Config::validate(), the check `self.fee >= Decimal::one()` only prevents fees equal to or above 100%, but does not prevent fees very close to 100% (e.g., 99.999999%). Can an attacker or malicious admin set a fee of 99.99% to effectively steal all interest accrued, draining depositor returns while leaving the protocol technically solvent but economically exploited?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_bec10bde-a473-4b58-bfe3-2779ab64c594",
+    "timestamp": "2025-12-24 19:53:44.085999",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Map growth bounds] Is there any limit on how many entries can be added to the BORROW map, and without such limits, can unbounded growth cause storage costs to bankrupt the protocol or make future operations impossible?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_0d2a540a-1944-42f0-8130-a2c505319850",
+    "timestamp": "2025-12-24 19:53:57.877108",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Expensive queries] When iterating BORROW.range() with many vaults, each requiring external contract queries, can the gas costs become prohibitively expensive, effectively DOSing critical operations like liquidations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_a027a901-0a03-432e-a558-cfe82038c760",
+    "timestamp": "2025-12-24 19:54:12.357680",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Storage exhaustion] Can an attacker convince governance to add an excessive number of denoms to BORROW, causing the map to grow so large that range queries fail due to gas limits?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_bb85933b-7047-4e8b-a20b-82d64e0a9f39",
+    "timestamp": "2025-12-24 19:54:28.243771",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Protocol insolvency via vault drain] If a vault stored in BORROW is compromised or exploited, can attackers drain all assets while the BORROW map still points to it, causing systemic insolvency as accounts cannot repay their debts?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_ef5e79ec-52e0-475e-8298-7773814e11e0",
+    "timestamp": "2025-12-24 19:54:46.479661",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Interest rate manipulation] By exploiting the timing of when vaults are loaded from BORROW versus when interest is accrued, can attackers borrow at favorable rates or avoid paying accumulated interest?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_00268acc-0a2f-4124-8c18-6361e5c41ede",
+    "timestamp": "2025-12-24 19:55:04.973187",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Vault limit bypass] Can users open multiple accounts and borrow from the same vault (loaded from BORROW) to bypass per-borrower limits that the vault enforces, since each account appears as a different borrower?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_5dd5b1bf-1eac-4456-bf31-9a042a142031",
+    "timestamp": "2025-12-24 19:55:23.959870",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Cross-collateral confusion] When BORROW maps different denoms to their vaults, can confusion between collateral denoms and borrow denoms allow users to borrow the same asset they're using as collateral, creating circular dependency risks?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_0e56b9d2-7588-4966-896b-2b793d47ab5d",
+    "timestamp": "2025-12-24 19:55:44.156568",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Vault whitelisting bypass] Can attackers bypass the intended collateral_ratios whitelist by directly manipulating references to vaults stored in BORROW, allowing borrowing against non-whitelisted collateral types?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_c400ddc8-a200-4a87-b45f-f2d1457e81a9",
+    "timestamp": "2025-12-24 19:56:05.380264",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Null address handling] If a Vault is created from an invalid or null address and stored in BORROW, can this cause silent failures or security issues when that vault is later queried or used for operations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_b05c4dd2-8cb9-4c66-93d7-6e62c9fbf033",
+    "timestamp": "2025-12-24 19:56:28.232303",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Very long denom strings] Can extremely long denom strings be used as keys in BORROW to cause storage bloat or exceed message size limits when vault addresses are loaded and used in messages?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_abc1c6cc-87ab-46da-b22a-694f069bdee0",
+    "timestamp": "2025-12-24 19:56:51.126379",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Special character denoms] Can denoms with special characters, control characters, or Unicode be stored in BORROW, and do these cause parsing errors when constructing vault messages?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_3ace02b3-d4ec-4073-a06c-6b90c8404c4d",
+    "timestamp": "2025-12-24 19:57:15.025244",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Empty denom string] Can the BORROW map accept empty string \\",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_c3f1b4fe-9898-4d47-8925-17c8aeed95a3",
+    "timestamp": "2025-12-24 19:57:38.982322",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Load error propagation] When BORROW.load() fails with StdError, does the error message clearly indicate which denom failed to load, or can ambiguous errors prevent users from understanding why their transaction failed?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_6edd9730-f2ce-4374-a703-a8652a36bf8e",
+    "timestamp": "2025-12-24 19:58:04.903902",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Denom case sensitivity] Are denom strings in BORROW map case-sensitive, and can attackers exploit case variations to create phantom vaults or bypass vault checks?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_11e7e4f2-5dc5-4114-8aa6-25dcc19c5420",
+    "timestamp": "2025-12-24 19:58:30.938286",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Concurrent modifications] Can concurrent sudo::SetVault calls modify BORROW while other operations are reading from it, causing race conditions where operations use partially-updated vault addresses?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_8c66595e-ed87-4758-97e5-ee3384618aca",
+    "timestamp": "2025-12-24 19:58:58.064032",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Empty map initialization] If no vaults are ever added to BORROW, can borrow operations still be attempted, and does this cause undefined behavior or allow borrowing without actual backing vaults?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_ef16715f-f752-4e4d-b61c-f4e494272760",
+    "timestamp": "2025-12-24 19:59:25.799287",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Key collision] Can the Map::new(\\",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_db941191-4da2-43ec-8ac7-3e2f93e3e69e",
+    "timestamp": "2025-12-24 19:59:52.805293",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Missing debt detection] Can the BORROW.range() iteration in account.rs skip vaults where an account actually has debt due to iteration order bugs, causing LTV to be calculated incorrectly and allowing undercollateralized borrowing?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_68b42cf1-2c2a-4a8e-ba79-091974235954",
+    "timestamp": "2025-12-24 20:00:18.272476",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Inconsistent vault state] When loading multiple vaults from BORROW in sequence for accounting, can vaults be at different interest accrual states causing total debt calculations to be temporarily incorrect?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_70cb4604-276b-480c-b928-bc50262efa40",
+    "timestamp": "2025-12-24 20:00:43.887318",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Range iteration limits] When using BORROW.range() to iterate all vaults for debt calculations, are there gas limits that could cause the iteration to fail for protocols with many vaults, breaking LTV calculations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_d6258a25-d371-4af9-9d9d-e800c2924e07",
+    "timestamp": "2025-12-24 20:01:10.405693",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Borrows query DOS] When QueryMsg::Borrows iterates over all entries in BORROW map and queries each vault, can an attacker cause this query to fail by ensuring one vault reverts, preventing users from viewing their total system debt?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_cb1bb68c-a7e6-4f05-9b8d-f89a327a0aad",
+    "timestamp": "2025-12-24 20:01:37.729720",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/state.rs] [Storage: BORROW] [Liquidation preference bypass] Can an attacker manipulate liquidation preferences by exploiting the order in which vaults are queried from the BORROW map, allowing them to prioritize repayment of certain denoms over others unfairly?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_6c7ff107-6386-430d-8c46-55b5d83bb600",
+    "timestamp": "2025-12-24 20:02:03.404585",
+    "report_generated": false
   }
 ]
