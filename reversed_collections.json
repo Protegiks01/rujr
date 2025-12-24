@@ -748,5 +748,155 @@
     "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_4aca89fe-ef9e-4923-98a7-0c9b9a1768e1",
     "timestamp": "2025-12-24 18:49:13.259060",
     "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute_market() - Borrow] [Utilization Manipulation] By borrowing large amounts, an attacker can push utilization to 100%, triggering maximum interest rates - can they then immediately repay in the same block to grief other borrowers with inflated interest?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_c90f6dc2-fd78-4993-989c-77dfda5b13cc",
+    "timestamp": "2025-12-24 19:13:54.933468",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute_market() - Borrow] [Delegate Validation Missing] When delegate parameter is provided at line 122, deps.api.addr_validate() validates the address but doesn't check if the delegate is authorized or if circular delegation is possible - can this enable borrowing exploits?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_f8c63ce4-e27e-4343-a68e-a709c879b71a",
+    "timestamp": "2025-12-24 19:14:07.935313",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute_market() - Borrow] [Callback Reentrancy Attack] At lines 148-153, callback receives borrowed assets and can execute arbitrary logic - can the callback re-enter execute_market() to borrow again before borrower.shares is updated, exceeding limits?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_f68055ed-8af9-4958-88ac-b3be5c51a1b0",
+    "timestamp": "2025-12-24 19:14:20.907123",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute_market() - Borrow] [Asset Transfer Before State Save] At lines 138-141, BankMsg::Send transfers assets before state.save() at line 200 - if state.save() fails, are borrowed assets sent but debt not recorded, allowing free borrowing?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e3498866-111d-4172-907f-2cde8aa94bef",
+    "timestamp": "2025-12-24 19:14:34.430979",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute_market() - Borrow] [Share Accounting Inconsistency] At line 121, state.borrow() joins debt_pool and returns shares, then borrower.borrow() checks limits at borrowers.rs:64 - if limit check fails after state.borrow() succeeds but before transaction completes, is debt_pool corrupted with un-owned shares?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_48b6c3cd-96e7-438c-98e4-ce9320588afb",
+    "timestamp": "2025-12-24 19:14:49.003342",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute_market() - Borrow] [Delegate Borrow Limit Bypass] At lines 122-130, when delegate is Some(), delegate_borrow() is called instead of borrow() - can an attacker create multiple delegate addresses to bypass the borrower's total limit by splitting borrows across delegates?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_000d9e2e-127e-43f1-8877-5be903793d66",
+    "timestamp": "2025-12-24 19:15:04.312307",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute_market() - Borrow] [Borrower Authorization] At line 96, Borrower::load() checks if info.sender is whitelisted - but can an attacker who gets whitelisted then removed still borrow if their Borrower struct wasn't deleted, exploiting stale state?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_a6de7a4e-4b9b-47f6-98f7-0a8a4dff4e76",
+    "timestamp": "2025-12-24 19:15:21.389501",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute() - Withdraw] [Rounding Exploitation] Can an attacker repeatedly withdraw amounts that cause favorable rounding in SharePool::leave() calculations to extract more assets than their proportional share?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_3f6ab2a6-9aa2-4cfa-a370-0b928d993f46",
+    "timestamp": "2025-12-24 19:15:40.129581",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute() - Withdraw] [Callback Asset Mismatch] At lines 87-91, callback receives coins(withdrawn.u128(), &config.denom) - if callback expects receipt tokens instead of underlying assets, will this cause execution failure?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_cee4ea8c-b3a4-4653-9c6b-1f230262d18a",
+    "timestamp": "2025-12-24 19:15:59.765579",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute() - Withdraw] [Full Withdrawal Edge Case] When withdrawing exactly total shares (amount == deposit_pool.shares()), SharePool::leave() returns full pool size - but does this account for outstanding debt that should remain in the vault?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_3b4ae05b-3fdc-43a6-8877-418c8945cede",
+    "timestamp": "2025-12-24 19:16:19.747580",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute() - Withdraw] [Burn-Send Ordering] The burn message is added before the send message at lines 79-83 - if burn succeeds but send fails (insufficient contract balance), are shares permanently destroyed without asset transfer?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_3fc3da7c-88ad-4f73-aeae-96e87ed01b43",
+    "timestamp": "2025-12-24 19:16:41.530362",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute() - Withdraw] [Callback Re-entrancy] At lines 77-92 with callback, assets are sent via callback before shares are burned at line 79/86 - can the callback re-enter to withdraw again with the same shares?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_2002bd33-f3d4-4b78-9fa9-bb5ccdcc66ef",
+    "timestamp": "2025-12-24 19:17:04.416714",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute() - Withdraw] [Insufficient Liquidity] If state.withdraw() at line 74 succeeds but available liquidity (deposit_pool.size - debt_pool.size) is less than withdrawn amount, will the BankMsg::Send at lines 80-83 fail, leaving the contract in inconsistent state with shares burned but assets not sent?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_79d88d55-f92b-47fb-a2c1-23892ec517a7",
+    "timestamp": "2025-12-24 19:17:27.950654",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute() - Withdraw] [Receipt Token Validation] The must_pay at line 73 checks for rcpt.denom(), but can an attacker mint fake receipt tokens with the same denom format to bypass validation and withdraw assets without valid shares?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_3006ca82-4eb5-40f0-b1c0-6fc9893a5f62",
+    "timestamp": "2025-12-24 19:17:52.013896",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute() - Withdraw] [Share Price Manipulation] At line 74, state.withdraw() converts shares to assets based on current pool ratio - can an attacker front-run withdrawals with large deposits to dilute share value and extract more assets than entitled?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_73da5cb3-dfad-4ec0-b311-5895ef4ca481",
+    "timestamp": "2025-12-24 19:18:15.671632",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute() - Deposit] [Zero Amount Bypass] Although SharePool::join() should reject zero deposits, does the must_pay validation at line 54 properly prevent zero-amount attacks that could manipulate state without adding value?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_f8d53166-8bf7-4876-bcd5-2f79e2111d4c",
+    "timestamp": "2025-12-24 19:18:38.292707",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute() - Deposit] [Deposit Pool Overflow] Can an attacker deposit Uint128::MAX amounts to overflow state.deposit_pool.size() calculations, causing subsequent operations to fail or produce incorrect share prices?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_f2bea9fb-e00e-4468-a1d6-20cc12429554",
+    "timestamp": "2025-12-24 19:19:02.206399",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute() - Deposit] [Event Emission Order] Events are emitted at lines 61/69 after messages are added but before transaction commits - if callback execution fails, are misleading events still emitted indicating successful deposits?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_92c70bbc-651f-4ce6-beea-a03489e301fe",
+    "timestamp": "2025-12-24 19:19:26.133548",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute() - Deposit] [Callback Message Construction] At lines 64-68, the callback.to_message() includes coins(mint.u128(), rcpt.denom()) - can an attacker craft a callback that expects different amounts or denominations to cause execution failure and brick deposits?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_44eb8ced-c038-44ac-a75a-035434cd960e",
+    "timestamp": "2025-12-24 19:19:51.806171",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute() - Deposit] [Share Issuance Rounding] At line 55, state.deposit() calls SharePool::join() which floors share issuance - can repeated small deposits cause permanent loss of value where depositors pay assets but receive zero shares?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_649697ea-7524-4503-b24e-3a9c5c6ab7de",
+    "timestamp": "2025-12-24 19:20:16.157371",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute() - Deposit] [Payment Validation] The must_pay call at line 54 validates the denom matches config.denom, but can an attacker send multiple denominations where only one matches to bypass the single-payment assumption?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_b1bee77a-99d7-4835-9641-3f47b0edc149",
+    "timestamp": "2025-12-24 19:20:41.144138",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute() - Deposit] [Callback Exploit] At lines 58-69, when callback is Some(), receipt tokens are minted to env.contract.address then forwarded - can the callback re-enter and withdraw those tokens before the original depositor receives them?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_cb4e138d-da93-4076-b83e-274813a5b539",
+    "timestamp": "2025-12-24 19:21:06.096803",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute() - Deposit] [Share Price Manipulation] Can an attacker deposit 1 wei to initialize the pool, then deposit() large amounts directly to state.deposit_pool to inflate share price before first real depositor joins, causing share issuance to round to zero?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_87c18bc3-1a8b-444b-9560-bf0730447334",
+    "timestamp": "2025-12-24 19:21:31.347676",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute()] [Reentrancy via Callbacks] Can an attacker use the callback mechanism to re-enter execute() before state.save() completes, potentially exploiting the pre-save state to double-spend shares or bypass limits?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_b7ea46c4-39e0-4a82-82e4-bcf96f04933a",
+    "timestamp": "2025-12-24 19:21:57.786384",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute()] [State Corruption] If state.distribute_interest() at line 51 succeeds but state.save() at line 56/75/200 fails mid-transaction, can this create a state where interest was distributed but pool sizes weren't updated?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_c4091e19-7bc0-4929-9063-0de2c39f583c",
+    "timestamp": "2025-12-24 19:22:23.802420",
+    "report_generated": false
   }
 ]
