@@ -1048,5 +1048,155 @@
     "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_61c7e408-6d28-404b-b53b-ad0b5bf8f60d",
     "timestamp": "2025-12-24 19:32:07.901486",
     "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Interest::rate()] [Zero utilization edge case] Interest::rate() handles zero utilization by having part1 = 0 and part2 = 0. However, if base_rate is also zero, the vault charges 0% interest. Could an attacker exploit this by ensuring vault starts empty, borrows everything (making utilization jump to 100%), then repays immediately, paying minimal interest due to the time between operations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_41b7893b-d37b-416a-b4f3-620a6ba7f09d",
+    "timestamp": "2025-12-24 19:33:26.232960",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Interest::validate()] [Step equality edge case] Interest::validate() requires step2 > step1 using .gt() comparison. What if step2 and step1 differ by only 1 wei (smallest Decimal unit)? Could such tiny differences cause numerical instability in Interest::rate() calculations, leading to incorrect interest rates or overflows?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_316edb51-3388-4a26-a71b-e9463b6dc45b",
+    "timestamp": "2025-12-24 19:33:39.184562",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config::validate()] [Decimal precision limits] Config uses Decimal for fee and Interest parameters. Decimal has limited precision (18 decimals). Could an attacker exploit precision limits by setting fee=0.999999999999999999 to round to 1.0 in practice, bypassing the fee < 1.0 check and allowing 100% fee extraction?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_2a29ea66-56c8-4104-a572-c5848012b2fd",
+    "timestamp": "2025-12-24 19:33:52.531535",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Interest parameters in debt_rate() and lend_rate()] [Lend vs debt rate asymmetry] State::lend_rate() multiplies debt_rate by utilization, meaning depositors earn less than borrowers pay (with the difference going to unused capital). If config.interest is set with extreme parameters, could this asymmetry be exploited to create situations where lend_rate rounds to zero while debt_rate is positive, allowing protocol to extract value while paying depositors nothing?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_a925c172-3b01-4bbc-b893-4109f3129fc7",
+    "timestamp": "2025-12-24 19:34:06.730067",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Interest::rate() in utilization-based calculations] [Utilization threshold manipulation] Interest::rate() produces different rates based on utilization thresholds. Could an attacker coordinate with other users to manipulate utilization just above/below target_utilization at strategic times, causing interest rate jumps that benefit their positions while harming others?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_9d7d4d92-2b13-4a12-826e-91664239e6b8",
+    "timestamp": "2025-12-24 19:34:21.290140",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Interest parameters in calculate_interest()] [Leap second or time warp exploitation] calculate_interest() computes interest based on seconds elapsed. If blockchain time experiences a warp (e.g., validator time manipulation or leap seconds), could this cause interest to be over- or under-calculated, creating arbitrage opportunities where borrowers can borrow just before a time warp to avoid interest charges?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_116ab175-1926-416e-894b-32ef9da790a7",
+    "timestamp": "2025-12-24 19:34:37.054353",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Interest parameters in calculate_interest()] [Time-based interest manipulation] calculate_interest() uses config.interest to compute rates based on elapsed seconds. If an attacker can manipulate when distribute_interest() is called (e.g., by avoiding operations when rates are high), could they strategically time borrows and repays to pay less interest than intended, extracting value from depositors?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_47517ce3-8f0c-4742-b694-d1ae5ac93a07",
+    "timestamp": "2025-12-24 19:34:54.615045",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config fields in instantiate()] [Receipt token naming collision] In instantiate(), config.denom is used to create receipt token with name format 'ghost-vault/{denom}'. If two vaults are instantiated with the same denom, could this cause receipt token collisions, potentially mixing vault shares and causing accounting chaos where depositors can withdraw from the wrong vault?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_f473365e-a4b6-4e37-89c4-51ab475df4f0",
+    "timestamp": "2025-12-24 19:35:13.238141",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config fields in borrow limit checks] [Config as borrower limit dependency] While borrowers.rs manages limits, the debt_pool in state.rs depends on config.interest for rate calculations. If interest parameters are manipulated, could this affect borrower limit enforcement by changing the debt_pool.ownership() calculations, allowing borrowers to exceed their USD limits?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_6191ff27-a9bd-4f69-8391-821d1b866fcb",
+    "timestamp": "2025-12-24 19:35:32.885373",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config::load() in query()] [Query config modification] Query operations load config but shouldn't modify it. However, if query() calls distribute_interest() (which it does), and distribute_interest() fails due to config issues, could query failures cascade to break all frontend UIs and off-chain integrations, causing practical DOS even though funds aren't frozen?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_dd07b314-a6c8-48d1-9df7-73550cef4e6c",
+    "timestamp": "2025-12-24 19:35:54.765070",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config fields used in execute()] [Denom mismatch exploitation] Config.denom is used in must_pay() checks throughout execute(). If an attacker can somehow cause denom to be modified post-instantiation (e.g., through migration or storage corruption), could they bypass must_pay() by sending the wrong token, or cause all must_pay() checks to fail, bricking the vault?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_484e9e3b-1d87-41b2-84dd-2dda8f0cd11f",
+    "timestamp": "2025-12-24 19:36:16.000946",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config::load() in execute()] [Config load failure DOS] Every execute() operation loads config via Config::load(). If storage becomes corrupted or inaccessible (e.g., through chain issues), load() fails and all vault operations revert. Could an attacker exploit a storage corruption bug to deliberately fail Config::load(), causing a permanent DOS on all deposits, withdrawals, borrows, and repays?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_1e2469f2-8c3a-4e6a-8061-dc5e62c4c8c1",
+    "timestamp": "2025-12-24 19:36:38.591407",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config fields used in distribute_interest()] [Pending fees overflow from high fee rates] If config.fee is set to maximum allowed (e.g., 99.99%) and vault operates for extended periods with high utilization, could pending_fees accumulate to exceed Uint128::MAX, causing an overflow panic during distribute_interest() that permanently freezes the vault?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_285ebf5b-8967-4062-b04d-041d99f41d07",
+    "timestamp": "2025-12-24 19:37:02.645087",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config fields used in distribute_interest()] [Fee calculation rounding exploitation] When calculate_interest() computes fees as `interest_scaled.mul(fee_rate_scaled)`, rounding could cause tiny losses on each operation. Could an attacker perform thousands of micro-operations to systematically exploit rounding in their favor, accumulating losses that either harm depositors or the protocol?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_6208b5e2-ff30-4d98-bdf4-45e1ec5637e8",
+    "timestamp": "2025-12-24 19:37:27.988905",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config::validate() with fee bounds] [Fee=99.999% exploitation] Config::validate() only checks fee < 1.0, allowing fee=0.999999999999999999. If set this high, almost all interest goes to protocol as fees, leaving depositors with near-zero returns. While technically valid, could this be exploited post-launch to effectively rug-pull depositors while maintaining protocol",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_27ceb5ba-0449-4253-b2b6-8a97e8bbebda",
+    "timestamp": "2025-12-24 19:37:54.067472",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config fields used in distribute_interest()] [Fee address change during fee distribution] If config.fee_address is updated via a hypothetical SetFeeAddress sudo message (not currently implemented but possible) between calculate_interest() and fee minting, could fees be minted to the wrong address, either giving fees to an old protocol address or a malicious address, constituting theft of protocol revenue?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_341ab6d2-1ffc-4911-9586-39a621e21dd1",
+    "timestamp": "2025-12-24 19:38:19.740091",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config fields used in distribute_interest()] [Fee extraction timing] Config.fee is used in State::calculate_interest() to extract protocol fees from gross interest. If fee is updated via sudo between calculate_interest() and the actual fee share minting, could there be a mismatch where calculated fees don't match minted fees, causing accounting errors that either over-extract from depositors or under-compensate the protocol?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_fbc9e3cc-0909-4367-a8bc-a217dc3c976d",
+    "timestamp": "2025-12-24 19:38:46.325221",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config::validate() called from sudo()] [Partial config update vulnerability] In sudo() SetInterest, only config.interest is updated while fee and fee_address remain unchanged. Could there be a logical dependency between interest parameters and fee (e.g., high interest should have high fee for protocol safety) that, when violated through independent updates, causes economic imbalance or protocol insolvency?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_bc91883f-b230-4084-bb42-0a70e33c2e34",
+    "timestamp": "2025-12-24 19:39:13.861582",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config::validate() called from sudo()] [SetInterest griefing attack] A malicious admin could repeatedly call SetInterest with alternating extreme interest rates (e.g., 0% then 1000%) to manipulate debt_rate() calculations. Could this cause wild swings in interest accrual that systematically benefit borrowers who time their operations around rate changes, extracting value from depositors?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_abb12cdb-849b-4614-899b-d8dab57cc3a2",
+    "timestamp": "2025-12-24 19:39:41.343454",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config::validate() called from sudo()] [SetInterest to exploit pending interest] If pending_interest and pending_fees have accumulated fractional amounts, and SetInterest changes to very high interest rates, could the next distribute_interest() cause pending amounts to overflow when combined with new interest, causing a panic that freezes the vault?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_b982779d-097c-4162-a214-529afa7c7759",
+    "timestamp": "2025-12-24 19:40:08.765007",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config::validate() called from sudo()] [SetInterest validation bypass through timing] SetInterest calls interest.validate() before saving, but if validation passes for new_interest that creates extreme edge cases (e.g., target_utilization=0.000001, step2=10000), could the next distribute_interest() fail with overflow or underflow, bricking the vault despite validation technically passing?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_aa64b302-a610-40ff-bcf8-a0e305b3bc0e",
+    "timestamp": "2025-12-24 19:40:35.141596",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config::validate() called from sudo()] [SetInterest without interest distribution] In sudo(), when SetInterest updates interest, it doesn't call distribute_interest() first. Could this cause the last interest accrual period (from last_updated to now) to be calculated with old rates, then the next period uses new rates, creating a gap where interest is under- or over-calculated, benefiting either borrowers or protocol at depositors' expense?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_3a74cfcc-a99a-41cb-9779-c97693cc393a",
+    "timestamp": "2025-12-24 19:41:00.268234",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config::validate() called from sudo()] [SetInterest front-running] In sudo(), SetInterest updates config.interest and saves immediately. If a large borrow operation is pending when sudo is called, could the borrower front-run the SetInterest with their transaction, borrowing at old (low) rates, then immediately benefit from the new interest accrual starting after their borrow, while depositors bear the full cost of the rate change?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_65ff0bff-19f4-4f4a-a176-8e4d6c38fa08",
+    "timestamp": "2025-12-24 19:41:25.846095",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config::save()] [Storage key collision] Config uses static key",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_72d6b050-271a-4eb8-b182-2cabe811f50f",
+    "timestamp": "2025-12-24 19:41:51.786360",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config::load()] [Load-modify-save race] Multiple operations load config, modify state, and save. If two operations load config simultaneously, modify different states, and both save, could the second save overwrite the first's changes, causing state inconsistency where interest updates are lost or fee updates are applied incorrectly?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_bc136c5b-58ef-4433-a2d4-d3dc93750b88",
+    "timestamp": "2025-12-24 19:42:18.013249",
+    "report_generated": false
   }
 ]
