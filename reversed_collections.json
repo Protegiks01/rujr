@@ -898,5 +898,155 @@
     "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_c4091e19-7bc0-4929-9063-0de2c39f583c",
     "timestamp": "2025-12-24 19:22:23.802420",
     "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute()] [Fee Extraction Race] Between lines 51 and 100-102, if distribute_interest() calculates fees but execution fails before minting at line 101, are those fees permanently lost or double-counted on retry?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e50b4751-89e8-4852-821c-81f7d63a4c8e",
+    "timestamp": "2025-12-24 19:23:36.676381",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute()] [Interest Manipulation] At line 51, distribute_interest() is called before every operation - can an attacker exploit timing by repeatedly calling execute() with minimal operations to manipulate the last_updated timestamp and reduce interest accrual for borrowers?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_091fd26e-c48a-4724-83f3-8b229fc06745",
+    "timestamp": "2025-12-24 19:23:49.254841",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: instantiate()] [Fee Configuration] Can the fee parameter be set to Decimal::one() minus epsilon to bypass validation at config.rs:35-37 but effectively extract 100% of interest as fees, starving depositors?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_d62bdf2e-c221-4aa4-a774-2e9e16a37da3",
+    "timestamp": "2025-12-24 19:24:02.498045",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: instantiate()] [Interest Rate DOS] Can a malicious deployer set Interest rates that cause immediate overflow in distribute_interest() calculations on first deposit, permanently bricking the vault?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_2637f705-e92d-490f-ae3c-95bbd277f0a2",
+    "timestamp": "2025-12-24 19:24:16.088270",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: instantiate()] [Token Factory] Can an attacker exploit the TokenFactory receipt token creation at lines 36-38 by manipulating the denom format string to create collision with existing tokens or bypass token validation?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_2e75a9af-a5c6-4a27-ab45-63b8888f58c2",
+    "timestamp": "2025-12-24 19:24:30.554840",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: instantiate()] [Configuration Validation] If Config::validate() at line 33 fails after set_contract_version succeeds but before State::init(), could this create an inconsistent contract state where version is set but config/state are invalid, preventing re-initialization?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_a3e67870-8300-4be2-a980-08ef8e35e708",
+    "timestamp": "2025-12-24 19:24:46.173110",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: instantiate()] [Access Control] Can an attacker front-run the instantiate call to deploy a malicious vault with identical receipt token naming that could confuse users and redirect deposits to the wrong vault, potentially leading to fund loss?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_04e993a9-a7bc-4090-9cfb-8ca0fe66a615",
+    "timestamp": "2025-12-24 19:25:04.034777",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute()] [Fee Extraction Race] Between lines 51 and 100-102, if distribute_interest() calculates fees but execution fails before minting at line 101, are those fees permanently lost or double-counted on retry?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_3a6490fa-40bd-4ef6-aec0-462cf47679f4",
+    "timestamp": "2025-12-24 19:25:22.309286",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute()] [Interest Manipulation] At line 51, distribute_interest() is called before every operation - can an attacker exploit timing by repeatedly calling execute() with minimal operations to manipulate the last_updated timestamp and reduce interest accrual for borrowers?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_6d8d4770-9f5b-450c-88cc-45481de2c2ec",
+    "timestamp": "2025-12-24 19:25:41.690265",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: instantiate()] [Fee Configuration] Can the fee parameter be set to Decimal::one() minus epsilon to bypass validation at config.rs:35-37 but effectively extract 100% of interest as fees, starving depositors?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_031df046-78f2-42df-897a-08c7e51a036a",
+    "timestamp": "2025-12-24 19:26:03.046884",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: instantiate()] [Interest Rate DOS] Can a malicious deployer set Interest rates that cause immediate overflow in distribute_interest() calculations on first deposit, permanently bricking the vault?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_d0422fd9-50a1-434d-9182-144ba7be6daf",
+    "timestamp": "2025-12-24 19:26:24.578854",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: instantiate()] [Token Factory] Can an attacker exploit the TokenFactory receipt token creation at lines 36-38 by manipulating the denom format string to create collision with existing tokens or bypass token validation?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_d9b0dedf-695d-4bb5-a7c6-f2cc90dff61e",
+    "timestamp": "2025-12-24 19:26:46.748008",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: instantiate()] [Configuration Validation] If Config::validate() at line 33 fails after set_contract_version succeeds but before State::init(), could this create an inconsistent contract state where version is set but config/state are invalid, preventing re-initialization?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_1eac7211-bdd7-4097-b8e4-984033177ee6",
+    "timestamp": "2025-12-24 19:27:09.324575",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: instantiate()] [Access Control] Can an attacker front-run the instantiate call to deploy a malicious vault with identical receipt token naming that could confuse users and redirect deposits to the wrong vault, potentially leading to fund loss?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_c8082bec-f6c1-4f2c-8862-7f26fe10d820",
+    "timestamp": "2025-12-24 19:27:31.914140",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config used across all entry points] [Config as single point of failure] Config is loaded in every execute, sudo, and query operation. If Config becomes corrupted or invalid, it blocks ALL contract functionality. Does this centralized dependency create a single point of failure where one corrupted byte in config storage renders the entire vault permanently inoperable?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_4d76ef71-eb2f-48ce-814c-ce8222b90068",
+    "timestamp": "2025-12-24 19:27:55.595378",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Static CONFIG item] [Storage item key security] CONFIG uses Item::new(",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_4ea72c64-92ea-4d1b-a4f1-6d19cc7168ed",
+    "timestamp": "2025-12-24 19:28:20.509185",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config::validate() error messages] [Information leakage through errors] Config::validate() returns generic errors like 'Invalid(",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_f4dbf307-f27a-41ed-8d68-1a6e242c5870",
+    "timestamp": "2025-12-24 19:28:46.843575",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config struct field visibility] [Config field direct mutation] Config fields are public, allowing direct mutation if &mut Config is obtained. Could unsafe code or future features that expose &mut Config allow bypassing validate() by directly mutating config.fee or config.interest, then calling save() without validation?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_3cfb3b37-7311-42b1-a75d-ca498d1fa51c",
+    "timestamp": "2025-12-24 19:29:12.713062",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config::save() atomicity] [Non-atomic config updates] If contract upgrade involves multiple steps (e.g., migrate() then sudo() to update config), and the process is interrupted midway, could the vault be left with partially updated config that violates invariants, causing subsequent operations to fail?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_f42b19fb-5aef-4f30-8b60-0e1381f1383b",
+    "timestamp": "2025-12-24 19:29:39.259009",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Interest struct compatibility] [Interest struct version mismatch] If Interest struct (from rujira-rs package) is updated but Config still uses old version, could there be ABI mismatches when deserializing config.interest? Could this cause validate() to pass on corrupted data, leading to invalid interest rate calculations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_5acfb69e-3f93-4020-9d01-a760fcf1ba19",
+    "timestamp": "2025-12-24 19:30:05.348026",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config::load() after upgrade] [Deserialization backward compatibility] If Config struct is modified in a contract upgrade (e.g., adding new fields), old configs may fail to deserialize properly. Could this cause Config::load() to fail after upgrade, bricking the vault until manual intervention, with depositors unable to withdraw during the outage?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_09ad4724-6eb8-4add-b363-0399fa6da3cf",
+    "timestamp": "2025-12-24 19:30:31.394010",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config persistence during migration] [Migration config corruption] If a migration modifies State without properly handling Config, could config become desynchronized with state (e.g., interest calculations based on old config while state reflects new pools), causing accounting errors that drain depositor funds through incorrect interest distribution?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_51e4b8a8-ede3-4763-b211-c2105451c9be",
+    "timestamp": "2025-12-24 19:30:56.675722",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Interest::validate() with target_utilization edges] [Target utilization at minimum] If target_utilization = 0.000000000000000001 (smallest positive Decimal), the division in part1 of Interest::rate() multiplies by a huge number. Could this cause step1 to be amplified to overflow Decimal even when step1 itself is reasonable, causing panics at low utilization?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_c3d89205-6a6a-4bd8-893c-0b3fa5a829c3",
+    "timestamp": "2025-12-24 19:31:20.608413",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config::new() with fee=0] [Zero fee special case] Config allows fee=0 which means no protocol fees. While seemingly safe, if pending_fees logic assumes fees are always collected, could a vault with fee=0 cause pending_fees to accumulate indefinitely without ever being cleared, potentially causing storage bloat or eventual overflow?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_c4f40e46-d2d3-4ed5-81f3-3b09eec4aad0",
+    "timestamp": "2025-12-24 19:31:45.310983",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Interest::rate()] [Full utilization edge case] When utilization = 1.0, part1 = step1 and part2 = step2. If step2 is extremely large, could this cause base_rate + step1 + step2 to overflow Decimal's maximum value, causing a panic that freezes distribute_interest() whenever the vault reaches 100% utilization?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_61c7e408-6d28-404b-b53b-ad0b5bf8f60d",
+    "timestamp": "2025-12-24 19:32:07.901486",
+    "report_generated": false
   }
 ]
