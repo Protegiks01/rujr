@@ -1198,5 +1198,155 @@
     "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_bc136c5b-58ef-4433-a2d4-d3dc93750b88",
     "timestamp": "2025-12-24 19:42:18.013249",
     "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config::load()] [Missing post-load validation] Config::load() retrieves config from storage without post-validation. If storage is corrupted through migration bugs or if config was saved in an invalid state, could load() return invalid config that breaks downstream operations like distribute_interest(), causing systemic vault failures?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_7102e41e-02d8-4d39-b4ea-4f28ac2dfefa",
+    "timestamp": "2025-12-24 19:43:31.969034",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config::save()] [Unchecked save] Config::save() writes to storage without re-validating the config. If Config is mutated in memory (e.g., via unsafe deserialization or memory corruption), could invalid config be persisted, bypassing all validation checks and allowing economically exploitative parameters to be locked into the contract?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_05f0ec83-9a29-42b6-aa2c-c90e93fb826b",
+    "timestamp": "2025-12-24 19:43:44.746147",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config::new()] [Address validation error handling] Config::new() propagates errors from addr_validate() using `?` operator. If addr_validate() fails, the instantiation fails. However, could there be a race condition where the address is valid during instantiation but becomes invalid later (e.g., through chain reorg or address blacklisting), causing silent failures in distribute_interest() that freeze the vault?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_bd6c6826-9f49-4b69-8d26-5ada08af4202",
+    "timestamp": "2025-12-24 19:43:57.831715",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config::new()] [Fee field unvalidated in constructor] Config::new() copies value.fee without checking if it's valid (fee < 1.0). While validate() is called after new() in instantiate(), if there's any code path that uses Config::new() without subsequent validate(), could invalid fees be persisted, allowing admin extraction of 100%+ of interest?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_dd69da2d-c1a1-4200-af20-b220ba26ad03",
+    "timestamp": "2025-12-24 19:44:11.679856",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config::new()] [Interest struct shallow copy] Config::new() directly assigns value.interest to config.interest without deep validation. If InstantiateMsg deserializes with corrupted Interest fields (e.g., through malicious JSON), could these bypass validation if Config::new() is called but validate() is somehow skipped, resulting in a vault with invalid interest parameters from genesis?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_53565715-9aac-45e6-8e56-9d9884388644",
+    "timestamp": "2025-12-24 19:44:27.095437",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config::new()] [Denom unvalidated field] Config::new() copies denom directly from InstantiateMsg without any validation. Could an attacker instantiate a vault with an empty denom=",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e3c0cf85-e2f2-49b6-9176-9f41ee4a0f29",
+    "timestamp": "2025-12-24 19:44:43.283485",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config::new()] [Fee address validation insufficient] Config::new() validates fee_address via api.addr_validate() which only checks format, not existence or capabilities. If fee_address is a valid-format address that doesn't exist or is a non-receivable contract address, could fee share minting fail during distribute_interest(), causing all vault operations to revert and permanently freezing depositor funds?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_23055d6a-4634-4d3b-a22e-ef342b296906",
+    "timestamp": "2025-12-24 19:45:01.326166",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Interest::rate() called from State::debt_rate()] [Utilization clamping vulnerability] Interest::rate() ensures `utilization.le(&Decimal::one())` but State::utilization() calculates utilization without external validation. Could a corrupted state where debt_pool.size > deposit_pool.size cause utilization > 1.0 to pass through, reaching Interest::rate() and triggering the error check? Would this error cascade to freeze all operations despite being a state inconsistency rather than user error?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_c754914e-3e3d-43c5-9fad-f366e4656984",
+    "timestamp": "2025-12-24 19:45:20.625841",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Interest::rate() called from State::debt_rate()] [Final addition overflow] Interest::rate() returns `self.base_rate.add(part1).add(part2)`. If all three parameters are set to near-maximum Decimal values, could the sequential additions overflow, causing a panic that bricks distribute_interest() permanently, freezing all user funds in the vault with no recovery mechanism?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_248adf08-9f98-4946-bc91-ff20df778bbe",
+    "timestamp": "2025-12-24 19:45:40.425028",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Interest::rate() called from State::debt_rate()] [Checked_div unwrap_or_default exploitation] Interest::rate() uses `.checked_div(...).unwrap_or_default()` in part2 calculation. If the division fails (e.g., due to target_utilization being 1.0), it defaults to zero. Could an attacker trigger this condition via malicious interest parameters to force part2=0, effectively capping interest rates at base_rate + step1 even at 100% utilization, enabling infinite free borrowing?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_17c03f8b-bb9f-4144-acf4-34d154f75a10",
+    "timestamp": "2025-12-24 19:46:01.961635",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Interest::rate() called from State::debt_rate()] [Part2 multiplication overflow] In Interest::rate(), part2 multiplies a division result by step2. If step2 is unbounded (e.g., 10000), and utilization approaches 100%, could the multiplication overflow, either panicking to freeze the vault or wrapping to produce a tiny interest rate, allowing attackers to borrow at near-zero cost despite full utilization?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_6856d1c3-b48c-42b7-9563-0e3cc8345c97",
+    "timestamp": "2025-12-24 19:46:24.133669",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Interest::rate() called from State::debt_rate()] [Part1 multiplication overflow] In Interest::rate(), part1 = `min(utilization, target_utilization).div(target_utilization).mul(step1)`. If step1 is extremely large (e.g., 1000 due to lack of validation) and utilization is at target_utilization, could the multiplication overflow Decimal's internal representation, causing a panic that freezes distribute_interest() and blocks all vault operations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_30fb2152-44ed-431b-83fc-087d8f5b0f90",
+    "timestamp": "2025-12-24 19:46:47.312420",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Interest::rate() called from State::debt_rate()] [Piecewise boundary rounding] Interest::rate() uses min(utilization, target_utilization) to determine piecewise boundaries. If utilization equals target_utilization exactly, part1 reaches its maximum while part2 is zero. Could an attacker manipulate vault utilization to stay precisely at target_utilization through carefully sized borrows/repays, exploiting rounding in the transition point to pay lower interest than intended?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_2916be79-aeab-4ced-81b8-7be6fe0ffb3e",
+    "timestamp": "2025-12-24 19:47:12.521729",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Interest::rate() called from State::debt_rate()] [Part2 division by zero risk] In Interest::rate(), part2 is calculated as `utilization.sub(min(utilization, target_utilization)).checked_div(Decimal::one().sub(target_utilization))`. If target_utilization is exactly 1.0 (should be prevented by validation but could occur through migration or deserialization), the denominator becomes zero. Could this cause checked_div to return default (0) instead of panicking, resulting in incorrect interest rates that allow free borrowing?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_b2fd645b-e928-41bc-a0fa-65dbce7a1e7f",
+    "timestamp": "2025-12-24 19:47:37.722171",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Interest::validate() via Config::validate()] [Zero interest parameters] Interest::validate() allows base_rate, step1, and step2 to be zero (only requiring step2 > step1). If all three are set to zero, the vault effectively has 0% interest. Could this be exploited by attackers borrowing maximum amounts at zero cost, while depositors earn nothing, causing economic extraction through opportunity cost rather than direct theft?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_739f6ec6-f9f0-47a5-8e52-df98b416e567",
+    "timestamp": "2025-12-24 19:48:03.119155",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Interest::validate() via Config::validate()] [Base rate unboundedness] Interest::validate() never checks base_rate bounds - it could be set to any Decimal value including extremely high values like 1000 (100,000% APR). Could an attacker use sudo to set base_rate=100, causing immediate insolvency for all borrowers upon the next distribute_interest() call, triggering mass liquidations and protocol chaos?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_1843bee4-e367-4370-a576-25f88d196ba6",
+    "timestamp": "2025-12-24 19:48:28.503377",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Interest::validate() via Config::validate()] [Step parameter unboundedness] Interest::validate() only checks step2 > step1 but places no upper bounds on these values. Could a malicious admin set step1=1000 or step2=10000, causing interest rates to exceed 100,000% at high utilization, making all borrower positions instantly insolvent and triggerable for liquidation even with minimal time passage?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_6146b22a-b49f-443d-a261-dcb0289e376f",
+    "timestamp": "2025-12-24 19:48:53.476101",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Interest::validate() via Config::validate()] [Target utilization lower bound] Interest::validate() requires target_utilization > 0 but allows very small values like 0.000000001. If target_utilization is set extremely low, the multiplier in part1 of Interest::rate() becomes huge. Could this cause base_rate + step1 to overflow when actual utilization is low, bricking the vault by making distribute_interest() fail on every operation?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_acca1127-1b24-404d-8338-552045a83225",
+    "timestamp": "2025-12-24 19:49:18.891189",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Interest::validate() via Config::validate()] [Target utilization boundary] Interest::validate() requires target_utilization < 1 but allows values very close to 1 (e.g., 0.999999999). If target_utilization is set this high, the denominator in Interest::rate()'s part2 calculation becomes near-zero. Could this cause division operations to produce extreme interest rates or overflow, potentially causing distribute_interest() to panic and freeze the entire vault?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_9b58356a-b01d-4bb6-8ffa-7c12ef006a82",
+    "timestamp": "2025-12-24 19:49:42.435413",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Interest::validate() via Config::validate()] [Step2 > Step1 bypass] Interest::validate() requires step2 > step1, but what if they're set to very close values like step2=1.000000000000000001 and step1=1.0? Could this cause the piecewise interest rate curve to have near-zero slope in the second segment, allowing borrowers to abuse full utilization without meaningful interest penalties, extracting maximum value at minimal cost?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_cd767248-a3f9-4533-b85d-c863f86cffdf",
+    "timestamp": "2025-12-24 19:50:07.020227",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config::validate()] [Validation bypass via migration] Config::validate() is called during instantiate and sudo updates, but if a migration path exists that directly modifies CONFIG storage without calling validate(), could an attacker craft a migration that sets fee >= 100% or invalid interest parameters, bypassing all validation safeguards and enabling economic exploitation?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_f162d091-7491-4a80-85aa-405c1097d984",
+    "timestamp": "2025-12-24 19:50:32.738533",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config::validate()] [Zero fee corner case] Config::validate() allows fee to be Decimal::zero(). While this seems safe, if the pending_fees accumulator in State never gets cleared when fee=0, could pending fractional fees accumulate indefinitely across multiple operations, eventually causing an integer overflow when they finally exceed Uint128::MAX during a fee distribution?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e62aeeb4-fe8a-438c-ad25-c2d04bd9ec41",
+    "timestamp": "2025-12-24 19:50:58.224724",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config::validate()] [Interest validation propagation] Config::validate() returns `Ok(self.interest.validate()?)` which propagates errors from Interest::validate(). However, if Interest::validate() returns an error that gets improperly handled during sudo updates, could this leave the config in a partially updated state where fee is new but interest is old, causing interest calculation mismatches?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_d596e307-859b-4ac0-9e4d-c34491713767",
+    "timestamp": "2025-12-24 19:51:21.741164",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config::validate()] [Negative fee edge case] While Config::validate() checks `fee >= Decimal::one()`, it doesn't explicitly check for negative fees (though Decimal likely prevents this). If Decimal could somehow represent negative values through deserialization bugs or migration issues, could negative fees cause the protocol to mint unlimited shares during distribute_interest(), creating infinite value extraction?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e1cf5f1e-053b-432a-b5a0-7d8dfc5a64be",
+    "timestamp": "2025-12-24 19:51:44.872536",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/config.rs] [Function: Config::validate()] [Fee address validation timing] The fee_address is validated in Config::new() via addr_validate() but not re-validated in Config::validate(). If the address validation standards change or if the address becomes invalid post-instantiation, could this cause distribute_interest() to fail when minting fee shares, blocking all vault operations and freezing user funds?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_5f29a4cf-7a5d-4b2b-a281-185d5dead0d2",
+    "timestamp": "2025-12-24 19:52:07.824654",
+    "report_generated": false
   }
 ]
