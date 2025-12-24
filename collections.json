@@ -1198,5 +1198,155 @@
     "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_16429628-585c-4a96-841f-b017932b6beb",
     "timestamp": "2025-12-24 19:21:49.251665",
     "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: load()] [Config staleness] The load() function accepts a config parameter at line 143 - if this config has different collateral_ratios than when the account was created, does to_credit_account() calculate different value_adjusted amounts, causing accounts to suddenly appear over/under-collateralized?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_cfdc16f9-d919-468c-9d49-278ff7a59ca0",
+    "timestamp": "2025-12-24 19:22:48.533478",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: load()] [Contract address trust] The contract parameter at line 144 is passed to to_credit_account() for BORROW queries - if an attacker provides a different contract address, can load() return account state showing different debts than what the actual registry tracks, causing state confusion?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_dc77e039-b891-42a5-8750-99bfe427c8d7",
+    "timestamp": "2025-12-24 19:23:01.189224",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: set_preference_order()] [Circular dependency] At line 222-225, set_preference_order() calls insert() which validates chains at lines 294-296 in interface.rs - but can an attacker create complex multi-step circular dependencies (A→B, B→C, C→D, D→A) that pass validation due to off-by-one errors in validate_chain()?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_c054eb31-1c36-47f6-9671-a066061d49aa",
+    "timestamp": "2025-12-24 19:23:14.174629",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: set_preference_order()] [Preference removal] At line 226, if after is None, the preference is removed - can an attacker manipulate the order by repeatedly adding and removing preferences to create timing windows where liquidation preferences are temporarily disabled, allowing unfavorable liquidations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_5ce76d6a-42cd-40de-81db-50a5977e6111",
+    "timestamp": "2025-12-24 19:23:28.037349",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: set_preference_order()] [Denom validation] The denom parameter at line 218 is not validated to be a valid collateral type before insertion - can users set preferences for non-existent or non-collateral denoms, causing validate_liquidation() at lines 258-260 to fail unexpectedly during liquidations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_bfdf824b-8af3-4809-ba52-69c42d773a97",
+    "timestamp": "2025-12-24 19:23:42.671057",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: set_preference_order()] [After parameter trust] The after parameter at line 219 is used directly in the order map - if users specify after denoms that don't exist as collateral or are not in their account, can this create dangling references that cause validate() at lines 309-315 to behave unpredictably?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_a43af803-f618-490e-95c7-07f0444f6f8f",
+    "timestamp": "2025-12-24 19:23:58.288511",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: set_preference_order()] [Limit bypass] The LiquidationPreferenceOrder has a limit of 100 entries (line 277 in interface.rs) - can users bypass this by creating preferences, removing them, and adding new ones repeatedly to exceed the intended constraint on preference complexity?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_588b7f02-1f65-4851-8c85-ba1ffd21a661",
+    "timestamp": "2025-12-24 19:24:15.599831",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: set_preference_order()] [Race with liquidation] If a user calls set_preference_order() while their account is being liquidated (between ExecuteMsg::Liquidate and DoLiquidate), can the preference change mid-liquidation, causing the validation at line 258-260 to fail unexpectedly and block liquidation?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_ce437af3-524a-4471-bf2b-8026ce1f7849",
+    "timestamp": "2025-12-24 19:24:34.194823",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: set_preference_order()] [State persistence] After set_preference_order() modifies liquidation_preferences.order at lines 222-226, the account must be saved via save() - if save() is not called or fails, can preference changes be lost, causing users to believe they have protection when they don't?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_4276a769-3d39-4fc0-8794-00c7ff5ae6fb",
+    "timestamp": "2025-12-24 19:24:53.419644",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: set_preference_msgs()] [Unbounded messages] At line 232, set_preference_msgs() accepts Vec<LiquidateMsg> with no length validation - can users set thousands of preference messages that will be processed during liquidation, causing gas exhaustion and preventing any liquidation from completing successfully?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_d34f3ba3-5fca-45ed-95a9-bc734d03ea21",
+    "timestamp": "2025-12-24 19:25:13.544423",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: set_preference_msgs()] [Malicious message content] The msgs parameter at line 231 is directly assigned to liquidation_preferences.messages without validating message content - can users inject malicious LiquidateMsg entries that attempt to drain liquidator funds, call unauthorized contracts, or cause reentrancy during liquidation processing?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_762e3e94-1833-4a61-9c4a-218e574e5d49",
+    "timestamp": "2025-12-24 19:25:35.305852",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: set_preference_msgs()] [Message execution failures] According to interface.rs lines 254-257, preference messages are executed with Reply Always and errors are ignored - can users set preference messages that always fail, wasting gas on every liquidation attempt while preventing liquidators from profiting, creating a griefing vector?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_2fa53500-0aa8-4e54-abb0-6e7808c321eb",
+    "timestamp": "2025-12-24 19:25:57.890443",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: set_preference_msgs()] [Message replacement] The set_preference_msgs() function replaces all existing messages at line 232 - can users call this repeatedly during a liquidation process to change messages between liquidation steps, potentially disrupting the liquidation queue processing logic?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_c2f6b4f9-77de-4d6f-a826-9f9156afa2b6",
+    "timestamp": "2025-12-24 19:26:22.054451",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: set_preference_msgs()] [No validation] Unlike set_preference_order() which calls insert() with validation, set_preference_msgs() has no validation logic - can users set contradictory or impossible messages that cause liquidation to fail, such as messages attempting to withdraw more collateral than exists?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_70b330ec-570d-4813-8d85-e3604ab7b058",
+    "timestamp": "2025-12-24 19:26:46.060121",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: balance()] [Fold accumulation] At lines 236-238, balance() folds collaterals using item.balance().add(agg) - if collateral balances are duplicated across multiple Valued<Collateral> entries, can this cause double-counting where the same coins are summed multiple times, inflating the reported balance?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_f01015bc-e43a-44c1-9b4c-0ea16bf59b32",
+    "timestamp": "2025-12-24 19:27:10.899579",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: balance()] [Empty collaterals] If self.collaterals is empty at line 236, fold() returns Default::default() which is an empty NativeBalance - can this cause issues in validate_liquidation() at line 254-255 where balance() is used to calculate spent collateral?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_32fae1f4-2557-471c-890b-9a85922e6316",
+    "timestamp": "2025-12-24 19:27:36.810446",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: balance()] [Collateral ordering] The balance() function iterates collaterals in their vector order - if collateral entries are reordered between calls, can this cause the returned NativeBalance to have different denom ordering, breaking assumptions in code that expects consistent ordering?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_2fda5692-d5a8-4379-bd58-c08256959c27",
+    "timestamp": "2025-12-24 19:28:01.642920",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: balance()] [NativeBalance invariants] The fold uses NativeBalance::add() which should merge coins of the same denom - but if item.balance() returns NativeBalance with invalid state (duplicate denoms, zero amounts), can this corrupt the accumulated balance calculation?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_9eebf4e3-d5dd-4b38-93c7-c2d26b5250ee",
+    "timestamp": "2025-12-24 19:28:26.897509",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: debt()] [Debt conversion] At line 242, debt() calls NativeBalance::from(&v.item) to convert Debt to NativeBalance - if the Debt struct contains multiple coins or zero amounts, can this conversion produce invalid NativeBalance that breaks sent() calculation at line 264?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_a58b53c2-9fd7-453f-9eea-032a55141794",
+    "timestamp": "2025-12-24 19:28:53.964185",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: debt()] [Empty debts edge case] Similar to balance(), if self.debts is empty at line 241, debt() returns empty NativeBalance - in validate_liquidation() at line 264, can this cause old.debt().sent(&self.debt()) to incorrectly calculate repaid amounts?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e6736e93-c228-4e17-825a-153fb0571b20",
+    "timestamp": "2025-12-24 19:29:18.494086",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: debt()] [Multiple vault debts] Since debts is a Vec of multiple vault debts (populated at lines 312-323), can accounts have duplicate denom debts from different vaults, and does the fold at lines 241-244 properly handle merging these or does it create NativeBalance with duplicate denoms?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_cd65f763-5a68-4891-8d62-8202f4977eca",
+    "timestamp": "2025-12-24 19:29:42.721210",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: debt()] [Value consistency] The debt() function only sums debt amounts, not their USD values - but elsewhere (e.g., adjusted_ltv at lines 162-169), debt is valued in USD - can this inconsistency cause validation errors where debt amounts are correct but values are stale?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_8dc7a8e5-ac09-45a4-b4ab-79fe875c9cf2",
+    "timestamp": "2025-12-24 19:30:07.799610",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: validate_liquidation()] [Slippage calculation overflow] At lines 266-270, slippage is calculated as (spent_usd - repaid_usd) / spent_usd - if spent_usd is very large (e.g., liquidating whale account), can the subtraction or division overflow Decimal limits, causing the slippage check to fail and block legitimate liquidations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e63f0b3e-15d5-4a6b-acfd-da1a40c18991",
+    "timestamp": "2025-12-24 19:30:30.618596",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: validate_liquidation()] [Slippage manipulation] Can a liquidator intentionally create slippage by liquidating collateral at prices far below market value (within config.liquidation_max_slip limit at line 275), then immediately buying back the collateral at market price, profiting from the spread at the expense of the account owner?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_b8cf9f37-51b7-4061-bb2d-cfc3fb6e10d5",
+    "timestamp": "2025-12-24 19:30:55.290259",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: validate_liquidation()] [Preference order bypass] At lines 257-260, validate_liquidation() checks that each spent coin respects liquidation_preferences.order - but if an attacker can manipulate the balance() returned at line 254, can they bypass these checks by artificially removing denoms from the remaining balance?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_7302576c-ab23-463f-9a7b-c6a4cac12e4f",
+    "timestamp": "2025-12-24 19:31:21.207287",
+    "report_generated": false
   }
 ]
