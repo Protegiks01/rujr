@@ -2098,5 +2098,155 @@
     "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_4cd1e90a-d6ca-4132-a7be-0211564df869",
     "timestamp": "2025-12-24 20:41:25.902751",
     "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_liquidate()] [Missing LTV Context] The liquidation trigger event does not emit the account's current adjusted_ltv or liquidation_threshold that was crossed - could this allow liquidators to front-run legitimate liquidations by monitoring mempool for price oracle updates rather than actual unsafe positions?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_f8a259f7-6c5e-4711-914a-dd94b608b397",
+    "timestamp": "2025-12-24 20:42:39.701924",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_account_set_preference_msgs()] [Message Count Limit] Does the event fail to emit how many preference messages were set or whether they exceed any protocol limits, potentially allowing DoS attacks through setting thousands of preference messages that make liquidation gas-prohibitive?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_ca20b2c6-0400-4089-8f45-4e6408202bbe",
+    "timestamp": "2025-12-24 20:42:52.807237",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_account_set_preference_msgs()] [Missing Message Details] The event does not emit the actual preference messages being set - could this allow attackers to set malicious liquidation preference messages that extract maximum value during liquidation while appearing as benign preference updates in the event log?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_74b3ab3c-3063-4dde-9cd6-90ce9443a910",
+    "timestamp": "2025-12-24 20:43:06.017487",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_account_set_preference_order()] [Default Value Ambiguity] The function uses unwrap_or_default() for the after parameter - could this create ambiguous events where removing a preference (None) appears identical to setting a preference to empty string, confusing liquidation preference validation?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_6fbe9fd6-4afd-41ae-96ec-f3d822d77c04",
+    "timestamp": "2025-12-24 20:43:20.517669",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_account_set_preference_order()] [Order Manipulation] Does the event fail to emit the complete preference order state after the update, potentially hiding manipulations where attackers set circular preference orders that cause liquidation queue processing to loop infinitely?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_2f66bb2c-f3ce-4a20-b237-c1af144dbe8a",
+    "timestamp": "2025-12-24 20:43:35.254609",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_account_set_preference_order()] [Missing Validation Context] The event emits denom and after parameter but not whether the preference order was validated against config.collateral_ratios - could this allow attackers to set invalid liquidation preferences that cause liquidation failures, permanently locking collateral?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_09c9a4e5-8093-4f74-b809-96f7684a14da",
+    "timestamp": "2025-12-24 20:43:51.276397",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_account_send()] [Destination Validation] Does the event fail to indicate whether the to_address was validated as a legitimate recipient, potentially allowing funds to be sent to attacker-controlled addresses or burnt to zero addresses while appearing as normal operations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_5aaa476a-2822-4b47-b72f-a4863b156642",
+    "timestamp": "2025-12-24 20:44:08.543442",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_account_send()] [Missing Balance Context] The send event does not include the account's balance before or after the send operation - could this allow attackers to drain collateral through sequential sends that individually appear small but cumulatively violate LTV requirements?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_c9c048c1-dbde-4a8a-abd2-4fd5fd69c605",
+    "timestamp": "2025-12-24 20:44:27.424755",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_account_execute()] [Reentrancy Risk] Does the lack of operation ordering or nonce information in the event allow attackers to perform reentrancy attacks by executing nested contract calls that emit multiple events with identical data, confusing state reconstruction and audit systems?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_a2b6792a-5725-4055-9626-6816e04d9e2a",
+    "timestamp": "2025-12-24 20:44:47.314957",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_account_execute()] [Missing Return Data] The event does not capture the execution result or response from the target contract - could this hide failed collateral swaps or liquidation preference executions that appear successful in events but actually left accounts in inconsistent states?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_af40edd1-aa3b-4c5e-b56b-f6f73d808c50",
+    "timestamp": "2025-12-24 20:45:07.759240",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_account_execute()] [Message Opacity] The event emits a Binary msg that may not be human-readable - could this allow attackers to execute malicious contract calls that drain collateral through complex message payloads while appearing as legitimate operations to monitoring systems?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_68c79662-95e3-47ff-a62e-c90b121ed033",
+    "timestamp": "2025-12-24 20:45:29.519252",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_account_repay()] [Incomplete Interest Data] Does the event fail to emit accrued interest amounts that were repaid versus principal, potentially allowing attackers to manipulate interest distribution calculations by timing repayments to minimize recorded interest obligations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_ef1e67e6-d151-4b94-b1ba-09f5f0679e86",
+    "timestamp": "2025-12-24 20:45:52.601694",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_account_repay()] [Missing Debt Context] The repay event only emits the repayment amount without indicating total remaining debt or which specific vault debt was reduced - could this hide partial repayments that leave cross-collateralized accounts in unsafe states across multiple debt positions?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_9f870bac-b92d-4df2-a29a-1e84417c42c2",
+    "timestamp": "2025-12-24 20:46:17.891138",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_account_borrow()] [Missing Collateral State] The event does not emit current collateral values or LTV ratios at the time of borrowing - could this allow an attacker to borrow maximum amounts immediately before collateral price drops, leaving positions undercollateralized while appearing safe in historical event logs?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_19dc8259-6d6b-4048-8286-0695b9d856ed",
+    "timestamp": "2025-12-24 20:46:42.919272",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_account_borrow()] [Incomplete Financial Data] Does the borrow event omit the account's total debt before and after the operation, potentially hiding sequential borrow operations that exceed the intended borrower USD limits through rapid-fire transactions between blocks?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_821e37be-112a-4737-92a6-6f5e0339652c",
+    "timestamp": "2025-12-24 20:47:09.265487",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_account_borrow()] [Missing Vault Context] The event only emits the amount borrowed without including which vault address was used - could this allow attackers to borrow from non-whitelisted or malicious vaults that are not validated in the collateral_ratios mapping, bypassing borrower limit checks?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_2d64e87f-a9d1-455c-aa41-ba90e6554943",
+    "timestamp": "2025-12-24 20:47:36.369610",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_account()] [Missing LTV Data] Does the lack of pre-operation and post-operation LTV values in this event prevent off-chain monitoring from detecting accounts that execute operations bringing them dangerously close to liquidation thresholds, potentially allowing manipulation of cross-collateralized positions?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_c5468188-315e-4429-a6da-202f71786787",
+    "timestamp": "2025-12-24 20:48:02.885657",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_account()] [Incomplete Audit Trail] The event only emits owner and address without any indication of which specific AccountMsg operations were executed - could this allow attackers to perform unauthorized borrow operations that appear legitimate in the event log, hiding undercollateralized borrowing attempts?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_3dd68c2f-c63e-4511-ad52-72db1f73a6a2",
+    "timestamp": "2025-12-24 20:48:29.567584",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_create_account()] [Missing Data] The function does not emit the code_id or admin address used for account instantiation - could this hide the deployment of malicious account contracts with modified code_ids, allowing attackers to bypass the sudo pattern and directly manipulate isolated account balances?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_0b80eef9-dcb2-48b2-84b0-5a6d9e6bcf82",
+    "timestamp": "2025-12-24 20:48:57.540397",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_create_account()] [Information Leakage] Does the event only emit owner and address without including the account tag, salt, or label used during creation - could this allow an attacker to create multiple accounts with specific tags that bypass monitoring systems expecting unique identifiers, potentially setting up Sybil attacks on liquidation mechanisms?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_3fbf088e-cb3d-4ffc-b630-0f23d2fdae6e",
+    "timestamp": "2025-12-24 20:49:25.078776",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_account_transfer()] [Data Integrity] Does the misspelled attribute 'to_adrecipientdress' in the transfer event prevent proper audit trail reconstruction, potentially allowing attackers to transfer account ownership without detection by monitoring systems designed to track ownership changes for regulatory compliance?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_9d7de6b3-2d40-4192-9aae-4c1bd43b2493",
+    "timestamp": "2025-12-24 20:49:51.524372",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/events.rs] [Function: event_execute_account_transfer()] [Information Loss] The function contains a typo 'to_adrecipientdress' instead of proper attribute naming - could this typo cause off-chain indexers and monitoring systems to fail parsing transfer events, potentially hiding malicious account ownership transfers that could lead to unauthorized access to collateral and borrowed funds?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_9ee42a34-1bd6-48af-a06e-2f2ea71293c3",
+    "timestamp": "2025-12-24 20:50:17.228254",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: query() - QueryMsg::AllAccounts] [Default limit vulnerability] Does the limit.unwrap_or(100) at line 136 provide sufficient protection against DoS, or can repeated queries with limit=100 still cause expensive operations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_84e3cb48-7b97-45ba-bfc5-9087567a5234",
+    "timestamp": "2025-12-24 20:50:43.169598",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: query() - QueryMsg::AllAccounts] [Cursor manipulation] Can the cursor parameter be manipulated to skip or repeat accounts during pagination, causing off-chain systems to have inconsistent views of protocol state?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_3c811fbf-388a-490b-9768-33b82669677e",
+    "timestamp": "2025-12-24 20:51:07.141460",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: query() - QueryMsg::AllAccounts] [Unbounded iteration] Does the AllAccounts query at lines 428-439 with limit parameter prevent DoS attacks, or can an attacker query with extremely large limit values to cause expensive iteration over all accounts?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_78de932a-d5d6-48c8-aea5-cefb14cee24a",
+    "timestamp": "2025-12-24 20:51:29.319142",
+    "report_generated": false
   }
 ]
