@@ -1798,5 +1798,155 @@
     "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e232946e-65fd-495a-9943-f57a0205358e",
     "timestamp": "2025-12-24 20:01:31.914351",
     "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Struct: Config] [Fee address validation in liquidations] When liquidations extract fees to send to fee_address, is the address validated to be a valid recipient? If fee_address becomes invalid (e.g., contract destroyed), can liquidations fail permanently, preventing any account closures?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_7b493915-8253-49e3-aa9d-fec4776863a2",
+    "timestamp": "2025-12-24 20:02:45.810822",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: validate()] [Zero threshold scenario] Can adjustment_threshold be set to 0% while liquidation_threshold is set to a small value (e.g., 1%), allowing accounts to borrow at infinite leverage as they never hit the adjustment threshold, causing protocol insolvency?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_4b73e082-541a-44a6-b6d7-c8a471cfc795",
+    "timestamp": "2025-12-24 20:02:58.678592",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: validate()] [Maximum threshold scenario] If liquidation_threshold is set to Decimal::MAX or a very large value, can this prevent any liquidations from ever occurring, causing protocol to accumulate bad debt indefinitely as insolvent positions cannot be closed?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_4bae1460-96bd-4635-a2ac-afb945c83608",
+    "timestamp": "2025-12-24 20:03:11.879867",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: validate()] [Identical threshold values] At line 85, the check is '<=', so liquidation_threshold == adjustment_threshold is rejected - but what happens if they differ by only 0.000001%? Does this create an impractically narrow liquidation buffer that causes operational issues?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_08f15119-9e26-4f79-837f-4e679e5f7ac4",
+    "timestamp": "2025-12-24 20:03:25.646324",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: validate()] [Empty collateral ratios validation] Does validate() enforce that collateral_ratios must contain at least one entry? If empty, can the protocol enter a state where no vaults are whitelisted, preventing all borrowing operations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_a5a388ee-39bc-434b-ad14-17f94f4cac44",
+    "timestamp": "2025-12-24 20:03:40.368523",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Struct: Config] [BTreeMap ordering] Does the BTreeMap ordering of collateral_ratios affect LTV calculations or vault selection? Can an attacker exploit ordering to prioritize certain vaults over others during liquidations, causing unfair collateral liquidation?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_65985bd7-9e76-449c-8f48-442bbe1458ef",
+    "timestamp": "2025-12-24 20:03:56.286842",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Struct: Config] [Code ID overflow] With code_id as u64, can this value overflow if incremented repeatedly? What happens if code_id wraps around to 0 or a previously-used value, potentially causing account creation to use wrong contract code?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_f5274e87-272f-443b-84de-217567b8bf40",
+    "timestamp": "2025-12-24 20:04:14.599304",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Struct: Config] [Decimal overflow] Can any Decimal field (thresholds, fees, ratios, slippage) overflow or underflow during arithmetic operations when used in calculations outside this file, causing incorrect fee extraction or LTV calculations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_0e8efc03-d0ac-4203-9901-edc13dcf8e61",
+    "timestamp": "2025-12-24 20:04:33.202826",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: validate()] [Percent calculation] The validate() checks use 'Decimal::percent(5)' - does this correctly represent 5% (0.05) or is there ambiguity that could cause the validation to check wrong values?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_23496980-f5ff-4ba7-b230-f7a8119aedb0",
+    "timestamp": "2025-12-24 20:04:52.462093",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Struct: Config] [Schema migration] If the Config struct is updated in a protocol upgrade to add new fields, can existing stored configurations be properly migrated, or will deserialization fail causing complete protocol failure?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_bfdb18b8-619a-401c-803a-d497c7e0a80c",
+    "timestamp": "2025-12-24 20:05:13.569068",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: update()] [Missing fields in update] If ConfigUpdate doesn't include all Config fields, can this cause unintended persistence of old values that should have been updated, leading to configuration drift and inconsistent protocol behavior?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_3f496ea2-9e52-465f-a752-e91ae3c19ebf",
+    "timestamp": "2025-12-24 20:05:36.046545",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Struct: Config] [Backward compatibility] If old accounts reference deprecated collateral_ratios entries that have been removed, can this cause historical data to become unqueryable or LTV calculations to fail for those accounts?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e80bbffa-db8e-4497-993a-601d7937d2b6",
+    "timestamp": "2025-12-24 20:05:59.517995",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: update()] [Collateral ratios bloat] Can an admin add unlimited entries to collateral_ratios, causing the BTreeMap to grow unbounded and eventually exceeding storage limits or gas costs for any operation that loads Config?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_822fb796-d345-46c3-9bef-c3c8ac7589d8",
+    "timestamp": "2025-12-24 20:06:23.470817",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: validate()] [Expensive validation] If collateral_ratios contains thousands of entries, can the iteration at line 97-104 consume excessive gas, causing validate() calls to fail or become prohibitively expensive, preventing configuration updates?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_73e65654-bf8a-4bcf-b75c-cbc7397f6114",
+    "timestamp": "2025-12-24 20:06:48.094149",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: save()] [Storage exhaustion] If Config is repeatedly saved with large collateral_ratios maps, can this exhaust contract storage space or exceed CosmWasm storage limits, causing save() to fail and preventing any configuration updates?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_8bde461e-f5b6-4205-9b4a-42c2037bce17",
+    "timestamp": "2025-12-24 20:07:12.378681",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: validate()] [Error message information leakage] Do the error messages at lines 86-89, 92-95, 99-102, 107-110, and 114-117 leak sensitive configuration information that could help attackers identify exploitable parameter boundaries?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_61ee5a1d-cf16-4376-83a9-b9df0f3af66b",
+    "timestamp": "2025-12-24 20:07:38.702056",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: load()] [Missing fallback] If CONFIG.load() fails due to storage corruption or migration issues, is there a fallback mechanism or default configuration, or does the entire protocol become permanently unusable?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_1e0e717f-819e-4cb8-86a6-efe72abd6d8c",
+    "timestamp": "2025-12-24 20:08:05.953906",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: validate()] [Validation bypass] If validate() returns an error, but the calling contract doesn't properly handle it, can invalid configurations still be persisted to storage, causing protocol to operate with broken parameters?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_9738b139-77f4-4f9f-a83e-75d8900f6c1a",
+    "timestamp": "2025-12-24 20:08:34.458857",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Tests: validation()] [Limited test coverage] The test at lines 133-146 only validates a single happy-path configuration - are there tests for all validation failure cases, boundary conditions, and edge cases? Can untested validation logic contain bugs that allow invalid configurations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_f8d18b6c-3146-44fb-8efe-1f3806185515",
+    "timestamp": "2025-12-24 20:09:01.425198",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Tests: validation()] [Missing update tests] Are there tests that verify update() correctly handles partial updates, Option::None values, and edge cases? Can bugs in update logic cause configuration corruption during production usage?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_518ba612-3d0d-4a7c-91d6-2c4c14b5f2a1",
+    "timestamp": "2025-12-24 20:09:27.066763",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Tests: validation()] [Missing integration tests] Are there tests that verify Config changes correctly propagate to account LTV calculations, vault operations, and liquidation execution? Can integration bugs cause configuration to be ignored in critical operations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_6caf3268-5e06-42d1-99e0-0a2e17dd346f",
+    "timestamp": "2025-12-24 20:09:52.179861",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Struct: Config] [Fee address validation in liquidations] When liquidations extract fees to send to fee_address, is the address validated to be a valid recipient? If fee_address becomes invalid (e.g., contract destroyed), can liquidations fail permanently, preventing any account closures?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_fff24da8-c8d6-4219-8a1e-f18e670a3567",
+    "timestamp": "2025-12-24 20:10:15.551460",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: validate()] [Zero threshold scenario] Can adjustment_threshold be set to 0% while liquidation_threshold is set to a small value (e.g., 1%), allowing accounts to borrow at infinite leverage as they never hit the adjustment threshold, causing protocol insolvency?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_92dd766c-0eff-495c-8af8-e3a3d9e6839c",
+    "timestamp": "2025-12-24 20:10:38.356418",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: validate()] [Maximum threshold scenario] If liquidation_threshold is set to Decimal::MAX or a very large value, can this prevent any liquidations from ever occurring, causing protocol to accumulate bad debt indefinitely as insolvent positions cannot be closed?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_ba0bb61e-25c8-4690-9153-450fda7e251e",
+    "timestamp": "2025-12-24 20:11:01.015482",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: validate()] [Identical threshold values] At line 85, the check is '<=', so liquidation_threshold == adjustment_threshold is rejected - but what happens if they differ by only 0.000001%? Does this create an impractically narrow liquidation buffer that causes operational issues?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_6dfecb8e-90b4-4371-8f17-77ec24a7ff83",
+    "timestamp": "2025-12-24 20:11:25.228160",
+    "report_generated": false
   }
 ]
