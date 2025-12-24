@@ -1498,5 +1498,155 @@
     "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e903b9ee-279a-486c-8945-40d7df830aac",
     "timestamp": "2025-12-24 19:41:50.956022",
     "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: update()] [Fee address corruption] If update() sets fee_address to an invalid or malicious address without validation, can liquidation fees be permanently lost or sent to an attacker-controlled address, causing direct theft of protocol revenue?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_c565fd10-c354-452a-b233-a731da0a7ac1",
+    "timestamp": "2025-12-24 19:43:01.872673",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: validate()] [Boundary condition] At line 85, the check 'liquidation_threshold <= adjustment_threshold' uses <= instead of <, but what happens when they are exactly equal? Can this edge case cause liquidations to be triggered prematurely for accounts at exactly the adjustment_threshold, leading to unfair liquidations and loss of user funds?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_6ade7d7d-55e8-4fe3-8411-991b3ae09d61",
+    "timestamp": "2025-12-24 19:43:14.851459",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: validate()] [Missing lower bound] The validate() function checks that liquidation_threshold > adjustment_threshold but doesn't enforce minimum values - can an admin set adjustment_threshold to 0% or near-zero, allowing accounts to borrow at near-infinite leverage and potentially causing protocol insolvency?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e36b76c7-d0d8-4c49-884f-19478662d5ee",
+    "timestamp": "2025-12-24 19:43:27.829552",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: validate()] [Missing upper bound] Does validate() allow liquidation_threshold to be set to extremely high values (e.g., 200% or 1000%), preventing any liquidations from ever occurring even for clearly insolvent positions, leading to systemic bad debt accumulation?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_9b12ff4d-b185-4b4b-8c39-38cec5c4a479",
+    "timestamp": "2025-12-24 19:43:41.562237",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: validate()] [Decimal precision] At line 85, when comparing liquidation_threshold and adjustment_threshold as Decimal types, can floating-point precision errors cause the comparison to behave unexpectedly for very close values (e.g., 100.0000000001% vs 100%), potentially allowing invalid configurations to pass validation?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_ddfae750-e692-474b-bdc5-48634b74d754",
+    "timestamp": "2025-12-24 19:43:56.210610",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: validate()] [Threshold reversal] If adjustment_threshold is set to a very high value (e.g., 95%) and liquidation_threshold to a slightly higher value (e.g., 96%), does this create an extremely narrow liquidation window that makes the protocol vulnerable to rapid price movements, causing widespread liquidation failures?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_ac84f354-7d52-421d-a3b8-6f946ef91bf4",
+    "timestamp": "2025-12-24 19:44:11.990981",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: validate()] [Boundary condition] At line 91, the check 'liquidation_max_slip >= Decimal::one()' prevents values of exactly 1.0 (100%), but what happens if liquidation_max_slip is set to 0.999999...? Can liquidators exploit this near-100% slippage to extract nearly all collateral value during liquidations, causing massive user losses?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_f9947c60-5e44-42d5-898e-d204c8a6481d",
+    "timestamp": "2025-12-24 19:44:30.646698",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: validate()] [Missing lower bound] Does validate() allow liquidation_max_slip to be set to 0% or negative values, preventing any liquidations from completing successfully and causing permanent freezing of insolvent accounts?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_12939cc1-140e-42e0-a47e-b501381ec89b",
+    "timestamp": "2025-12-24 19:44:49.495213",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: validate()] [Economic attack] If liquidation_max_slip is set to a very high value (e.g., 99%), can liquidators intentionally trigger liquidations with massive slippage to extract disproportionate value from user collateral, effectively stealing user funds through protocol-sanctioned slippage?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_b0de3479-6861-4dea-82b9-d47588f1b844",
+    "timestamp": "2025-12-24 19:45:08.631985",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: validate()] [State inconsistency] When liquidation_max_slip is updated to a more restrictive value (e.g., from 50% to 10%), can ongoing liquidation queues fail to complete because they were initiated with the old parameters, causing accounts to remain in limbo and preventing debt repayment?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_5cb68898-49b7-4639-9ca8-07cb7453b033",
+    "timestamp": "2025-12-24 19:45:30.649264",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: validate()] [Boundary condition] At lines 106 and 113, the checks use '>=' for the 5% cap, meaning exactly 5% fees are rejected - but should the protocol allow exactly 5% fees? Could this restrictive validation cause legitimate configuration updates to fail, leading to operational issues?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_32d0d7a9-5dfe-43c1-9e64-9c780f4b4013",
+    "timestamp": "2025-12-24 19:45:51.258090",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: validate()] [Combined fee extraction] Does validate() check the sum of fee_liquidation + fee_liquidator? If both are set to 4.99%, can liquidations extract 9.98% total fees, leaving insufficient collateral to cover debt and causing protocol insolvency?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_3854d88a-3fec-43ff-a4d3-daebafbf4559",
+    "timestamp": "2025-12-24 19:46:13.365296",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: validate()] [Negative fees] Does validate() prevent fee_liquidation or fee_liquidator from being set to negative values, which could cause underflow in fee calculations and allow liquidators to receive more assets than they should, draining protocol funds?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_cc1b3df8-b89f-460c-a6e2-d28ff2a6e769",
+    "timestamp": "2025-12-24 19:46:35.112038",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: validate()] [Fee interaction with slippage] If fee_liquidation + fee_liquidator + liquidation_max_slip sum to more than 100%, can liquidations fail because there's insufficient collateral value remaining after fees and slippage, causing permanent inability to liquidate insolvent accounts?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_8819111d-3254-4551-9e85-84fefd84155b",
+    "timestamp": "2025-12-24 19:46:58.967504",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: validate()] [Zero fees exploitation] If both fee_liquidation and fee_liquidator are set to 0%, can liquidators exploit the lack of protocol fee extraction to perform liquidations with maximum profitability, leading to aggressive liquidation behavior that harms users through MEV extraction?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_09cf8a40-bff5-4b4a-b235-902d19095fec",
+    "timestamp": "2025-12-24 19:47:23.997288",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: validate()] [Boundary condition] At line 98, the check allows collateral_ratios to be exactly 1.0 (100%), meaning no haircut - can this lead to over-leveraged positions where collateral is valued at 100% instead of being discounted for risk, causing protocol insolvency during market volatility?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_1d4c75ee-0bdb-4675-a291-365a76743eb8",
+    "timestamp": "2025-12-24 19:47:49.220376",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: validate()] [Zero collateral ratio] Does validate() prevent collateral_ratios from being set to 0%? If a vault has a 0% collateral ratio, can accounts deposit assets but receive 0 collateral value, leading to permanent fund locking as withdrawals may be blocked due to LTV violations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_d5b55feb-fb91-43f0-9fd2-a24222121ef8",
+    "timestamp": "2025-12-24 19:48:12.798300",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: validate()] [Missing collateral ratios] The validate() function iterates over collateral_ratios but doesn't enforce that any vaults must exist - can the protocol operate with empty collateral_ratios, preventing any borrowing and causing operational DoS?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_6d406fc9-31f1-4022-850b-1a505880056f",
+    "timestamp": "2025-12-24 19:48:37.136001",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: validate()] [Collateral ratio manipulation] If a collateral_ratio is updated from a high value (e.g., 90%) to a low value (e.g., 10%) for an already-active vault, can existing accounts suddenly become undercollateralized due to the retroactive haircut change, triggering mass liquidations and widespread user losses?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e12d7af5-a0a7-44ba-84e8-8d5c316438ed",
+    "timestamp": "2025-12-24 19:49:03.102308",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: validate()] [Decimal precision in ratios] When comparing collateral_ratios to Decimal::one() at line 98, can precision errors allow ratios slightly above 1.0 to pass validation, causing collateral to be overvalued in LTV calculations and leading to undercollateralized borrowing?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_53d67611-7850-466f-8720-4817d5c017d5",
+    "timestamp": "2025-12-24 19:49:28.753091",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: from()] [Empty initialization] At line 29, collateral_ratios is initialized as an empty BTreeMap - can accounts be created immediately after protocol deployment before any vaults are whitelisted, leading to accounts that can deposit collateral but never borrow, causing permanent fund locking?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_130a548a-fb3d-4068-903e-ed2d703a4512",
+    "timestamp": "2025-12-24 19:49:55.019091",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: from()] [Missing validation] The From<InstantiateMsg> implementation at lines 25-38 doesn't call validate() - can the protocol be deployed with invalid initial parameters (e.g., adjustment_threshold > liquidation_threshold), causing immediate operational failure or security vulnerabilities?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_d7dd14b1-311d-42c5-9850-1fc9fd17a663",
+    "timestamp": "2025-12-24 19:50:21.046638",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: from()] [Fee address corruption] At line 32, fee_address is directly copied from InstantiateMsg without validation - can the protocol be initialized with an invalid or malicious fee address, causing all liquidation fees to be permanently lost or stolen?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_6b5c52dc-5fd1-41d4-9358-6629da567a9f",
+    "timestamp": "2025-12-24 19:50:47.874190",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: from()] [Code ID manipulation] At line 28, code_id is set from InstantiateMsg without bounds checking - can this be set to an invalid code ID or zero, causing account creation attempts to fail and preventing any protocol usage?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_23f8cbc0-ad91-45e6-b270-edb31e1250ce",
+    "timestamp": "2025-12-24 19:51:13.722775",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: save()] [Concurrent updates] If save() is called multiple times in rapid succession without proper locking, can concurrent configuration updates cause partial writes or state corruption, leading to inconsistent protocol parameters across operations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_ab0bfd1b-5d17-406e-a08c-be7d825a9896",
+    "timestamp": "2025-12-24 19:51:39.688996",
+    "report_generated": false
   }
 ]
