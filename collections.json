@@ -598,5 +598,155 @@
     "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_7e92e3d4-f6c4-49c5-bbcf-350c90718376",
     "timestamp": "2025-12-24 18:41:40.040464",
     "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing StateCorruption] [Partial execution] Without specific error types for detecting state corruption, can a malicious registry send a sequence of sudo messages where some succeed and others fail, leaving the account in a partially-updated state that violates invariants like collateral_value >= debt_value?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_afd087e5-c8d1-4b4e-b2f7-9410a7a93279",
+    "timestamp": "2025-12-24 18:42:45.332200",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing ReentrancyError] [Reentrancy attack] Does the lack of reentrancy detection errors mean the contract cannot detect and prevent nested sudo calls or recursive message execution that could manipulate account balances during liquidation or withdrawal operations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_3407e5b6-7890-4ec2-a876-902d9774ed19",
+    "timestamp": "2025-12-24 18:42:58.055565",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing InvariantViolation] [Protocol invariants] Can the absence of invariant violation errors allow the contract to enter states where debt exceeds collateral value or interest rates become negative without the protocol being able to detect and halt operations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_ac3da591-bf39-4279-83f4-aaeb9600c501",
+    "timestamp": "2025-12-24 18:43:11.151909",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing BalanceMismatch] [Balance tracking] Without specific balance mismatch errors, can discrepancies between the account's internal balance tracking and actual token balances held in vaults go undetected, enabling attackers to claim more collateral than they deposited?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_7aeb150c-4f40-4a68-92a8-90b46109b92d",
+    "timestamp": "2025-12-24 18:43:24.830946",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing TimestampError] [Time manipulation] Does the lack of timestamp validation errors allow forwarded messages to manipulate time-dependent calculations like interest accrual or liquidation timing by using stale or future timestamps?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_c47a3ae0-602a-404e-b3af-9bce97103fad",
+    "timestamp": "2025-12-24 18:43:39.543667",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing SudoValidation] [Sudo message validation] The sudo entrypoint accepts any CosmosMsg without validation - does the absence of sudo-specific error types mean the contract cannot detect and reject malicious message types like MsgMigrateContract or MsgUpdateAdmin that could compromise the account?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_4d5e2c46-9e12-4bfe-a56c-45be139b74dd",
+    "timestamp": "2025-12-24 18:43:55.533125",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing AdminChange] [Admin detection] If the contract's admin changes (either legitimately or through attack), does the lack of an admin change detection error allow the new admin to execute arbitrary sudo messages without the old registry being notified or able to prevent the takeover?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_b26d2421-9340-4725-8648-880afbe52ebf",
+    "timestamp": "2025-12-24 18:44:12.664166",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing MessageLimit] [Message complexity] Can an attacker send sudo messages with extremely complex or nested CosmosMsg structures that consume excessive gas or cause stack overflows, with no specific error type to detect and limit message complexity?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_f4a2dc8d-1e74-4dad-bae9-49ae6ddb0a20",
+    "timestamp": "2025-12-24 18:44:31.390442",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing RateLimitError] [Rate limiting] Does the absence of rate limiting errors mean the contract cannot detect or prevent spam attacks where the registry sends thousands of sudo messages in rapid succession, potentially causing DoS or state corruption?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_cadba8ab-cb14-4d34-ba66-7fb00d438fb3",
+    "timestamp": "2025-12-24 18:44:50.382169",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing CallDepthError] [Call depth] Can deeply nested message forwarding (registry -> account -> vault -> account -> vault) cause stack overflow or infinite recursion, with no specific error type to detect excessive call depth?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_ffe69aca-dc21-4d2c-b005-aefe4d741123",
+    "timestamp": "2025-12-24 18:45:11.099273",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing OverflowError] [Arithmetic safety] Without dedicated overflow/underflow error types, can debt or collateral calculations in forwarded messages silently overflow, allowing attackers to wrap around to zero debt or maximum collateral values?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_76463e62-cf47-4e3d-81b6-b37a2ede596a",
+    "timestamp": "2025-12-24 18:45:32.574994",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing PrecisionLoss] [Rounding attacks] Does the lack of precision loss detection errors allow attackers to exploit rounding errors in interest calculations or share price conversions by repeatedly executing small operations that accumulate favorable rounding?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_487f9ea1-22da-4c0a-81b6-7f48cd98a5c0",
+    "timestamp": "2025-12-24 18:45:55.497905",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing ZeroAmount] [Zero value attacks] Can attackers send sudo messages with zero amounts for deposits, withdrawals, or repayments to manipulate account state or bypass validation checks, with no specific error type to reject zero-value operations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_3ba2210d-2bef-48cb-b788-1d8ca969c57c",
+    "timestamp": "2025-12-24 18:46:19.946102",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing InvalidPrice] [Price validation] Without price validation errors, can the contract detect and reject operations that use manipulated or stale oracle prices in forwarded messages, potentially enabling undercollateralized borrowing?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_d3cf0a30-16ff-404e-95db-09a7fbfd4568",
+    "timestamp": "2025-12-24 18:46:45.713969",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing SlippageExceeded] [Slippage protection] Does the absence of slippage protection errors mean users cannot specify minimum acceptable outcomes for operations, allowing liquidators or MEV bots to extract excessive value during volatile price movements?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_c59d9167-73a3-4927-81a0-4192ee0e2951",
+    "timestamp": "2025-12-24 18:47:12.607064",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing NotOwner] [Owner verification] The single Unauthorized error doesn't distinguish between 'not admin' and 'not owner' - can this ambiguity allow attackers to probe whether they're failing admin checks or owner checks, revealing information about the account's access control structure?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_673d0cf8-5497-43cc-a83a-f02a50c4adbe",
+    "timestamp": "2025-12-24 18:47:39.271109",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing InvalidCaller] [Caller validation] Does the lack of caller-specific errors mean the contract cannot validate that forwarded messages originate from legitimate protocol contracts (vaults, oracles), potentially allowing the registry to impersonate these contracts?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_52b47b7d-414b-4b7d-949f-4ffabb9daeec",
+    "timestamp": "2025-12-24 18:48:06.885920",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing PermissionDenied] [Operation permissions] Without granular permission errors, can the contract properly enforce that different operations (deposit, borrow, liquidate) have different permission requirements, or could a user authorized for deposits also borrow without proper checks?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_1c9e75f6-d618-436b-9fb6-62a17d741547",
+    "timestamp": "2025-12-24 18:48:35.853691",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing InvalidSigner] [Signature validation] If the protocol implements signature-based authorization for account operations, does the minimal error enum properly report signature validation failures versus other authorization issues?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_73b9b37d-da26-4924-b2bd-356af4b352c0",
+    "timestamp": "2025-12-24 18:49:04.511163",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing DelegateError] [Delegation validation] Can the lack of delegation-specific errors allow users to bypass delegate authorization checks when executing operations on behalf of other accounts?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_c56ca87d-168f-473e-b4e2-51e67c31fa4b",
+    "timestamp": "2025-12-24 18:49:33.699945",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing InstantiationError] [Account creation] During account instantiation, does the minimal error handling properly validate that the registry is set as admin and all initial parameters are correct, or could accounts be created in invalid initial states?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_0dacb1ad-1711-4977-83e9-0441f0cbcb5c",
+    "timestamp": "2025-12-24 18:50:03.168029",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing MigrationError] [Contract migration] If the account contract needs to be migrated to a new version, does the lack of migration-specific errors mean the contract cannot validate migration safety or prevent data loss during migration?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_0835721b-6bcb-4097-8175-6aadc86adc62",
+    "timestamp": "2025-12-24 18:50:33.476499",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing FrozenAccount] [Account freezing] Does the absence of an account frozen/paused error mean the protocol cannot implement emergency pause mechanisms that would prevent operations on compromised accounts without completely bricking them?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_269a6585-2a0e-4181-a30a-0ef724c27cf2",
+    "timestamp": "2025-12-24 18:51:03.528794",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing VersionMismatch] [Version compatibility] Can incompatibilities between account contract versions and registry versions go undetected due to lack of version mismatch errors, causing unexpected behavior during protocol upgrades?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_799b7331-c19b-486b-ac30-38820823a74b",
+    "timestamp": "2025-12-24 18:51:33.107939",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-account/src/error.rs] [Error Type: Missing DeprecatedOperation] [Deprecated features] Without deprecation warning errors, can the protocol properly phase out old features or operation types while maintaining backward compatibility?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_36ae8569-83fa-4a88-9965-24040ce11266",
+    "timestamp": "2025-12-24 18:52:00.973569",
+    "report_generated": false
   }
 ]
