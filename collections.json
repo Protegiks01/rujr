@@ -1648,5 +1648,155 @@
     "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_ab0bfd1b-5d17-406e-a08c-be7d825a9896",
     "timestamp": "2025-12-24 19:51:39.688996",
     "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: load()] [Missing error handling] At line 57, if CONFIG.load() fails due to storage corruption, can this cause the entire protocol to become unusable as no operations can proceed without configuration data, resulting in permanent fund freezing?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_43976fb4-5df2-4b39-8fb2-b0245d765c1b",
+    "timestamp": "2025-12-24 19:52:51.291216",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: save()] [Storage exhaustion] If collateral_ratios grows to contain hundreds or thousands of entries (e.g., through repeated vault additions), can save() exceed gas limits or storage costs, causing configuration updates to fail and preventing protocol parameter adjustments?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e3648062-53b0-4cb6-b06d-7651e1ad6684",
+    "timestamp": "2025-12-24 19:53:04.048396",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Struct: Config] [LTV calculation impact] If collateral_ratios are changed for active vaults, how does this affect existing LTV calculations in rujira-ghost-credit/src/account.rs? Can sudden collateral ratio decreases cause mass liquidations of previously healthy accounts, leading to widespread user losses?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_19a1267d-a009-42dd-8a9b-fd58db36b895",
+    "timestamp": "2025-12-24 19:53:16.903748",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Struct: Config] [Account creation race] With collateral_ratios as a BTreeMap that can be modified, can an attacker front-run a collateral_ratios update to create accounts using the old (more favorable) ratios, then immediately borrow at higher LTV before the new ratios take effect, causing undercollateralized positions?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_37416120-43f6-4db9-87dd-414fb75f3da4",
+    "timestamp": "2025-12-24 19:53:31.472107",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Struct: Config] [Liquidation queue impact] If liquidation_threshold or liquidation_max_slip are updated while liquidations are queued, can ongoing liquidations use outdated parameters, causing them to fail validation or extract incorrect fee amounts?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_0a30ee8d-447d-4a48-bf65-33e95ddf965d",
+    "timestamp": "2025-12-24 19:53:46.053084",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Struct: Config] [Vault whitelist removal] If a vault is removed from collateral_ratios (by not including it in an update), can accounts with deposits in that vault become permanently locked as they can no longer calculate valid LTV ratios, causing fund freezing?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_2b56f806-5e6d-484f-8134-17a002b9f7be",
+    "timestamp": "2025-12-24 19:54:01.269979",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Struct: Config] [Code ID migration] If code_id is updated to deploy new account contract versions, can existing accounts created with the old code_id become incompatible with registry operations, causing permanent inability to manage those accounts?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e048bf4c-6522-43dc-bf17-4e35ede20173",
+    "timestamp": "2025-12-24 19:54:18.450868",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: validate()] [Liquidation threshold squeeze] Can an admin set liquidation_threshold to 101% and adjustment_threshold to 100%, creating a 1% liquidation window that causes accounts to become liquidatable instantly upon any debt increase or collateral price drop, enabling predatory liquidation attacks?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_05a12caf-58cc-4880-914e-54031ea45bb5",
+    "timestamp": "2025-12-24 19:54:36.609196",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: update()] [Fee extraction maximization] Can an admin repeatedly update fee_liquidation and fee_liquidator to just below 5% (e.g., 4.99% each), then trigger liquidations before changing fees again, effectively extracting maximum protocol revenue during liquidation events?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_90436f2f-1c17-4233-ac5d-b7a544424e30",
+    "timestamp": "2025-12-24 19:54:56.544227",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Struct: Config] [Collateral ratio flash updates] If collateral_ratios can be updated instantly, can an admin coordinate updates with price oracle changes to artificially trigger liquidations of specific accounts, enabling targeted liquidation attacks?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_0be35eae-7e6c-41b0-aed4-b13fb59a4b1d",
+    "timestamp": "2025-12-24 19:55:17.384483",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: validate()] [Slippage exploitation window] If liquidation_max_slip is set high (e.g., 50%) and then updated to a low value (e.g., 5%), can liquidators exploit the update window to execute high-slippage liquidations at the old parameters, extracting excessive value from user collateral?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_2e094079-f4fc-43c2-bf50-d6f6284c965c",
+    "timestamp": "2025-12-24 19:55:38.224040",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: validate()] [Decimal comparison precision] When comparing Decimal values at lines 85, 91, 98, 106, and 113, can rounding errors in Decimal arithmetic cause validation to incorrectly pass or fail for values very close to boundaries, leading to invalid configurations being accepted?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_a53490fe-7030-4a79-94e1-4ee7d2d37edf",
+    "timestamp": "2025-12-24 19:56:00.281936",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Struct: Config] [Percentage representation] Are all percentage values (thresholds, fees, slippage) stored as fractions (0.0-1.0) or percentages (0-100)? If there's inconsistency, can this cause orders-of-magnitude errors in fee calculations or LTV checks, leading to catastrophic fund loss?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_1e735673-aa34-4330-9e72-46e485db3e37",
+    "timestamp": "2025-12-24 19:56:23.662049",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: validate()] [Collateral ratio precision] At line 98, when checking if collateral_ratios exceed 1.0, can precision loss in Decimal operations allow values like 1.0000000001 to pass validation, causing collateral to be overvalued by tiny amounts that accumulate across many accounts?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_7879d77c-7e68-4fdf-afce-5dc33cc23640",
+    "timestamp": "2025-12-24 19:56:47.709934",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: update()] [Threshold ordering precision] If liquidation_threshold is set to Decimal::percent(100) and adjustment_threshold to Decimal::from_str(",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_7d68fefd-872a-44cc-bb5d-f00ae85ff2b6",
+    "timestamp": "2025-12-24 19:57:12.166134",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: update()] [Missing access control reference] The update() function doesn't contain access control checks - where is it verified that only authorized admins can call this? Can a missing check in the calling contract allow any user to modify protocol configuration, enabling complete protocol takeover?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_9e666a87-2f47-41b7-8553-74ce6bbeeda9",
+    "timestamp": "2025-12-24 19:57:38.104154",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: save()] [Unrestricted save] The save() function is public and doesn't check caller permissions - can any code path that obtains a Config reference call save() to persist malicious configurations, bypassing intended access controls?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_df4e4421-22d9-4623-9b74-2dff937d8ba9",
+    "timestamp": "2025-12-24 19:58:04.623854",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Struct: Config] [Fee address ownership] With fee_address stored as Addr, can a compromised admin change this to their own address to redirect all protocol revenue, and is there any timelock or governance delay to prevent sudden fee address changes?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_c3808fb4-7e4e-438b-95f0-4a8b585d6fd5",
+    "timestamp": "2025-12-24 19:58:32.497072",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: update()] [Atomic validation] Does the calling contract ensure that update() is always followed by validate() in the same transaction? If these are separate transactions, can an attacker exploit the window where configuration is updated but not yet validated?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_ed83e10a-a200-4083-913c-7486e9903cfd",
+    "timestamp": "2025-12-24 19:58:57.417144",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: update()] [Partial update rollback] If update() modifies multiple fields but validate() subsequently fails, does the calling contract properly rollback all changes, or can partial updates persist causing configuration inconsistency?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_73c3a86f-8edc-4fc5-86b0-ba058b2e573f",
+    "timestamp": "2025-12-24 19:59:23.508120",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Function: validate()] [Validation order dependency] Does the order of validation checks in validate() matter? Could reordering checks cause different validation outcomes, and can an attacker exploit this by crafting configurations that pass due to check ordering?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_5f3be82b-eca5-42cb-869b-756eb945cbd0",
+    "timestamp": "2025-12-24 19:59:48.523974",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Struct: Config] [Collateral ratios atomicity] When updating multiple collateral_ratios simultaneously, are all updates atomic? Can a partial update occur where some vaults have new ratios but others retain old ratios, causing LTV calculation inconsistencies across different collateral types?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_1b69508d-30a6-454c-8a81-fe9ee75bb79d",
+    "timestamp": "2025-12-24 20:00:13.549026",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Struct: Config] [Stale collateral ratios] When an account queries collateral_ratios for LTV calculation, can there be a race condition where the ratio is updated between the query and the calculation, causing the account to use outdated ratios and potentially become undercollateralized?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_fbf61558-8a1a-4b5f-a4c0-f626df5d092e",
+    "timestamp": "2025-12-24 20:00:39.277165",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Struct: Config] [Threshold enforcement timing] After liquidation_threshold or adjustment_threshold are updated, are existing accounts immediately re-evaluated, or is there a delay? Can accounts remain in invalid states (e.g., below new adjustment_threshold) without triggering corrective actions?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_1a652906-d996-4b47-9f4c-423e5bb6625f",
+    "timestamp": "2025-12-24 20:01:05.783014",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/config.rs] [Struct: Config] [Code ID version mismatch] If code_id is updated to point to a new account contract version, but some accounts were created with the old version, can this cause compatibility issues where the registry cannot properly interact with old accounts, leading to fund locking?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e232946e-65fd-495a-9943-f57a0205358e",
+    "timestamp": "2025-12-24 20:01:31.914351",
+    "report_generated": false
   }
 ]
