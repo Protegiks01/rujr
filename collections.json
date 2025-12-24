@@ -2248,5 +2248,155 @@
     "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_1d4cc4a6-6f6e-4b4e-a8d8-0395e56f2f3b",
     "timestamp": "2025-12-24 20:31:38.058865",
     "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_account() - AccountMsg::Transfer] [Index corruption] Does the ownership transfer at line 228 properly update all account indexes (owner, owner_tag, tag), or can it leave stale index entries that cause account lookup failures or security vulnerabilities?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_71d20f67-84fc-4666-86d5-71e40bbf7646",
+    "timestamp": "2025-12-24 20:32:50.212375",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_account() - AccountMsg::SetPreferenceOrder] [Invalid collateral check bypass] Can the collateral_ratios.contains_key() checks at lines 232 and 236 be bypassed if collateral is removed from config after the preference is set, causing liquidation to fail when trying to validate preference order?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_a0f352ea-92b4-421a-a7c6-c385597d77f5",
+    "timestamp": "2025-12-24 20:33:02.901587",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_account() - AccountMsg::SetPreferenceOrder] [Circular preference creation] Can an attacker create circular dependencies in the liquidation preference order by setting denom A after B, B after C, and C after A, causing liquidation to fail due to infinite loops in order validation?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_bc846da9-7638-4caa-949f-cbbb7351c001",
+    "timestamp": "2025-12-24 20:33:15.964149",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_account() - AccountMsg::SetPreferenceOrder] [Preference order manipulation] Can an attacker repeatedly update their liquidation preferences just before liquidation to force liquidators to use unfavorable liquidation paths that extract less value from the account?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_958cb0ff-d39d-4992-b333-c65705090785",
+    "timestamp": "2025-12-24 20:33:29.739265",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_account() - AccountMsg::SetPreferenceOrder] [After parameter validation] If after is Some(denom) but that denom doesn't exist in the current account's collateral, does set_preference_order() handle this correctly, or can it create invalid preference states?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e4f94328-b2bd-4e90-9b44-b86d779f235a",
+    "timestamp": "2025-12-24 20:33:44.362591",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_account() - AccountMsg::SetPreferenceMsgs] [Malicious preference messages] Can an attacker set liquidation_preferences.messages with LiquidateMsg::Execute entries that call malicious contracts to drain collateral during liquidation, since preference messages use REPLY_ID_PREFERENCE which ignores errors?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_1049b7a8-7ef1-4618-93d2-7971dbb62571",
+    "timestamp": "2025-12-24 20:34:00.046461",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_account() - AccountMsg::SetPreferenceMsgs] [Preference message validation] Does SetPreferenceMsgs validate the provided msgs to ensure they are reasonable liquidation actions, or can an attacker set an extremely long list of messages to DoS liquidation processing?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_40082fef-80ce-4c0f-8c0b-1f7bc498e075",
+    "timestamp": "2025-12-24 20:34:17.672414",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_account() - AccountMsg::SetPreferenceMsgs] [Empty preferences bypass] Can an attacker set empty liquidation preferences to prevent preference-based liquidation from occurring, forcing liquidators to use less efficient liquidation paths?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_13ba253e-166a-41c5-96c6-734c278afcf9",
+    "timestamp": "2025-12-24 20:34:36.162700",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_account() - AccountMsg::SetPreferenceMsgs] [Preference message reentrancy] Can preference messages trigger reentrancy through LiquidateMsg::Execute that calls back into the registry during DoLiquidate processing, manipulating account state mid-liquidation?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_5306859c-0903-4190-8694-e18254bae0a8",
+    "timestamp": "2025-12-24 20:34:56.021179",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_liquidate() - LiquidateMsg::Repay] [Zero balance bypass] Does the check at line 272 for balance.amount.is_zero() prevent all edge cases, or can an attacker manipulate account state to have dust amounts that pass this check but fail in subsequent operations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_23295246-0c66-47dd-9088-e6e297e9d7cf",
+    "timestamp": "2025-12-24 20:35:16.588055",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_liquidate() - LiquidateMsg::Repay] [Fee calculation rounding] Can the multiply_ratio calls at lines 281-287 for liquidation_fee and liquidator_fee calculation be exploited through rounding errors when balance.amount is very small, causing fees to round to zero and allowing free liquidation?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_c66080ee-488f-4fa6-97fd-553b7f78e4d3",
+    "timestamp": "2025-12-24 20:35:38.473329",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_liquidate() - LiquidateMsg::Repay] [Repay amount underflow] Can the repay_amount calculation at line 290 using sub(liquidation_fee).sub(liquidator_fee) underflow if the combined fees exceed balance.amount, causing the transaction to fail and preventing liquidation?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_b3161dfc-0d56-4d01-8984-faa2743e749b",
+    "timestamp": "2025-12-24 20:36:01.386348",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_liquidate() - LiquidateMsg::Repay] [Message ordering vulnerability] Can the message order at lines 293-311 be exploited where account.send() occurs before vault repayment, creating a window where funds are in transit and could be intercepted or manipulated?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_274292b2-c31b-4613-a6b6-307da5aaea0f",
+    "timestamp": "2025-12-24 20:36:25.344536",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_liquidate() - LiquidateMsg::Repay] [Fee extraction before repay validation] Does the vault's market_msg_repay() at line 299-302 validate that repay_amount is sufficient to cover the debt, or can liquidators extract fees even when the remaining amount doesn't cover any meaningful debt?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_4b0152aa-65d2-4489-a0d6-ec198d1cd655",
+    "timestamp": "2025-12-24 20:36:50.157879",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_liquidate() - LiquidateMsg::Repay] [Partial repayment exploitation] Can a liquidator call Repay with just enough balance to extract maximum fees while minimally reducing the account's debt, repeatedly liquidating the same account to extract excessive fees?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_d1e35606-2bb8-4f53-9830-c7ce8afe9d1d",
+    "timestamp": "2025-12-24 20:37:15.139548",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_liquidate() - LiquidateMsg::Repay] [Fee address manipulation] Can the config.fee_address at line 305 be exploited if it's set to a malicious contract that reverts on receiving funds, permanently blocking all liquidations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_00f6c84b-9ff6-49e0-921e-7327b0184974",
+    "timestamp": "2025-12-24 20:37:40.248461",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_liquidate() - LiquidateMsg::Repay] [Liquidator fee extraction] Can the liquidator info.sender at line 309 be spoofed or manipulated during the DoLiquidate self-call flow, allowing an attacker to redirect liquidator fees to their address?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e2722b97-8f2a-40a7-a5f5-7474b2c1eebd",
+    "timestamp": "2025-12-24 20:38:05.973627",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_liquidate() - LiquidateMsg::Repay] [Denomination mismatch] Does market_msg_repay validate that the denom at line 301 matches the vault's expected denom, or can mismatched denoms cause accounting errors in the vault?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_70b404f5-5bd6-4dd2-be76-50adce3c2619",
+    "timestamp": "2025-12-24 20:38:32.317408",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_liquidate() - LiquidateMsg::Execute] [Submessage payload manipulation] Can the to_json_binary(&account) payload at line 331 be exploited if the account state is modified during the submessage execution, causing validate_liquidation() to compare against a stale snapshot?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_451b435e-77b5-40a2-a2fe-48acfc8908e7",
+    "timestamp": "2025-12-24 20:38:57.494145",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_liquidate() - LiquidateMsg::Execute] [Reply ID bypass] Can an attacker manipulate the reply_id parameter (REPLY_ID_PREFERENCE vs REPLY_ID_LIQUIDATOR) to cause liquidation messages to fail silently when they should error, or vice versa?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_acf08f4b-aa17-468e-a0f5-fd32f12eeff3",
+    "timestamp": "2025-12-24 20:39:22.282527",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_liquidate() - LiquidateMsg::Execute] [Arbitrary contract execution] Can LiquidateMsg::Execute be used to call the registry contract itself or other protocol contracts to bypass access controls or manipulate state during liquidation?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_a1e1fe67-cfa6-4596-9832-264f6e50e3be",
+    "timestamp": "2025-12-24 20:39:47.413333",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_liquidate() - LiquidateMsg::Execute] [Funds parameter exploitation] Can the funds parameter in LiquidateMsg::Execute be used to send collateral to external contracts that don't return equivalent value, effectively extracting collateral without repaying debt?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_2a599af5-efef-4042-ab6b-670647889387",
+    "timestamp": "2025-12-24 20:40:12.402037",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: execute_liquidate() - LiquidateMsg::Execute] [Reentrancy via submessage] Can the account.account.execute() call at line 327-328 trigger reentrancy through a malicious contract that calls back into the registry during liquidation processing?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_65f4cb28-4df9-4078-a912-4a1ea226c247",
+    "timestamp": "2025-12-24 20:40:38.867511",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: reply()] [Preference error suppression] Can the silent error handling for REPLY_ID_PREFERENCE at lines 344-346 be exploited by account owners to set preference messages that always fail but prevent liquidation from completing?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_91dd384e-edb7-4248-8d60-07e37afba376",
+    "timestamp": "2025-12-24 20:41:05.482513",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/contract.rs] [Function: reply()] [Liquidator error propagation] Does the error propagation at line 348 for REPLY_ID_LIQUIDATOR correctly fail the entire liquidation, or can partial liquidation states be committed before the error is caught?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_55679fec-159f-48ab-bf6c-56091ea90003",
+    "timestamp": "2025-12-24 20:41:33.610554",
+    "report_generated": false
   }
 ]
