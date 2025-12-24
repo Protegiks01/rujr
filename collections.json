@@ -898,5 +898,155 @@
     "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_dffd28d1-efe9-438c-91fc-69e3e0fdb938",
     "timestamp": "2025-12-24 19:02:03.626286",
     "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: adjusted_ltv()] [Division by zero] In the adjusted_ltv() calculation at line 175, if all collaterals have value_adjusted of zero (due to collateral_ratios being zero or missing), can the function divide debt by zero collateral, potentially causing a panic that permanently bricks accounts and prevents liquidation?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_60670c26-2257-4186-98e3-9510bcf9b2be",
+    "timestamp": "2025-12-24 19:03:04.273640",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: adjusted_ltv()] [LTV bypass] Can an attacker exploit the adjusted_ltv() calculation by depositing collateral in denominations not present in config.collateral_ratios (lines 156-160), causing value_adjusted to be zero via unwrap_or_default() at line 26 of collateral.rs, allowing them to borrow against worthless 'adjusted' collateral and drain vaults?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_2a781328-8e6b-4a47-a8ef-74231d2f7576",
+    "timestamp": "2025-12-24 19:03:17.388846",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: adjusted_ltv()] [Precision loss] Does the iterative summation of Decimal values in adjusted_ltv() (lines 153-160 for collateral, 162-169 for debt) accumulate rounding errors when accounts have many small positions, potentially causing LTV miscalculations that allow undercollateralized borrowing or prevent valid liquidations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_0630d647-874b-4de0-83b2-a63794bccb80",
+    "timestamp": "2025-12-24 19:03:30.450726",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: adjusted_ltv()] [Zero debt manipulation] At line 171-173, when debt is zero, adjusted_ltv returns Decimal::zero() regardless of collateral value - can an attacker exploit this by temporarily repaying all debt to pass check_safe() validations, then immediately reborrowing to bypass LTV checks in a single transaction sequence?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_af018ee6-a5ad-4dac-ac6a-3869697a234c",
+    "timestamp": "2025-12-24 19:03:44.175629",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: adjusted_ltv()] [Collateral valuation manipulation] Since adjusted_ltv() relies on value_adjusted from collaterals at lines 154-160, if the collateral_ratios in config can be manipulated or set incorrectly, can an attacker benefit from inflated collateral valuations to borrow more than economically safe, risking protocol insolvency?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_8cdfedf5-1690-4b77-80b9-f23b69f02ce4",
+    "timestamp": "2025-12-24 19:03:58.826975",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: adjusted_ltv()] [Empty collections edge case] If self.collaterals is empty at line 153, the reduce() operation returns unwrap_or_default() resulting in zero - combined with non-zero debt at line 162, does this cause division by zero at line 175, or does it return infinite LTV, breaking all safety checks?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_7ea60893-0a06-4fea-a209-36d82a1daacb",
+    "timestamp": "2025-12-24 19:04:14.337278",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: adjusted_ltv()] [Decimal overflow] When summing many large collateral or debt positions via reduce() at lines 159 and 168, can the accumulated Decimal values overflow Decimal::MAX, causing either a panic that bricks the account or silent wrapping that produces incorrect LTV values enabling theft?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_dae908b7-5b62-478b-b853-7b26c6555065",
+    "timestamp": "2025-12-24 19:04:31.639760",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: adjusted_ltv()] [Inconsistent state timing] Since adjusted_ltv() is calculated from collaterals and debts vectors populated in to_credit_account(), if there's a delay between querying collateral balances (line 301) and debt amounts (line 313), can price changes between these queries cause LTV to be stale, allowing liquidation bypass or unfair liquidations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_5a24884b-a694-4e56-8037-7e27b5fd5635",
+    "timestamp": "2025-12-24 19:04:50.792674",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: adjusted_ltv()] [Oracle manipulation] The adjusted_ltv() calculation depends on value_usd from oracle queries in collateral.rs - if an attacker can temporarily manipulate oracle prices during the account loading phase (lines 300-323), can they artificially inflate LTV to trigger unwarranted liquidations or deflate it to avoid deserved ones?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_d9f4767e-1ccb-4762-9b74-c0851b308ae8",
+    "timestamp": "2025-12-24 19:05:10.233404",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: adjusted_ltv()] [Comparison precision] At line 175, using Decimal's div() for LTV calculation - are there edge cases near the liquidation_threshold or adjustment_threshold boundaries where rounding errors cause LTV to be just below/above thresholds incorrectly, allowing borderline accounts to avoid liquidation or safe accounts to be liquidated?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_270eef33-188a-45be-8ba7-77ce5f44139a",
+    "timestamp": "2025-12-24 19:05:30.933351",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: check_safe()] [Boundary condition] At line 180, check_safe() uses lt() (less than) comparison - does this mean an account with adjusted_ltv exactly equal to the limit passes the safety check, potentially allowing accounts to remain at exactly 100% LTV where a small price movement could cause immediate undercollateralization?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_3192fbb3-5d40-45c2-9824-ade929621474",
+    "timestamp": "2025-12-24 19:05:52.356797",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: check_unsafe()] [Liquidation threshold bypass] At line 189, check_unsafe() uses ge() (greater than or equal) - can an attacker keep their adjusted_ltv at exactly liquidation_threshold minus epsilon to avoid liquidation while being effectively insolvent, exploiting the boundary condition to maintain undercollateralized positions?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_7e43ec37-5c54-4165-a034-7b96e9bfda2b",
+    "timestamp": "2025-12-24 19:06:14.492187",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: check_safe()] [Error propagation] If adjusted_ltv() calculation fails or returns an unexpected value, check_safe() at line 179 proceeds without validating the LTV calculation succeeded - can this lead to passing safety checks on accounts with corrupted state, allowing unsafe operations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_54f57fcb-09fd-47c1-b46b-99b9cf9a5cde",
+    "timestamp": "2025-12-24 19:06:38.452267",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: check_unsafe()] [Double-check inconsistency] In contract.rs lines 112-114, liquidations check both check_safe(&liquidation_threshold) and check_unsafe(&adjustment_threshold) - if these use different calculated LTV values or there's state change between calls, can accounts pass both checks incorrectly, bypassing liquidation protections?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_274857a9-fc02-488d-b33a-0998429ac5b8",
+    "timestamp": "2025-12-24 19:07:03.614817",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: check_safe()] [ContractError handling] When check_safe() fails at line 179-183, it returns ContractError::Unsafe with the LTV value - can an attacker use this error message to precisely calculate collateral ratios and debt limits, enabling them to maximize borrowing right up to unsafe thresholds with perfect precision?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_53d00a71-0bdc-4b2a-b87a-f70aee344171",
+    "timestamp": "2025-12-24 19:07:29.639756",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: check_unsafe()] [Inverted logic risk] The check_unsafe() function at line 188 returns error if account is Safe - is there any code path where check_unsafe() is called incorrectly (e.g., where check_safe() was intended), causing logic inversion that allows unsafe accounts to pass validation?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_a355d5a9-5bd7-494a-b4e8-99f98f1f5d98",
+    "timestamp": "2025-12-24 19:07:56.477672",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: check_safe()] [Limit parameter trust] Both check_safe() and check_unsafe() accept a limit parameter from config - if config.adjustment_threshold or config.liquidation_threshold are misconfigured during updates, can all accounts simultaneously become liquidatable or unliquidatable, causing systemic protocol failure?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_bf658346-b506-4d0a-ae96-3d55bef5fa75",
+    "timestamp": "2025-12-24 19:08:24.081309",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: check_safe()] [Zero LTV edge case] When adjusted_ltv() returns zero (line 172 when debt is zero), check_safe() at line 180 will always pass since 0 < any_limit - can an attacker abuse this by keeping zero debt temporarily to bypass safety checks, then immediately borrow maximum amounts without intermediate LTV validation?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_b7c75446-94f6-46df-bd5f-45dd00bd16e4",
+    "timestamp": "2025-12-24 19:08:53.158941",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: create()] [Salt collision] At lines 83-88, the account creation salt is constructed by hashing owner address and concatenating canonicalized owner - can an attacker generate colliding salts by manipulating the input salt parameter, allowing them to predict or control account addresses for griefing or front-running?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e1597ff0-7ee0-4209-9e1a-3cdd51417bad",
+    "timestamp": "2025-12-24 19:09:21.209634",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: create()] [Address predictability] The create() function uses Sha256 hash of owner and salt at lines 83-85, then calls Account::create() with this deterministic hash - can attackers precompute account addresses to front-run account creation and deploy malicious contracts at those addresses first, preventing legitimate users from creating accounts?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_57a3df4a-6a0c-4b7c-b45a-444c16837307",
+    "timestamp": "2025-12-24 19:09:50.662988",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: create()] [Label format injection] At line 93, the label is formatted as 'ghost-credit/{label}' without sanitization - can an attacker inject special characters or extremely long strings into the label parameter to cause storage issues, exceed CosmWasm message size limits, or create accounts with confusing/duplicate labels?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_6a9980a5-6509-41c8-82e7-a4e803779a7a",
+    "timestamp": "2025-12-24 19:10:20.121804",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: create()] [Tag parameter validation] The create() function accepts a tag parameter at line 81 but doesn't validate it before passing to CreditAccount::new() at line 96 - can attackers create accounts with empty tags, extremely long tags, or duplicate tags that break indexing via owner_tag MultiIndex at lines 48-49, causing DoS when querying accounts?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_237c4a49-f197-4b50-9920-86fe4d7b4455",
+    "timestamp": "2025-12-24 19:10:47.240260",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: create()] [Owner address validation] The owner parameter at line 78 is used directly without validation that it's a valid address before being used in addr_canonicalize at line 88 - can passing an invalid or malformed owner address cause panics during account creation that prevent all new account creation?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_0c2ad837-c9f1-401c-a0a0-1d0c8b5c6628",
+    "timestamp": "2025-12-24 19:11:13.597019",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: create()] [Code ID trust] At line 76, the code_id parameter is passed directly to Account::create() - if this code_id points to a malicious account contract instead of the legitimate rujira-account code, can attackers create accounts under their control that bypass sudo pattern protections and drain collateral?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_a54a0b18-68e4-4038-950b-576fb6b8e414",
+    "timestamp": "2025-12-24 19:11:40.653358",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: create()] [Salt entropy] The salt construction at lines 83-88 only incorporates owner address and user-provided salt - is this sufficient entropy to prevent birthday attacks where attackers create many accounts hoping for address collisions, potentially causing account creation failures or griefing?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_7f9c2c12-d149-4064-a00c-817adf43f420",
+    "timestamp": "2025-12-24 19:12:04.709554",
+    "report_generated": false
   }
 ]
