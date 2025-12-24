@@ -298,5 +298,155 @@
     "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_a46f2f39-e5d9-4c1e-bd17-558360e472a3",
     "timestamp": "2025-12-24 18:19:47.077390",
     "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute_market() - Borrow] [Callback Error Propagation] If callback.to_message() at lines 64-68, 87-91, 149-153 fails during execution, does the entire transaction revert or can partial state changes persist?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_12f9127e-56ae-49ef-8d02-9ff2ea34a367",
+    "timestamp": "2025-12-24 18:20:51.574289",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute() - Withdraw] [Callback Gas Limit] If callback execution consumes excessive gas, can this cause the entire withdraw transaction to fail, preventing users from exiting even with valid shares?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_490c3cd7-2f8e-4e87-8157-e7776f4ae360",
+    "timestamp": "2025-12-24 18:21:04.167560",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute() - Deposit] [Callback Address Trust] Callbacks receive funds and can execute arbitrary logic - can a malicious user set callback to a contract they control to manipulate state before the callback completes?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_9315e525-816c-4005-a382-43e1e9bfc267",
+    "timestamp": "2025-12-24 18:21:17.778463",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute() - Interest Rate] [Part2 Division] At interest.rs:62-64, part2 divides by (1 - target_utilization) - when target_utilization is very close to 1.0, can this cause precision issues or make part2 extremely sensitive to small utilization changes?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_2c651cf8-e64f-49b7-b604-558bca0a3e96",
+    "timestamp": "2025-12-24 18:21:31.266138",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute() - Interest Rate] [Utilization Boundary] At interest.rs:50-53, if utilization > 1.0, rate() should error - but can dust amounts or rounding cause utilization to slightly exceed 1.0 and fail rate calculations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_7c45fe0a-50c2-442e-a760-23d8b8cc5ebe",
+    "timestamp": "2025-12-24 18:21:45.745298",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute() - Interest Rate] [Rate Calculation Precision] At interest.rs:49-67, rate() calculates part1 = min(u, target_u) / target_u * step1 - when target_u is very small, can division cause precision loss or overflow?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_31f58c00-f65a-439e-8f4b-1723135dbcfe",
+    "timestamp": "2025-12-24 18:22:01.718281",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: sudo() - SetInterest] [Target Utilization Edge] At interest.rs:43-45, validation requires target_utilization < Decimal::one() - but what happens if it's set to 0.99999, making the step1 calculation range extremely narrow?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_38ea3c00-cbf9-4eb1-a320-47d98adf9779",
+    "timestamp": "2025-12-24 18:22:19.178212",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: sudo() - SetInterest] [Interest Validation Gaps] At interest.rs:31-46, validate() checks step2 > step1 and target_utilization bounds, but doesn't limit maximum rate values - can this allow rates > 1000% APY?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_2c59e05c-c8fc-49f5-8f86-a6c65aaf45f2",
+    "timestamp": "2025-12-24 18:22:37.290939",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: instantiate()] [Fee Validation Boundary] At config.rs:35-37, validation checks fee >= Decimal::one() but uses >= instead of > - can setting fee to exactly 1.0 pass validation despite being documented as < 1.0?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_0a85351a-25b8-48d3-96be-eeb0c72fab8b",
+    "timestamp": "2025-12-24 18:22:56.948615",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: query() - Delegate] [Delegate Shares Default] At borrowers.rs:37-41, delegate_shares() returns unwrap_or_default() if not found - can this hide situations where delegate storage is corrupted vs genuinely having zero shares?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_1c055f56-f35b-427b-81f8-2f2d372c8ae6",
+    "timestamp": "2025-12-24 18:23:17.487165",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute_market()] [Borrower Load Error Handling] At borrowers.rs:25-30, Borrower::load() returns UnauthorizedBorrower for NotFound errors - can this be exploited to trick error handling into treating authorization failures as missing borrower state?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_b1f30583-f224-4a99-81c4-aa884e586d40",
+    "timestamp": "2025-12-24 18:23:38.484955",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: sudo() - SetBorrower] [Limit Update Race] At borrowers.rs:96-103, SetBorrower loads existing borrower or creates new with default shares=0 - if borrower has active borrows and limit is reduced below current debt, does this brick their position?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_787701b2-2998-4c2a-84ad-2ffd6ee5b78f",
+    "timestamp": "2025-12-24 18:24:01.302574",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute_market() - Repay] [Partial Repay Handling] At borrowers.rs:76-79, repay returns shares - repaid (excess shares) - what happens to these excess shares and can they become orphaned?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_6dd8b49d-bed6-4b35-84b4-60ab19026742",
+    "timestamp": "2025-12-24 18:24:24.491885",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute_market() - Repay] [Delegate Repay Underflow] At borrowers.rs:91, delegate.checked_sub(repaid) can underflow if repaid > delegate shares - though this should be prevented by min() at line 90, can race conditions cause inconsistency?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_0aea244e-b207-4aa8-b638-2eef17a114a5",
+    "timestamp": "2025-12-24 18:24:48.848223",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute_market() - Borrow] [Delegate Share Overflow] At borrowers.rs:50-54, delegate_borrow updates DELEGATE_SHARES with unwrap_or_default().add(shares) - can this overflow if delegate borrows repeatedly without tracking total?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_45f41694-e2e0-460f-aa9c-13fb9f33e605",
+    "timestamp": "2025-12-24 18:25:14.432941",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute_market() - Borrow] [Borrower Limit Race] At borrowers.rs:64, limit check uses pool.ownership(self.shares + shares) > limit - can an attacker borrow in multiple transactions that individually pass but collectively exceed limit?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_0950ff10-30aa-49e4-9718-fa3178dfaee3",
+    "timestamp": "2025-12-24 18:25:40.861506",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute()] [Ratio Calculation] At share_pool.rs:59-64, ratio() divides size by shares - when shares approaches zero, can ratio become unbounded causing overflow in subsequent calculations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_237a94af-1fd1-41f8-83b1-9fe7eb778b1f",
+    "timestamp": "2025-12-24 18:26:08.092684",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute()] [Share Supply Tracking] SharePool stores shares as Decimal internally but returns Uint128 via shares() which floors - can fractional shares accumulate to cause total shares to be less than sum of individual holdings?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_88b4e11f-98a9-4de4-8fa6-93acdd903b9f",
+    "timestamp": "2025-12-24 18:26:33.969546",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute() - Interest Distribution] [Inflation Attack Prevention] At share_pool.rs:91, deposit fails if test ratio < 0.99 - but can sophisticated attackers bypass this by donating exactly the amount that keeps ratio >= 0.99 while still diluting shares?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_fdc31877-e30d-4491-9b65-d930236d3780",
+    "timestamp": "2025-12-24 18:26:59.073729",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute() - Interest Distribution] [Deposit Validation] At share_pool.rs:81-96, deposit() uses a test join of 1000 units and checks resulting value loss - can this test be manipulated if pool size is near Uint128::MAX?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_8fcd71ca-4a11-4973-816d-0cca95217e5b",
+    "timestamp": "2025-12-24 18:27:25.615220",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute() - Withdraw] [Full Exit Edge Case] At share_pool.rs:46-50, when amount == shares(), full pool size is returned and pools are zeroed - but if there's outstanding debt, should some assets remain locked in vault?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_21141cd7-61f8-4875-8c8b-6a8ec32e66d4",
+    "timestamp": "2025-12-24 18:27:51.172150",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute() - Withdraw] [Leave Precision Loss] At share_pool.rs:53, claim = ownership(amount) uses multiply_ratio - can rounding in multiply_ratio cause withdrawers to receive slightly less than entitled, leaving dust in the vault?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_d3e93119-35e5-41f1-8661-0a7a0c2eef8c",
+    "timestamp": "2025-12-24 18:28:16.773722",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute() - Deposit] [First Depositor Advantage] At share_pool.rs:20-24, first depositor gets 1:1 shares - can first depositor deposit 1 wei, then donate 1M tokens via direct transfer to contract to manipulate ratio for subsequent depositors?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_a102b07e-35cc-4e39-8983-3c085c830e00",
+    "timestamp": "2025-12-24 18:28:42.208153",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute() - Deposit] [Share Issuance Floor] At share_pool.rs:27-29, issuance.floor() is used and checked for zero - can an attacker make tiny deposits where issuance calculates to 0.9 shares, causing floor to zero and preventing deposit while still incrementing size?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_cbb4ed72-ad72-4fc2-9035-9d12a2295c3d",
+    "timestamp": "2025-12-24 18:29:07.802107",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/contract.rs] [Function: execute() - Interest Distribution] [Deposit Pool Protection] At state.rs:161, interest is deposited to deposit_pool without issuing shares via deposit() instead of join() - why is this safe and can't this be exploited to inflate deposit pool disproportionately?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_4220ca24-d581-41b6-93a3-51f1e5dbfb31",
+    "timestamp": "2025-12-24 18:29:35.370113",
+    "report_generated": false
   }
 ]
