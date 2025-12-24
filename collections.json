@@ -1048,5 +1048,155 @@
     "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_7f9c2c12-d149-4064-a00c-817adf43f420",
     "timestamp": "2025-12-24 19:12:04.709554",
     "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: create()] [Admin parameter trust] The admin parameter at line 77 is passed to Account::create() and becomes the account's admin - if this is set incorrectly to an attacker-controlled address instead of the registry contract, can the attacker gain sudo control over the account and steal all deposited collateral?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_dc6b3079-6a60-4f56-a640-001cec7d82cf",
+    "timestamp": "2025-12-24 19:13:28.054889",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: create()] [Hasher state] The Sha256 hasher at lines 83-85 updates with owner bytes then salt - if owner contains crafted byte sequences, can this cause hash collisions or predictable hashes that allow attackers to create accounts at addresses they control?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_895c7964-c5fb-466e-b1cc-74e0e33a7977",
+    "timestamp": "2025-12-24 19:13:40.823865",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: create()] [Salt mutation] At line 87, the salt is mutated by appending canonicalized owner - can the same salt binary be reused across multiple create() calls leading to non-deterministic account addresses if the salt buffer isn't properly cloned, causing accounts to be created at unexpected addresses?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_5a328750-4a1d-4fa3-bc33-b9566baf129c",
+    "timestamp": "2025-12-24 19:13:53.977762",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: save()] [Storage collision] The save() function at line 100 uses account.contract() as the storage key - if two accounts somehow get the same contract address (due to bugs in create()), can save() silently overwrite one account's Stored data with another's, causing permanent loss of ownership and preference information?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_cd596628-08cf-4f9b-a9c4-3eaf756a03b2",
+    "timestamp": "2025-12-24 19:14:08.259173",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: save()] [Partial state save] The save() function only persists Stored (owner, account, tag, liquidation_preferences) from lines 329-336, but CreditAccount contains collaterals and debts vectors - if save() is called with stale collateral/debt data, does the next load() reconstruct wrong account state leading to incorrect LTV calculations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_d18e65e2-c07d-4efa-93f6-253b7e553fc5",
+    "timestamp": "2025-12-24 19:14:23.046613",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: save()] [Index update failures] When save() writes to IndexedMap at line 100, if the MultiIndex updates fail partially (e.g., owner index succeeds but owner_tag fails), can this cause inconsistent index state where accounts are queryable by owner but not by owner_tag, breaking by_owner() queries?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_18bb3cbf-33de-481d-bb2d-9324cb1a3256",
+    "timestamp": "2025-12-24 19:14:39.261472",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: save()] [Race condition] If save() is called multiple times in rapid succession for the same account (e.g., during batch operations in contract.rs execute_account loop at lines 156-160), can concurrent writes cause index corruption or lost updates where the last save() overwrites intermediate state changes?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_6ea637f5-5b62-428e-ba47-d0e512432564",
+    "timestamp": "2025-12-24 19:14:56.585493",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: save()] [Storage size DoS] The Stored struct includes liquidation_preferences which contains unbounded messages Vec and order map - if these grow large, can save() operations exceed CosmWasm storage limits, causing all future saves to fail and permanently freezing account state updates?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_1119b84a-5403-476f-b09f-709bc455b0f7",
+    "timestamp": "2025-12-24 19:15:15.603878",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: by_owner()] [Unbounded iteration] At line 114, by_owner() uses range() with Order::Descending and no limit parameter - can an attacker create thousands of accounts with the same owner/tag combination to cause DoS when by_owner() is called, exhausting gas and preventing legitimate queries?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_0d738d72-2ffa-4854-b3bf-0ee7bb716c36",
+    "timestamp": "2025-12-24 19:15:35.689153",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: by_owner()] [Tag filter bypass] At lines 110-112, if tag is Some(), it uses owner_tag prefix, else owner prefix - can an attacker create accounts with empty string tags to bypass tag filtering, appearing in both tagged and untagged queries simultaneously and causing accounting confusion?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_6935f219-514a-45b4-a51f-ca3d7682183a",
+    "timestamp": "2025-12-24 19:15:56.311830",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: by_owner()] [to_credit_account failures] The by_owner() function calls to_credit_account() at line 116 for each account, which queries balances and debts - if any single account's collateral query fails (e.g., due to invalid denom), does the entire by_owner() call fail, preventing users from viewing any of their accounts?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_72d132cc-1c25-440b-a744-9dfdfc9f7674",
+    "timestamp": "2025-12-24 19:16:18.599674",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: by_owner()] [Owner impersonation] The by_owner() function takes owner as a parameter at line 107 without verifying the caller's relationship to that owner - while read-only, can this leak sensitive liquidation preference information to attackers who query other users' accounts to identify optimal liquidation targets?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_28c8bcfc-19cc-4f59-a2f5-338424d167de",
+    "timestamp": "2025-12-24 19:16:41.074121",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: by_owner()] [Config parameter trust] At line 105, by_owner() accepts a config parameter that's used in to_credit_account() for collateral_ratios - if an attacker can pass a manipulated config with different ratios, can they calculate fake LTV values that differ from the actual enforced values, causing confusion?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_9faf5a60-c252-447c-ab45-9f2c645a3d79",
+    "timestamp": "2025-12-24 19:17:04.002268",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: by_owner()] [Index consistency] At lines 111-113, switching between owner_tag and owner indexes based on tag parameter - if accounts were created with tags but the owner_tag index is corrupted, can by_owner(tag=Some) return different results than by_owner(tag=None) for the same owner, causing accounting discrepancies?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_812e398e-cd29-4678-a8d4-e2b674770506",
+    "timestamp": "2025-12-24 19:17:26.777084",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: by_owner()] [Error aggregation] The map() operation at lines 115-118 uses Result<Self, ContractError> - if multiple accounts fail to load (e.g., due to corrupted state), does collect() return only the first error, preventing diagnosis of systemic issues affecting multiple accounts?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_24bd0603-dd0e-46c2-8934-aa1c9e970f99",
+    "timestamp": "2025-12-24 19:17:49.678614",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: list()] [Default limit DoS] At line 136, list() uses unwrap_or(100) as default limit - if protocol has more than 100 accounts, can an attacker repeatedly call list() with no limit to consume excessive gas iterating and loading all accounts, causing DoS for the contract execution?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_7a918194-f0bc-4916-8115-8b703b68ac31",
+    "timestamp": "2025-12-24 19:18:14.785247",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: list()] [Cursor manipulation] The cursor parameter at line 126 is used as exclusive bound at line 132 - can an attacker provide a crafted cursor address that doesn't correspond to any real account, causing the range query to start from an unexpected position and skip accounts in pagination?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e22095c1-7a12-480e-b2f7-7b08d42121fb",
+    "timestamp": "2025-12-24 19:18:38.774248",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: list()] [Unbounded limit] At line 136, if limit is Some(usize::MAX), can an attacker cause the function to load every account in storage, exceeding gas limits and causing transaction failure, or worse, OOM if there are millions of accounts?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_94c2d4de-5d26-4599-84ed-91acf4e6e60e",
+    "timestamp": "2025-12-24 19:19:02.754305",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: list()] [Ascending order inefficiency] Using Order::Ascending at line 134 means list() starts from the earliest account - if most operations care about recent accounts, can this ordering cause inefficient pagination patterns where clients must query many pages to find relevant accounts?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e96695bb-8a38-4aa7-9423-368bc77682ff",
+    "timestamp": "2025-12-24 19:19:27.112443",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: list()] [to_credit_account gas] Each list() call invokes to_credit_account() at line 137 which queries balances (line 301) and debts (lines 312-323) for every account - if any account has many collateral types or debts, can this cause the list() call to exceed gas limits, making pagination impossible?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_2a647a50-01cb-42bd-b599-dfb97521e090",
+    "timestamp": "2025-12-24 19:19:51.048938",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: list()] [Contract parameter trust] The contract parameter at line 125 is passed to to_credit_account() for debt delegation queries - if this is not the actual registry contract, can list() return accounts with incorrect debt information, misleading callers about account health?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_5a155e3f-2fed-4859-bdfc-c1fd93e0c952",
+    "timestamp": "2025-12-24 19:20:14.509086",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: list()] [Partial results handling] At line 137, the map() could fail mid-iteration if to_credit_account() fails for some account - does collect() abort the entire list operation, or can it return partial results, causing inconsistent views of account state?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_445cac04-e62c-48d7-8f5b-878ad7121103",
+    "timestamp": "2025-12-24 19:20:37.963154",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: load()] [Account address validation] At line 145, load() validates the account address via deps.api.addr_validate() but this only checks format, not that the account actually exists - can calling load() with a valid-format but non-existent address cause unexpected errors or panics deeper in the call stack?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_91a38bd9-9660-48f5-8c04-83ff54f514a0",
+    "timestamp": "2025-12-24 19:21:00.873245",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: load()] [Storage vs state divergence] The load() function at line 147-149 first loads Stored from storage, then calls to_credit_account() which queries current balances - if the account contract holds different balances than expected, can this cause a mismatch where loaded state doesn't reflect actual account holdings?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_1b5ffa3d-df00-4b59-8799-450b21a8f68b",
+    "timestamp": "2025-12-24 19:21:25.008384",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-credit/src/account.rs] [Function: load()] [Nonexistent account handling] If the account doesn't exist in storage, load() at line 147-148 will error with store().load() failure - but does this error distinguish between 'never existed' vs 'deleted', and can attackers exploit queries for non-existent accounts to probe account addresses?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_16429628-585c-4a96-841f-b017932b6beb",
+    "timestamp": "2025-12-24 19:21:49.251665",
+    "report_generated": false
   }
 ]
