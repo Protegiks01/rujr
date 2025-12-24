@@ -148,5 +148,155 @@
     "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_814edad3-7f6f-4397-b179-4773b0ea75e3",
     "timestamp": "2025-12-24 18:10:12.330515",
     "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/events.rs] [Function: event_deposit()] [Owner address exposure] Can event_deposit() leaking the owner Addr at line 5 enable attackers to build comprehensive maps of user deposit patterns and amounts, facilitating targeted phishing attacks or MEV extraction strategies?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_e1379996-06b2-42d5-8047-29094024b801",
+    "timestamp": "2025-12-24 18:11:22.214483",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/events.rs] [Function: event_withdraw()] [Token burn correlation] Can event_withdraw() at contract.rs line 84/92 emit before the rcpt.burn_msg() and BankMsg::Send execute, causing off-chain systems to show withdrawals that haven't actually completed, enabling double-counting exploits?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_60674cb3-3f21-4d97-8a58-02157b0ea9fd",
+    "timestamp": "2025-12-24 18:11:34.817863",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/events.rs] [Function: event_deposit()] [Token mint correlation] Can the event_deposit() emission at contract.rs line 61/69 occur out of sync with the rcpt.mint_msg(), causing off-chain indexers to show deposit events without corresponding receipt token mints, breaking share accounting?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_37169e66-4b9b-43b2-9571-3132aa33ec66",
+    "timestamp": "2025-12-24 18:11:48.254582",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/events.rs] [Function: event_repay()] [Repayment event ordering] Can event_repay() at line 183 emit before the actual must_pay() validation completes, causing off-chain systems to process repayment events for transactions that ultimately fail, leading to incorrect debt tracking?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_a1558b56-c3a8-4b02-a870-fc021ce3ecf4",
+    "timestamp": "2025-12-24 18:12:02.059544",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/events.rs] [Function: event_borrow()] [Cross-contract event ordering] Can the timing of event_borrow() emission relative to BankMsg::Send in contract.rs line 138-141 create a race condition where off-chain systems see the borrow event before the actual token transfer, enabling front-running attacks on borrower positions?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_4940e9c2-e10e-4f53-bd47-186003801cd1",
+    "timestamp": "2025-12-24 18:12:16.804461",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/events.rs] [Function: event_repay()] [Large repayment event] Can event_repay() emit events with shares values that exceed the actual borrower debt due to race conditions, causing off-chain systems to show negative debt balances or corrupted borrower state?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_1289faac-a5ce-42d1-8b26-c3539b5f882f",
+    "timestamp": "2025-12-24 18:12:32.832825",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/events.rs] [Function: event_borrow()] [Maximum borrow event manipulation] Can event_borrow() emit events with amount or shares values approaching Uint128::MAX that cause arithmetic overflow in off-chain aggregation systems calculating total protocol debt?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_4765c030-113e-4a5f-885f-e996e1a78afc",
+    "timestamp": "2025-12-24 18:12:50.467961",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/events.rs] [Function: event_withdraw()] [Maximum withdrawal event] Can event_withdraw() emit events with extremely large shares values near Uint128::MAX that cause off-chain systems to incorrectly calculate the withdrawal ratio, potentially enabling share price manipulation detection evasion?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_2d2c8353-0705-46a6-90f6-9862412b456a",
+    "timestamp": "2025-12-24 18:13:08.613760",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/events.rs] [Function: event_deposit()] [Uint128 overflow event] Can event_deposit() emit events with Uint128::MAX values that cause off-chain indexers using different integer types (uint256, BigInt) to overflow or wrap, leading to completely incorrect balance tracking?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_2fa0db0e-c1b0-4097-b886-8068b00450f7",
+    "timestamp": "2025-12-24 18:13:28.801784",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/events.rs] [Function: event_repay()] [Zero repayment tracking] Can event_repay() emit events with zero values during edge cases of the min(amount, borrower_debt) calculation in contract.rs, causing off-chain systems to process no-op repayment events that mask the actual debt state?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_d4dd0d32-6a3e-4c1c-85cf-7bfc5204a0b2",
+    "timestamp": "2025-12-24 18:13:49.483840",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/events.rs] [Function: event_borrow()] [Zero borrow exploit] Can event_borrow() emit events with zero amount but non-zero shares (or vice versa) when the debt_pool ratio is manipulated, causing off-chain systems to miscalculate total borrowed amounts and miss protocol insolvency risks?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_6ef8df1e-c428-49e2-a854-2c18c4efe9aa",
+    "timestamp": "2025-12-24 18:14:11.320477",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/events.rs] [Function: event_withdraw()] [Zero withdrawal event] Can event_withdraw() emit events with Uint128::zero() for amount or shares, potentially allowing attackers to generate spurious withdrawal events that confuse off-chain accounting systems or create false signals for front-running bots?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_5f25b4e7-3260-4343-b5cf-6702cd01af65",
+    "timestamp": "2025-12-24 18:14:33.581657",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/events.rs] [Function: event_deposit()] [Zero amount handling] Can event_deposit() emit events with zero amount or zero shares values, causing off-chain indexers to process no-op transactions that could be used to spam the event log or manipulate utilization rate calculations?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_763a1b0d-9e6d-4625-98ab-d2c8fcd17675",
+    "timestamp": "2025-12-24 18:14:56.513285",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/events.rs] [Function: event_repay()] [Delegate address spoofing] Can an attacker manipulate the delegate Option<String> parameter to emit events that falsely indicate repayment of delegate debt when actually repaying direct debt, causing off-chain systems to incorrectly calculate borrower limit availability?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_dbfa22fb-ebf9-47ef-8085-c23627c116d2",
+    "timestamp": "2025-12-24 18:15:21.152293",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/events.rs] [Function: event_borrow()] [Delegate validation bypass] Since event_borrow() doesn't validate the delegate string before emission, can an attacker pass a malformed or excessively long delegate string that causes event indexing failures or DoS attacks on off-chain monitoring systems?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_5e42281b-c465-4e53-893a-be7d1ee85aad",
+    "timestamp": "2025-12-24 18:15:46.456156",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/events.rs] [Function: event_repay()] [Delegate tracking inconsistency] Can the delegate.unwrap_or_default() at line 38 cause off-chain indexers to lose track of which delegate positions are being repaid, potentially allowing borrowers to exceed their USD limits through untracked delegate borrows?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_7dc20964-95b9-406b-8169-a7677e43e18e",
+    "timestamp": "2025-12-24 18:16:11.905924",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/events.rs] [Function: event_borrow()] [Delegate manipulation] Can an attacker exploit the delegate.unwrap_or_default() call at line 25 to emit misleading borrow events with empty delegate strings, making it impossible for off-chain systems to distinguish between direct borrows and delegate borrows, potentially enabling borrower limit bypasses?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_ea27bd08-2a6a-4bb3-b8c1-c693b6beafd2",
+    "timestamp": "2025-12-24 18:16:36.729592",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/events.rs] [Function: event_repay()] [Repayment tracking error] Can event_repay() emit amount and shares values that are inconsistent with the actual debt_pool.leave() operation, causing off-chain liquidation systems to miss underwater positions or incorrectly mark accounts as healthy?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_d364da82-6074-4327-9b19-502a97a21e76",
+    "timestamp": "2025-12-24 18:17:00.992836",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/events.rs] [Function: event_borrow()] [Share-amount mismatch] Can event_borrow() emit an amount value that doesn't correctly correspond to the shares value based on debt_pool.ratio(), causing off-chain systems to incorrectly track borrower debt and potentially missing undercollateralized positions?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_ac237f07-1d5c-4377-96ef-d892ba9c3ab3",
+    "timestamp": "2025-12-24 18:17:24.686288",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/events.rs] [Function: event_withdraw()] [State inconsistency] Can event_withdraw() emit shares that don't match the actual amount burned from deposit_pool, causing off-chain systems to miscalculate user positions and potentially enabling accounting exploits in dependent protocols?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_038822c9-9d40-4ca9-9835-c2cbaafd94a0",
+    "timestamp": "2025-12-24 18:17:48.316354",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/events.rs] [Function: event_deposit()] [State inconsistency] Can the event_deposit() function emit events with amount and shares values that are inconsistent with the actual State.deposit_pool changes in contract.rs, potentially causing off-chain indexers to show incorrect deposit balances and leading to user confusion or integration failures?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_866b72a5-ab65-49ca-b39c-db8a7199b08a",
+    "timestamp": "2025-12-24 18:18:11.847234",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/events.rs] [Function: event_deposit()] [Owner address exposure] Can event_deposit() leaking the owner Addr at line 5 enable attackers to build comprehensive maps of user deposit patterns and amounts, facilitating targeted phishing attacks or MEV extraction strategies?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_ab575ec5-afae-44a3-a6f6-d8911c31a9fa",
+    "timestamp": "2025-12-24 18:18:36.053856",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/events.rs] [Function: event_withdraw()] [Token burn correlation] Can event_withdraw() at contract.rs line 84/92 emit before the rcpt.burn_msg() and BankMsg::Send execute, causing off-chain systems to show withdrawals that haven't actually completed, enabling double-counting exploits?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_1cf14c75-662b-47ba-b23e-4eb9f1136584",
+    "timestamp": "2025-12-24 18:18:59.729373",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/events.rs] [Function: event_deposit()] [Token mint correlation] Can the event_deposit() emission at contract.rs line 61/69 occur out of sync with the rcpt.mint_msg(), causing off-chain indexers to show deposit events without corresponding receipt token mints, breaking share accounting?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_c1b8a159-f44c-42ef-a460-ef084ccd1304",
+    "timestamp": "2025-12-24 18:19:23.588337",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contracts/rujira-ghost-vault/src/events.rs] [Function: event_repay()] [Repayment event ordering] Can event_repay() at line 183 emit before the actual must_pay() validation completes, causing off-chain systems to process repayment events for transactions that ultimately fail, leading to incorrect debt tracking?",
+    "url": "https://deepwiki.com/search/-you-are-an-elite-defi-securit_a46f2f39-e5d9-4c1e-bd17-558360e472a3",
+    "timestamp": "2025-12-24 18:19:47.077390",
+    "report_generated": false
   }
 ]
